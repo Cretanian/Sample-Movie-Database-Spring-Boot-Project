@@ -1,0 +1,19 @@
+Id        Score         Description        Number of Votes
+1          5.2              out of 10       2400
+2          8.3              out of 10       2599
+3          1.9              out of 10       79
+
+
+
+Votes
+
+
+Id    Score     User_ID     FilmTVShow_ID
+1       7        1               5
+2       8        1               7
+3
+4
+5
+
+
+
