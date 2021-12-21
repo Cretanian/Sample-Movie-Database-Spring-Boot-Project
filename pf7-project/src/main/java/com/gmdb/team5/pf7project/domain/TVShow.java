@@ -11,7 +11,7 @@ import lombok.experimental.SuperBuilder;
 @NoArgsConstructor
 @SuperBuilder
 @ToString(callSuper = true)
-public class TVShow extends FilmTVShow{
+public class TVShow {
 
     private Integer episodes;
 }
