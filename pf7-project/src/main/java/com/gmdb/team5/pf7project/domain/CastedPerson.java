@@ -14,9 +14,9 @@ import lombok.experimental.SuperBuilder;
 
 public class CastedPerson extends BaseModel{
 
-    private Long personId;
+    private Person person;
 
-    private Long CastInfoId;
+    private CastInfo CastInfo;
 
     private Role role;
 }

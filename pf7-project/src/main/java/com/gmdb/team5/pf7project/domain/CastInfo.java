@@ -16,7 +16,7 @@ import java.util.List;
 @ToString(callSuper = true)
 public class CastInfo extends BaseModel{
 
-    private Long filmTVShowId;
+    private FilmTVShow filmTVShow;
 
     private List <CastedPerson> castedPersons;
 

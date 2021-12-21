@@ -14,7 +14,7 @@ import lombok.experimental.SuperBuilder;
 
 public class GenreOfFilmTVShow extends BaseModel{
 
-    private Long FilmTVShowId;
+    private FilmTVShow FilmTVShow;
 
     private Genre genre;
 }
