@@ -1,12 +1,25 @@
 package com.gmdb.team5.pf7project.domain;
 
-public class CastInfo {
+
+import lombok.AllArgsConstructor;
+import lombok.Data;
+import lombok.NoArgsConstructor;
+import lombok.ToString;
+import lombok.experimental.SuperBuilder;
+
+import java.util.List;
+
+@Data
+@AllArgsConstructor
+@NoArgsConstructor
+@SuperBuilder
+@ToString(callSuper = true)
+public class CastInfo extends BaseModel{
 
     private Long filmTVShowId;
 
-    private Long personId;
+    private List <CastedPerson> castedPersons;
 
-    private Long roleId;
 
     //maybe more maybe less
 }

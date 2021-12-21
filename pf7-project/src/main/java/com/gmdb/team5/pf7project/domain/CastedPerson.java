@@ -11,7 +11,12 @@ import lombok.experimental.SuperBuilder;
 @NoArgsConstructor
 @SuperBuilder
 @ToString(callSuper = true)
-public class TVShow extends FilmTVShow{
 
-    private Integer episodes;
+public class CastedPerson extends BaseModel{
+
+    private Long personId;
+
+    private Long CastInfoId;
+
+    private Role role;
 }

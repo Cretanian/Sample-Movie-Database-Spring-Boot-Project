@@ -1,20 +1,18 @@
 package com.gmdb.team5.pf7project.domain;
 
 
-public class Film {
+import lombok.AllArgsConstructor;
+import lombok.Data;
+import lombok.NoArgsConstructor;
+import lombok.ToString;
+import lombok.experimental.SuperBuilder;
 
-    private String title;
+@Data
+@AllArgsConstructor
+@NoArgsConstructor
+@SuperBuilder
+@ToString(callSuper = true)
+public class Film extends  FilmTVShow{
 
-    private String description;
-
-    //comeoutyear
-    private Integer releaseYear;
-
-    private String language;
-
-    //in minutes
-    private Integer duration;
-
-    private Rating rating;
 
 }
