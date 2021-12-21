@@ -11,10 +11,11 @@ import lombok.experimental.SuperBuilder;
 @NoArgsConstructor
 @SuperBuilder
 @ToString(callSuper = true)
+public class FilmCast extends BaseModel {
 
-public class GenreOfFilmTVShow extends BaseModel{
+    private Person person;
 
-    private FilmTVShow FilmTVShow;
+    private Role role;
 
-    private Genre genre;
+    private Film film;
 }

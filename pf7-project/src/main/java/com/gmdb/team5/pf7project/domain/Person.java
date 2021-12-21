@@ -9,7 +9,7 @@ import lombok.experimental.SuperBuilder;
 @Data
 @AllArgsConstructor
 @NoArgsConstructor
-//@SuperBuilder
+@SuperBuilder
 @ToString(callSuper = true)
 public class Person extends BaseModel{
 
@@ -17,6 +17,7 @@ public class Person extends BaseModel{
 
     private String lastName;
 
+    //date of birth
     private Integer DOB;
 
     private String country;

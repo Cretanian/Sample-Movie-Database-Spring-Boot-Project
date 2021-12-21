@@ -6,21 +6,20 @@ import lombok.NoArgsConstructor;
 import lombok.ToString;
 import lombok.experimental.SuperBuilder;
 
-import java.util.List;
+import javax.persistence.MappedSuperclass;
 
 @Data
 @AllArgsConstructor
 @NoArgsConstructor
 @SuperBuilder
 @ToString(callSuper = true)
-
-public class FilmTVShow extends BaseModel{
+@MappedSuperclass
+public class Content extends BaseModel {
 
     private String title;
 
     private String description;
 
-    //comeoutyear
     private Integer releaseYear;
 
     private String language;
@@ -29,6 +28,4 @@ public class FilmTVShow extends BaseModel{
     private Integer duration;
 
     private Rating rating;
-
-    private List<GenreOfFilmTVShow> genreOfFilmTVShow;
 }
