@@ -8,7 +8,7 @@ import com.gmdb.team5.pf7project.domain.Role;
 import java.util.List;
 import java.util.Map;
 
-public interface ContentService< FilmOrShow > extends BaseService<Content, Long> {
+public interface ContentService< FilmOrShow > extends BaseService<FilmOrShow, Long> {
 
     List<FilmOrShow> getContentByName (String input);
 

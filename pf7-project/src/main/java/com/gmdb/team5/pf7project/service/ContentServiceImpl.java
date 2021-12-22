@@ -9,7 +9,7 @@ import com.gmdb.team5.pf7project.domain.Role;
 import java.util.List;
 import java.util.Map;
 
-public abstract class ContentServiceImpl<FilmOrShow extends Content> extends BaseServiceImpl<Content>
+public abstract class ContentServiceImpl<FilmOrShow extends Content> extends BaseServiceImpl<FilmOrShow>
         implements ContentService<FilmOrShow> {
 
     @Override
