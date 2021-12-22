@@ -11,7 +11,7 @@ import lombok.experimental.SuperBuilder;
 @NoArgsConstructor
 @SuperBuilder
 @ToString(callSuper = true)
-public class TVShowCast{
+public class TVShowCast extends BaseModel {
 
     private Person person;
 

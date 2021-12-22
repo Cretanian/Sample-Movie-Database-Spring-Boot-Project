@@ -1,4 +1,6 @@
 package com.gmdb.team5.pf7project.service;
 
-public interface CastInfoService {
+
+
+public abstract class ContentServiceImpl {
 }

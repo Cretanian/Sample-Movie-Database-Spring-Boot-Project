@@ -4,7 +4,7 @@ import com.gmdb.team5.pf7project.domain.BaseModel;
 
 import java.util.List;
 
-public abstract class BaseServiceImpl<T extends BaseModel> implements BaseService<T , Long>{
+public abstract class BaseServiceImpl<T extends BaseModel> implements BaseService<T , Long> {
 
     @Override
     public T create(T clazz) {
