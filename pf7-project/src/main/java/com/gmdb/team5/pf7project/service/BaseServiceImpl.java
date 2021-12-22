@@ -1,53 +1,83 @@
 package com.gmdb.team5.pf7project.service;
 
 import com.gmdb.team5.pf7project.domain.BaseModel;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
+import org.springframework.data.jpa.repository.JpaRepository;
+import org.springframework.transaction.annotation.Isolation;
+import org.springframework.transaction.annotation.Propagation;
+import org.springframework.transaction.annotation.Transactional;
 
+import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
+import java.util.NoSuchElementException;
 
 public abstract class BaseServiceImpl<T extends BaseModel> implements BaseService<T , Long> {
 
+    protected Logger logger = LoggerFactory.getLogger(getClass());
+
+    public abstract JpaRepository<T, Long> getRepository();
+
     @Override
-    public T create(T clazz) {
-        return null;
+    @Transactional(propagation = Propagation.REQUIRED, isolation = Isolation.READ_COMMITTED, rollbackFor = Exception.class)
+    public List<T> createAll(final T... clazzes) {
+        return createAll(Arrays.asList(clazzes));
     }
 
     @Override
-    public List<T> createAll(T... clazzes) {
-        return null;
+    @Transactional(propagation = Propagation.REQUIRED, isolation = Isolation.READ_COMMITTED, rollbackFor = Exception.class)
+    public List<T> createAll(final List<T> clazzes) {
+        final List<T> updatedEntities = new ArrayList<>();
+        for (final T clazz : clazzes) {
+            updatedEntities.add(create(clazz));
+        }
+        return updatedEntities;
     }
 
     @Override
-    public List<T> createAll( List <T> clazzes) {
-        return null;
+    @Transactional(propagation = Propagation.REQUIRED, isolation = Isolation.READ_COMMITTED, rollbackFor = Exception.class)
+    public T create(final T clazz) {
+        logger.trace("Creating {}.", clazz);
+        return getRepository().save(clazz);
     }
 
     @Override
-    public void update(T clazz) {
-
+    @Transactional(propagation = Propagation.REQUIRED, isolation = Isolation.READ_COMMITTED, rollbackFor = Exception.class)
+    public void update(final T clazz) {
+        logger.trace("Updating {}.", clazz);
+        getRepository().save(clazz);
     }
 
     @Override
-    public void delete(T clazz) {
-
+    @Transactional(propagation = Propagation.REQUIRED, isolation = Isolation.READ_COMMITTED, rollbackFor = Exception.class)
+    public void delete(final T clazz) {
+        logger.trace("Deleting {}.", clazz);
+        getRepository().delete(clazz);
     }
 
     @Override
-    public void deleteById(Long aLong) {
-
+    @Transactional(propagation = Propagation.REQUIRED, isolation = Isolation.READ_COMMITTED, rollbackFor = Exception.class)
+    public void deleteById(final Long id) {
+        final T entityFound = getRepository().getById(id);
+        logger.trace("Deleting {}.", entityFound);
+        getRepository().deleteById(id);
     }
 
     @Override
-    public boolean exists(T clazz) {
-        return false;
-    }
-
-    @Override
-    public T find(Long aLong) {
-        return null;
+    public boolean exists(final T clazz) {
+        logger.trace("Checking whether {} exists.", clazz);
+        return getRepository().existsById(clazz.getId());
     }
 
     @Override
     public List<T> findAll() {
-        return null;
+        logger.trace("Retrieving all data.");
+        return getRepository().findAll();
+    }
+
+    @Override
+    public T find(Long id) {
+        return getRepository().findById(id).orElseThrow(NoSuchElementException::new);
     }
 }
