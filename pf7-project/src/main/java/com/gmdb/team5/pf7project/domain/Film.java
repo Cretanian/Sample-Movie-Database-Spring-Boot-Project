@@ -14,12 +14,21 @@ import java.util.List;
 @NoArgsConstructor
 @SuperBuilder
 @ToString(callSuper = true)
-public class Film extends Content {
+public class Film extends BaseModel {
 
    // many to many for genre;
+   private String title;
 
-    private Boolean bestPictureOscar;
+    private String description;
 
-    private List<Genre> genre;
+    private Integer releaseYear;
+
+    private String language;
+    //in minutes
+    private Integer duration;
+
+    private Rating rating;
+
+    private List<GenreEnum> genre;
 
 }
