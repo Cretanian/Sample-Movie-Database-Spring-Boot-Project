@@ -1,4 +1,6 @@
 package com.gmdb.team5.pf7project.service;
 
-public class TVShowServiceImpl implements TvShowService{
+import com.gmdb.team5.pf7project.domain.TVShow;
+
+public class TVShowServiceImpl extends ContentServiceImpl<TVShow> implements TvShowService{
 }

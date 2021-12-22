@@ -1,4 +1,6 @@
 package com.gmdb.team5.pf7project.service;
 
-public interface TvShowService {
+import com.gmdb.team5.pf7project.domain.TVShow;
+
+public interface TvShowService extends ContentService<TVShow> {
 }
