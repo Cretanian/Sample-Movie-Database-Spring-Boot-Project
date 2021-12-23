@@ -1,5 +1,6 @@
 package com.gmdb.team5.pf7project.service;
 
+import com.gmdb.team5.pf7project.base.AbstractLogComponent;
 import com.gmdb.team5.pf7project.domain.BaseModel;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -13,9 +14,7 @@ import java.util.Arrays;
 import java.util.List;
 import java.util.NoSuchElementException;
 
-public abstract class BaseServiceImpl<T extends BaseModel> implements BaseService<T> {
-
-    protected Logger logger = LoggerFactory.getLogger(getClass());
+public abstract class BaseServiceImpl<T extends BaseModel> extends AbstractLogComponent implements BaseService<T> {
 
     public abstract JpaRepository<T, Long> getRepository();
 
@@ -78,6 +77,8 @@ public abstract class BaseServiceImpl<T extends BaseModel> implements BaseServic
 
     @Override
     public T find(Long id) {
+
+        logger.trace("Retrieving data.");
         return getRepository().findById(id).orElseThrow(NoSuchElementException::new);
     }
 }

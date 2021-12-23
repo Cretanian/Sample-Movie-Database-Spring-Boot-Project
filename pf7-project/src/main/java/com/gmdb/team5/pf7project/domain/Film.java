@@ -1,7 +1,6 @@
 package com.gmdb.team5.pf7project.domain;
 
 
-import com.sun.istack.NotNull;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
@@ -10,7 +9,6 @@ import lombok.experimental.SuperBuilder;
 
 import javax.persistence.*;
 import java.util.HashSet;
-import java.util.List;
 import java.util.Set;
 
 @Data
@@ -43,14 +41,14 @@ public class Film extends BaseModel {
     @Column(length = 15, nullable = false)
     private Rating rating;
 
-    @ElementCollection(targetClass = GenreEnum.class , fetch = FetchType.EAGER)
+    @ElementCollection(targetClass = Genre.class , fetch = FetchType.EAGER)
     @CollectionTable(
             name = "FILMGENRE",
             joinColumns = @JoinColumn(name = "FILM_ID")
     )
     @Enumerated(EnumType.STRING)
     @Column(name = "GENRE_ID")
-    private Set<GenreEnum> genre = new HashSet<>();
+    private Set<Genre> genre = new HashSet<>();
 
     @OneToMany(mappedBy = "person")
     private Set<Cast> peopleCasted = new HashSet<>();

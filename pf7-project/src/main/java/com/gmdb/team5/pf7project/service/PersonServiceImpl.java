@@ -2,39 +2,36 @@ package com.gmdb.team5.pf7project.service;
 
 
 import com.gmdb.team5.pf7project.domain.Person;
+import com.gmdb.team5.pf7project.repository.PersonRepository;
+import lombok.RequiredArgsConstructor;
 import org.springframework.data.jpa.repository.JpaRepository;
+import org.springframework.stereotype.Service;
 
+@Service
+@RequiredArgsConstructor
 public class PersonServiceImpl extends BaseServiceImpl<Person> implements PersonService{
-    //private final PersonRepository personRepository;
+    private final PersonRepository personRepository;
 
     @Override
     public JpaRepository<Person, Long> getRepository() {
-        return null;
+        return personRepository;
     }
 
 
     @Override
-    public Person findByFullName(String firstName, String lastName) {
-        return null;   //PersonRepository.findAll().stream().filter(c -> c.getEmail().equals(email)).findAny().orElse(null);
+    public Person findByName(String firstName, String lastName) {
+        return personRepository.findByName(firstName, lastName);
     }
 
     @Override
-    public Boolean isAliveByID(Long id) {
-        return null;   //PersonRepository.findAll().stream().filter(c -> c.getId().equals(id)).findAny().get().getIsAlive.orElse(null);
+    public Boolean isAliveByName(String firstName, String lastName) {
+        return personRepository.isAliveByName(firstName, lastName);
     }
 
     @Override
-    public Boolean isAliveByFullName(String firstName, String lastName) {
-        return null;
+    public String findCountryByName(String firstName, String lastName) {
+        return personRepository.findCountryByName(firstName, lastName);
     }
 
-    @Override
-    public String wherePersonIsFromById(Long id) {
-        return null;
-    }
 
-    @Override
-    public String wherePersonIsFromByFullName(String firstName, String lastName) {
-        return null;
-    }
 }
