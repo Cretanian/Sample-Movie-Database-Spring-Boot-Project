@@ -6,16 +6,33 @@ import lombok.NoArgsConstructor;
 import lombok.ToString;
 import lombok.experimental.SuperBuilder;
 
+import javax.persistence.*;
+
 @Data
 @AllArgsConstructor
 @NoArgsConstructor
 @SuperBuilder
 @ToString(callSuper = true)
+@Entity()
+@Table(name = "CASTED_PERSON")
 public class Cast extends BaseModel {
 
+    @EmbeddedId
+    private FilmPersonKey key;
+
+    @ManyToOne
+    @MapsId("personId")
+    @JoinColumn(name = "PERSON_ID")
     private Person person;
 
+    @ManyToOne
+    @MapsId("filmId")
+    @JoinColumn(name = "FILM_ID")
+    private Film film;
+
+    @Enumerated(EnumType.STRING)
+    @Column(length = 15, nullable = false)
     private Role role;
 
-    private Film film;
+
 }
