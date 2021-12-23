@@ -2,7 +2,7 @@ package com.gmdb.team5.pf7project.service;
 
 import java.util.List;
 
-public interface BaseService<T , ID> {
+public interface BaseService<T> {
     T create(T clazz);
 
     List<T> createAll(List<T> clazzes);
@@ -13,11 +13,11 @@ public interface BaseService<T , ID> {
 
     void delete(T clazz);
 
-    void deleteById(ID id);
+    void deleteById(Long id);
 
     boolean exists(T clazz);
 
-    T find(ID id);
+    T find(Long id);
 
     List<T> findAll();
 }

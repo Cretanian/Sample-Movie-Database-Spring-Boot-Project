@@ -28,7 +28,7 @@ public class TVShow extends Film{
 
     // to check with team
 
- //   @OneToMany
- //   private Set<Film> numFilm = new HashSet<>();
+    @OneToMany
+    private Set<Film> numFilm = new HashSet<>();
 
 }

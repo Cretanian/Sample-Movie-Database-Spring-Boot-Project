@@ -13,7 +13,7 @@ import java.util.Arrays;
 import java.util.List;
 import java.util.NoSuchElementException;
 
-public abstract class BaseServiceImpl<T extends BaseModel> implements BaseService<T , Long> {
+public abstract class BaseServiceImpl<T extends BaseModel> implements BaseService<T> {
 
     protected Logger logger = LoggerFactory.getLogger(getClass());
 
