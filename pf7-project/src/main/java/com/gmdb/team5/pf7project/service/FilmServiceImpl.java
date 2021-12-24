@@ -23,37 +23,42 @@ public class FilmServiceImpl extends BaseServiceImpl<Film> implements FilmServic
     }
 
     @Override
-    public List<Film> findTopRatedContent(Long id) {
-        return null;
+    public Film findByTitle(String title) {
+        return fIlmRepository.findAll().stream().filter(c -> c.getTitle().equals(title)).findAny().orElse(null);
     }
 
-    @Override
-    public List<Film> findContentByPerson(Person person) {
-        return null;
-    }
-
-    @Override
-    public List<Film> findContentByPersonByRole(Person person, Role role) {
-        return null;
-    }
-
-    @Override
-    public List<Film> findContentByGenre(Genre genre) {
-        return null;
-    }
-
-    @Override
-    public Map<Genre, Long> findContentPerGenre() {
-        return null;
-    }
-
-    @Override
-    public Map<Integer, Map<Genre, Long>> findContentPerYearPerGenre() {
-        return null;
-    }
-
-    @Override
-    public Map<Genre, List<Film>> findContentOfPersonPerGenre(Person person) {
-        return null;
-    }
+//    @Override
+//    public List<Film> findTopRatedContent(Long id) {
+//        return fIlmRepository.findTopRatedContent(id);
+//    }
+//
+//    @Override
+//    public List<Film> findContentByPerson(Person person) {
+//        return fIlmRepository.findContentByPerson(person);
+//    }
+//
+//    @Override
+//    public List<Film> findContentByPersonByRole(Person person, Role role) {
+//        return null;
+//    }
+//
+//    @Override
+//    public List<Film> findContentByGenre(Genre genre) {
+//        return null;
+//    }
+//
+//    @Override
+//    public Map<Genre, Long> findContentPerGenre() {
+//        return null;
+//    }
+//
+//    @Override
+//    public Map<Integer, Map<Genre, Long>> findContentPerYearPerGenre() {
+//        return null;
+//    }
+//
+//    @Override
+//    public Map<Genre, List<Film>> findContentOfPersonPerGenre(Person person) {
+//        return null;
+//    }
 }
