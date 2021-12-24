@@ -1,5 +1,6 @@
 package com.gmdb.team5.pf7project.domain;
 
+import com.sun.istack.NotNull;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
@@ -26,9 +27,7 @@ public class TVShow extends Film{
     @Column(nullable = false)
     private Integer seasons;
 
-    // to check with team
-
-    @OneToMany
-    private Set<Film> numFilm = new HashSet<>();
+    @OneToMany(fetch = FetchType.LAZY)
+    private Set<Film> Film = new HashSet<>();
 
 }

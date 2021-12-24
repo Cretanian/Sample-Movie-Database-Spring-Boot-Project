@@ -17,7 +17,6 @@ public class PersonServiceImpl extends BaseServiceImpl<Person> implements Person
         return personRepository;
     }
 
-
     @Override
     public Person findByName(String firstName, String lastName) {
         return personRepository.findByName(firstName, lastName);
@@ -32,6 +31,4 @@ public class PersonServiceImpl extends BaseServiceImpl<Person> implements Person
     public String findCountryByName(String firstName, String lastName) {
         return personRepository.findCountryByName(firstName, lastName);
     }
-
-
 }
