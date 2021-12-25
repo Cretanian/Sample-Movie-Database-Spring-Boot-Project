@@ -14,14 +14,24 @@ import java.util.Map;
 @Repository
 public interface FIlmRepository  extends JpaRepository<Film, Long> {
 
+    Film findByTitle (String title);
+
+    //Fix the above SQL commands here is the error 99% sure
+
+    @Query(value = "select o from FILMS o join fetch o.cast where o.id = ?1", nativeQuery = true)
+    Film findLazy(Long id);
+
+    @Query(value = "select distinct o from FILMS o join fetch o.orderItems", nativeQuery = true)
+    List<Film> findAllLazy();
 
 
-            //first report
+
+    //first report
       @Query(value = "select top ?1 * from FILMS order by RATING desc", nativeQuery = true)
       List<Film> findTopRatedContent(Long number);
 
       //second report
-      @Query(value = "select f from Film f join Casted_Person o where o.person_id = ?1.id",nativeQuery = true)
+      @Query(value = "select f from FILMS f join Casted_Person o where o.person_id = ?1.id",nativeQuery = true)
       List<Film> findContentByPerson(Person person);
 
 //    //third report
@@ -38,6 +48,6 @@ public interface FIlmRepository  extends JpaRepository<Film, Long> {
 //
 //    //seventh
 //    Map<Genre,List<Film>> findContentOfPersonPerGenre(Person person);
-      Film findByTitle (String title);
+
 
 }

@@ -47,7 +47,7 @@ public class Film extends BaseModel {
             joinColumns = @JoinColumn(name = "FILM_ID")
     )
     @Enumerated(EnumType.STRING)
-    @Column(name = "GENRE_ID")
+    @Column(name = "GENRE_ID", nullable = false)
     private Set<Genre> genre = new HashSet<>();
 
     @OneToMany(mappedBy = "person")

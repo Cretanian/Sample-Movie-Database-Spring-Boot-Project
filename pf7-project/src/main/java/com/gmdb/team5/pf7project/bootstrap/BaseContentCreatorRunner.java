@@ -1,10 +1,7 @@
 package com.gmdb.team5.pf7project.bootstrap;
 
 import com.gmdb.team5.pf7project.base.AbstractLogComponent;
-import com.gmdb.team5.pf7project.domain.Film;
-import com.gmdb.team5.pf7project.domain.Person;
-import com.gmdb.team5.pf7project.domain.Rating;
-import com.gmdb.team5.pf7project.domain.TVShow;
+import com.gmdb.team5.pf7project.domain.*;
 import com.gmdb.team5.pf7project.service.FilmService;
 import com.gmdb.team5.pf7project.service.PersonService;
 import com.gmdb.team5.pf7project.service.TVShowService;
@@ -38,7 +35,7 @@ public class BaseContentCreatorRunner extends AbstractLogComponent implements Co
     String[] tvShowTitle = {"Game of Thrones", "Breaking Bad", "Witcher", "Money Heist",
             "Squid Game", "Ozak", "Hunter X Hunter", "Attack on Titan"};
 
-    String[] tvShowEpisodeTitle = {"A new beginning ", "Tales of Brad ", "Mister Door", "All goes both ways",
+    String[] tvShowEpisodeTitle = {"A new beginning", "Tales of Brad", "Mister Door", "All goes both ways",
             "The game of fisherman", "Down the road with Jones", "Check yourself", "No time left to clean"};
 
 
@@ -76,6 +73,39 @@ public class BaseContentCreatorRunner extends AbstractLogComponent implements Co
         return null;
     }
 
+    private Genre generateGenre() {
+        int index  = generateRandomAgeInRange(1,16);
+        switch (index) {
+            case 1: return Genre.Romance;
+            case 2: return Genre.Horror;
+            case 3: return Genre.Comedy;
+            case 4: return Genre.Adventure;
+            case 5: return Genre.Action;
+            case 6: return Genre.SciFi;
+            case 7: return Genre.Drama;
+            case 8: return Genre.Documentary;
+            case 9: return Genre.Mystery;
+            case 10: return Genre.Supernatural;
+            case 11: return Genre.Psychological;
+            case 12: return Genre.SliceOfLife;
+            case 13: return Genre.Fantasy;
+            case 14: return Genre.Crime;
+            case 15: return Genre.Thriller;
+            case 16: return Genre.Animation;
+        }
+        return null;
+    }
+
+    private Set<Genre> generateRandomGenres(){
+        Set<Genre> genre = new HashSet<>();
+
+        do{
+            genre.add(generateGenre());
+        }while (random.nextBoolean());
+
+        return genre;
+    }
+
     private void createPeople() {
         List<Person> people = new ArrayList<>();
 
@@ -108,6 +138,7 @@ public class BaseContentCreatorRunner extends AbstractLogComponent implements Co
                             .language(generateCountry())
                             .duration(generateRandomAgeInRange(60,180))
                             .rating(generateRating())
+                            .genre(generateRandomGenres())
                             .build()
             );
         }
@@ -130,6 +161,7 @@ public class BaseContentCreatorRunner extends AbstractLogComponent implements Co
                             .language(generateCountry())
                             .duration(generateRandomAgeInRange(60*5,60*15))
                             .rating(generateRating())
+                            .genre(generateRandomGenres())
                             .episodes(generateRandomAgeInRange(5,15))
                             .seasons(generateRandomAgeInRange(1,3))
                             .build()

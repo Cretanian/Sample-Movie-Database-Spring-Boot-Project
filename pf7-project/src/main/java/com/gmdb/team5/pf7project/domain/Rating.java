@@ -10,6 +10,6 @@ public enum Rating {
     }
 
     public int getStar() {
-        return star;
+        return this.star;
     }
 }

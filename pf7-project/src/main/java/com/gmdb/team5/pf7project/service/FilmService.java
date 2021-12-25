@@ -5,10 +5,24 @@ import com.gmdb.team5.pf7project.domain.Genre;
 import com.gmdb.team5.pf7project.domain.Person;
 import com.gmdb.team5.pf7project.domain.Role;
 
+import javax.xml.crypto.dsig.keyinfo.KeyValue;
+import java.math.BigDecimal;
 import java.util.List;
 import java.util.Map;
 
 public interface FilmService extends BaseService<Film> {
+
+    Film findByTitle (String title);
+
+    void addItem(Film film, Person product, Role role);
+
+    void updateItem(Film film, Person product, Role role);
+
+    void removeItem(Film film, Person product);
+
+    Film findLazy(Long id);
+
+    List<Film> findAllLazy();
 
 //    //first report
 //    List<Film> findTopRatedContent(Long id);
@@ -30,9 +44,6 @@ public interface FilmService extends BaseService<Film> {
 //
 //    //seventh
 //    Map<Genre,List<Film>> findContentOfPersonPerGenre(Person person);
-
-    Film findByTitle (String title);
-
 
 
 

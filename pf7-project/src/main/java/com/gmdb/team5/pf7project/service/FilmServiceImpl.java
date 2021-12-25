@@ -1,9 +1,6 @@
 package com.gmdb.team5.pf7project.service;
 
-import com.gmdb.team5.pf7project.domain.Film;
-import com.gmdb.team5.pf7project.domain.Genre;
-import com.gmdb.team5.pf7project.domain.Person;
-import com.gmdb.team5.pf7project.domain.Role;
+import com.gmdb.team5.pf7project.domain.*;
 import com.gmdb.team5.pf7project.repository.FIlmRepository;
 import lombok.RequiredArgsConstructor;
 import org.springframework.data.jpa.repository.JpaRepository;
@@ -23,9 +20,84 @@ public class FilmServiceImpl extends BaseServiceImpl<Film> implements FilmServic
     }
 
     @Override
+    public Film find(Long id) {
+        return findLazy(id);
+    }
+
+    @Override
+    public Film findLazy(Long id) {
+        return fIlmRepository.findLazy(id);
+    }
+
+    @Override
+    public List<Film> findAll() {
+        return findAllLazy();
+    }
+
+    @Override
+    public List<Film> findAllLazy() {
+        return fIlmRepository.findAllLazy();
+    }
+
+    @Override
     public Film findByTitle(String title) {
         return fIlmRepository.findAll().stream().filter(c -> c.getTitle().equals(title)).findAny().orElse(null);
     }
+
+    private boolean checkNullability(Film film, Person person) {
+        if (film == null) {
+            logger.warn("Film is null.");
+            return true;
+        }
+        if (person == null) {
+            logger.warn("Person is null.");
+            return true;
+        }
+        return false;
+    }
+
+    private boolean validate(Film film) {
+        return film != null && !film.getPeopleCasted().isEmpty();
+    }
+
+    private Cast newCastedPerson(Film film, Person person, Role role) {
+        return Cast.builder().film(film).person(person).role(role).build();
+    }
+
+    @Override
+    public void addItem(Film film, Person person, Role role) {
+        if (checkNullability(film, person) || role == null) {
+            return;
+        }
+        film.getPeopleCasted().add(newCastedPerson(film, person, role));
+
+        logger.debug("Person[{}] added to Film[{}] as a {}", person, film, role);
+    }
+
+    @Override
+    public void updateItem(Film film, Person person, Role role) {
+        if (checkNullability(film, person) || role == null) {
+            return;
+        }
+
+        film.getPeopleCasted().removeIf(oi -> oi.getPerson().getId().equals(person.getId()));
+        film.getPeopleCasted().add(newCastedPerson(film, person, role));
+
+        logger.debug("Person[{}] updated in Film[{}] as a {}", person, film, role);
+    }
+
+    @Override
+    public void removeItem(Film film, Person person) {
+        if (checkNullability(film, person)) {
+            return;
+        }
+        film.getPeopleCasted().removeIf(oi -> oi.getPerson().getId().equals(person.getId()));
+
+        logger.debug("Person[{}] removed from Film[{}]", person, film);
+    }
+
+
+// Reports Starts here!
 
 //    @Override
 //    public List<Film> findTopRatedContent(Long id) {
