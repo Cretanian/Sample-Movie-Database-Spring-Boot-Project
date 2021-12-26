@@ -64,11 +64,14 @@ public class FilmServiceImpl extends BaseServiceImpl<Film> implements FilmServic
         return Cast.builder().film(film).person(person).role(role).build();
     }
 
+    //check the above method here something wrong
+
     @Override
     public void addItem(Film film, Person person, Role role) {
         if (checkNullability(film, person) || role == null) {
             return;
         }
+        System.out.println(film.getPeopleCasted() == null);
         film.getPeopleCasted().add(newCastedPerson(film, person, role));
 
         logger.debug("Person[{}] added to Film[{}] as a {}", person, film, role);

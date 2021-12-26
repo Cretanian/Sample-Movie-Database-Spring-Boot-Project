@@ -127,11 +127,12 @@ public class BaseContentCreatorRunner extends AbstractLogComponent implements Co
 
     private void createMovies() {
         List<Film> films = new ArrayList<>();
+        System.out.println(movieTitle[0]);
 
-        for(int i = 0; i < 15; ++i){
+        for(int i = 0; i < movieTitle.length; ++i){
             films.add(
                     Film.builder()
-                            .id((long) i)
+                            .id((long) i + 1)
                             .title(movieTitle[i])
                             .description("Here is an epic description!")
                             .releaseYear(generateRandomAgeInRange(1930,2020))
@@ -150,12 +151,11 @@ public class BaseContentCreatorRunner extends AbstractLogComponent implements Co
 
         List<TVShow> tvShow = new ArrayList<>();
         List<Film> films = new ArrayList<>();
-
-        for(int i = 15; i < 23; ++i){
+        for(int i = movieTitle.length; i < (movieTitle.length + tvShowTitle.length); ++i){
             tvShow.add(
                     TVShow.builder()
-                            .id((long) i)
-                            .title(tvShowTitle[i - 15])
+                            .id((long) i + 1)
+                            .title(tvShowTitle[i - movieTitle.length])
                             .description("Here is an epic TVShow description!")
                             .releaseYear(generateRandomAgeInRange(1990,2020))
                             .language(generateCountry())
@@ -170,20 +170,16 @@ public class BaseContentCreatorRunner extends AbstractLogComponent implements Co
         }
 
         logger.info("Created and associated {} TVShows.", tvShowService.createAll(tvShow).size());
-
-      //add here the more films(episodes)
-
-
     }
 
     private void createEpisodes() {
         List<Film> films = new ArrayList<>();
 
-        for(int i = 23; i < 31; ++i){
+        for(int i = (movieTitle.length + tvShowTitle.length); i < (movieTitle.length + tvShowTitle.length + tvShowTitle.length); ++i){
             films.add(
                     Film.builder()
-                            .id((long) i)
-                            .title(tvShowEpisodeTitle[i - 23])
+                            .id((long) i + 1)
+                            .title(tvShowEpisodeTitle[i - (movieTitle.length + tvShowTitle.length)])
                             .description("Here is an epic episode description!")
                             .releaseYear(generateRandomAgeInRange(2014,2016))
                             .language(generateCountry())

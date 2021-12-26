@@ -16,15 +16,13 @@ public interface FIlmRepository  extends JpaRepository<Film, Long> {
 
     Film findByTitle (String title);
 
-    //Fix the above SQL commands here is the error 99% sure
+    //Fix the above SQL commands here is an error 99% sure
 
-    @Query(value = "select o from FILMS o join fetch o.cast where o.id = ?1", nativeQuery = true)
+    @Query(value = "select o from FILMS o join CASTED_PERSON where o.id = ?1", nativeQuery = true)
     Film findLazy(Long id);
 
     @Query(value = "select distinct o from FILMS o join fetch o.orderItems", nativeQuery = true)
     List<Film> findAllLazy();
-
-
 
     //first report
       @Query(value = "select top ?1 * from FILMS order by RATING desc", nativeQuery = true)

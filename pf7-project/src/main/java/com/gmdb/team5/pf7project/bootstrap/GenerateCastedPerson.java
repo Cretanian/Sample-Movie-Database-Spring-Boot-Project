@@ -46,9 +46,9 @@ public class GenerateCastedPerson  extends AbstractLogComponent implements Comma
 
 		// Add item(s) both existing and non-existing
         filmService.addItem(firstFilm, personService.find((long) 1), generateRandomRole());
-        filmService.addItem(firstFilm, personService.find((long) 2), generateRandomRole());
-        filmService.addItem(firstFilm, personService.find((long) 3), generateRandomRole());
-        filmService.addItem(firstFilm, personService.find((long) 4), generateRandomRole());
+//        filmService.addItem(firstFilm, personService.find((long) 2), generateRandomRole());
+//        filmService.addItem(firstFilm, personService.find((long) 3), generateRandomRole());
+//        filmService.addItem(firstFilm, personService.find((long) 4), generateRandomRole());
 	/*	// Update item(s)
 		orderService.addItem(firstOrder, productService.findBySerial("SN1000-0001"), 1);
 		orderService.updateItem(firstOrder, productService.findBySerial("SN1000-0004"), 2);
