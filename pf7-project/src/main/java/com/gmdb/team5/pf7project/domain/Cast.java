@@ -31,7 +31,7 @@ public class Cast extends BaseModel {
     private Film film;
 
     @Enumerated(EnumType.STRING)
-    @Column(length = 15, nullable = false)
+    @Column(length = 30, nullable = false)
     private Role role;
 
 

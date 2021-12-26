@@ -50,7 +50,7 @@ public class Film extends BaseModel {
     @Column(name = "GENRE_ID", nullable = false)
     private Set<Genre> genre = new HashSet<>();
 
-    @OneToMany(mappedBy = "person")
+    @OneToMany(mappedBy = "person", fetch= FetchType.EAGER)
     private Set<Cast> peopleCasted = new HashSet<>();
 
 }

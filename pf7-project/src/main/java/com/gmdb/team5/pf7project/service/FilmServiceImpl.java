@@ -6,6 +6,7 @@ import lombok.RequiredArgsConstructor;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Service;
 
+import javax.transaction.Transactional;
 import java.util.List;
 import java.util.Map;
 
@@ -20,11 +21,13 @@ public class FilmServiceImpl extends BaseServiceImpl<Film> implements FilmServic
     }
 
     @Override
+    @Transactional
     public Film find(Long id) {
         return findLazy(id);
     }
 
     @Override
+    @Transactional
     public Film findLazy(Long id) {
         return fIlmRepository.findLazy(id);
     }
@@ -71,8 +74,12 @@ public class FilmServiceImpl extends BaseServiceImpl<Film> implements FilmServic
         if (checkNullability(film, person) || role == null) {
             return;
         }
-        System.out.println(film.getPeopleCasted() == null);
-        film.getPeopleCasted().add(newCastedPerson(film, person, role));
+        System.out.println("YOLO");
+        Cast cast = newCastedPerson(film, person, role);
+        System.out.println(cast);
+
+        film.getPeopleCasted().add(cast);
+        System.out.println("YOLO");
 
         logger.debug("Person[{}] added to Film[{}] as a {}", person, film, role);
     }

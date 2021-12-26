@@ -10,6 +10,7 @@ import lombok.RequiredArgsConstructor;
 import org.springframework.boot.CommandLineRunner;
 import org.springframework.stereotype.Component;
 
+import javax.transaction.Transactional;
 import java.util.Random;
 
 @Component
@@ -45,8 +46,9 @@ public class GenerateCastedPerson  extends AbstractLogComponent implements Comma
 		Film firstFilm = filmService.findByTitle("Pacific Rim");
 
 		// Add item(s) both existing and non-existing
-        filmService.addItem(firstFilm, personService.find((long) 1), generateRandomRole());
-//        filmService.addItem(firstFilm, personService.find((long) 2), generateRandomRole());
+
+  //      filmService.addItem(firstFilm, personService.find((long) 1), generateRandomRole());
+        filmService.addItem(firstFilm, personService.find((long) 2), generateRandomRole());
 //        filmService.addItem(firstFilm, personService.find((long) 3), generateRandomRole());
 //        filmService.addItem(firstFilm, personService.find((long) 4), generateRandomRole());
 	/*	// Update item(s)
