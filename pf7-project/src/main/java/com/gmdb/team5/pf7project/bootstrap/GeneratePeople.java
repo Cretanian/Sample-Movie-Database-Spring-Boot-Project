@@ -5,6 +5,7 @@ import com.gmdb.team5.pf7project.domain.*;
 import com.gmdb.team5.pf7project.service.PersonService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.boot.CommandLineRunner;
+import org.springframework.context.annotation.Profile;
 import org.springframework.core.annotation.Order;
 import org.springframework.stereotype.Component;
 
@@ -12,6 +13,7 @@ import java.util.*;
 
 @Component
 @RequiredArgsConstructor
+@Profile("dev")
 @Order(1)
 public class GeneratePeople extends AbstractLogComponent implements CommandLineRunner {
     private final PersonService personService;
