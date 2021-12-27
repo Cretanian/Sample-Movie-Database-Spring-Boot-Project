@@ -1,10 +1,7 @@
 package com.gmdb.team5.pf7project.domain;
 
 
-import lombok.AllArgsConstructor;
-import lombok.Data;
-import lombok.NoArgsConstructor;
-import lombok.ToString;
+import lombok.*;
 import lombok.experimental.SuperBuilder;
 
 import javax.persistence.*;
@@ -50,7 +47,10 @@ public class Film extends BaseModel {
     @Column(name = "GENRE_ID", nullable = false)
     private Set<Genre> genre = new HashSet<>();
 
-    @OneToMany(mappedBy = "person", fetch= FetchType.EAGER)
+//    @JsonManagedReference("castedPerson")
+    @ToString.Exclude
+    @EqualsAndHashCode.Exclude
+    @OneToMany(mappedBy = "person", cascade = CascadeType.ALL, orphanRemoval = true, fetch = FetchType.EAGER)
     private Set<Cast> peopleCasted = new HashSet<>();
 
 }

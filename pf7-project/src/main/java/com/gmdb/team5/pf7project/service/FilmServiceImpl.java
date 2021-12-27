@@ -63,26 +63,21 @@ public class FilmServiceImpl extends BaseServiceImpl<Film> implements FilmServic
         return film != null && !film.getPeopleCasted().isEmpty();
     }
 
-    private Cast newCastedPerson(Film film, Person person, Role role) {
+    Cast newCastedPerson(Film film, Person person, Role role) {
         return Cast.builder().film(film).person(person).role(role).build();
     }
-
-    //check the above method here something wrong
 
     @Override
     public void addItem(Film film, Person person, Role role) {
         if (checkNullability(film, person) || role == null) {
             return;
         }
-        System.out.println("YOLO");
-        Cast cast = newCastedPerson(film, person, role);
-        System.out.println(cast);
 
-        film.getPeopleCasted().add(cast);
-        System.out.println("YOLO");
-
+        film.getPeopleCasted().add(newCastedPerson(film, person, role));
         logger.debug("Person[{}] added to Film[{}] as a {}", person, film, role);
     }
+
+    //check the above method here something wrong
 
     @Override
     public void updateItem(Film film, Person person, Role role) {
@@ -90,8 +85,8 @@ public class FilmServiceImpl extends BaseServiceImpl<Film> implements FilmServic
             return;
         }
 
-        film.getPeopleCasted().removeIf(oi -> oi.getPerson().getId().equals(person.getId()));
-        film.getPeopleCasted().add(newCastedPerson(film, person, role));
+//        film.getPeopleCasted().removeIf(oi -> oi.getClass().  oi.getFilm().getId().equals(person.getId()));
+//        film.getPeopleCasted().add(newCastedPerson(film, person, role));
 
         logger.debug("Person[{}] updated in Film[{}] as a {}", person, film, role);
     }
@@ -101,7 +96,7 @@ public class FilmServiceImpl extends BaseServiceImpl<Film> implements FilmServic
         if (checkNullability(film, person)) {
             return;
         }
-        film.getPeopleCasted().removeIf(oi -> oi.getPerson().getId().equals(person.getId()));
+//        film.getPeopleCasted().removeIf(oi -> oi.getPerson().getId().equals(person.getId()));
 
         logger.debug("Person[{}] removed from Film[{}]", person, film);
     }

@@ -1,5 +1,6 @@
 package com.gmdb.team5.pf7project.domain;
 
+import com.fasterxml.jackson.annotation.JsonBackReference;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
@@ -17,17 +18,19 @@ import javax.persistence.*;
 @Table(name = "CASTED_PERSON")
 public class Cast extends BaseModel {
 
-    @EmbeddedId
-    private FilmPersonKey key;
+//    @EmbeddedId
+//    private FilmPersonKey key;
 
-    @ManyToOne
-    @MapsId("personId")
+
+//    @MapsId("personId")
     @JoinColumn(name = "PERSON_ID")
+    @ManyToOne(fetch = FetchType.LAZY, optional = false)
     private Person person;
 
-    @ManyToOne
-    @MapsId("filmId")
+//    @MapsId("filmId")
+//    @JsonBackReference("castedPerson")
     @JoinColumn(name = "FILM_ID")
+    @ManyToOne(fetch = FetchType.LAZY, optional = false)
     private Film film;
 
     @Enumerated(EnumType.STRING)
