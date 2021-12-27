@@ -5,6 +5,9 @@ import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Query;
 import org.springframework.stereotype.Repository;
 
+import java.util.List;
+import java.util.Set;
+
 @Repository
 public interface PersonRepository extends JpaRepository<Person, Long> {
 
@@ -16,5 +19,9 @@ public interface PersonRepository extends JpaRepository<Person, Long> {
 
     @Query("select o.country from Person o where o.firstName = ?1 AND o.lastName = ?2")
     String findCountryByName (String firstName, String lastName);
+
+
+    @Query("select p from Person p where p.YOB <= ?1")
+    List<Person> getPeoplebyAge (Integer Age);
 
 }

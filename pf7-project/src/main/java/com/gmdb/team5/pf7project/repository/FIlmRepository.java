@@ -24,6 +24,8 @@ public interface FIlmRepository  extends JpaRepository<Film, Long> {
     @Query(value = "select distinct o from FILMS o join fetch o.orderItems", nativeQuery = true)
     List<Film> findAllLazy();
 
+
+
 //    //first report
 //      @Query(value = "select top ?1 * from FILMS order by RATING desc", nativeQuery = true)
 //      List<Film> findTopRatedContent(Long number);

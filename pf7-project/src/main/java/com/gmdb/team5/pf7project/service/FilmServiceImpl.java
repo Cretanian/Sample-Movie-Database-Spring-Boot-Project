@@ -7,8 +7,10 @@ import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Service;
 
 import javax.transaction.Transactional;
+import java.util.HashSet;
 import java.util.List;
 import java.util.Map;
+import java.util.Set;
 
 @RequiredArgsConstructor
 @Service
@@ -73,6 +75,8 @@ public class FilmServiceImpl extends BaseServiceImpl<Film> implements FilmServic
             return;
         }
 
+//        if(film.getPeopleCasted() == null)
+//            film.getPeopleCasted() = new HashSet<>();
         film.getPeopleCasted().add(newCastedPerson(film, person, role));
         logger.debug("Person[{}] added to Film[{}] as a {}", person, film, role);
     }
