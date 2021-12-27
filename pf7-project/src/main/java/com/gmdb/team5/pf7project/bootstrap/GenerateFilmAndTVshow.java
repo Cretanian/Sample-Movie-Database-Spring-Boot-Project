@@ -5,13 +5,11 @@ import com.gmdb.team5.pf7project.domain.*;
 import com.gmdb.team5.pf7project.service.FilmService;
 import com.gmdb.team5.pf7project.service.PersonService;
 import com.gmdb.team5.pf7project.service.TVShowService;
-import jdk.jshell.execution.Util;
 import lombok.RequiredArgsConstructor;
 import org.springframework.boot.CommandLineRunner;
 import org.springframework.core.annotation.Order;
 import org.springframework.stereotype.Component;
 
-import javax.transaction.Transactional;
 import java.util.*;
 
 @Component
@@ -52,6 +50,19 @@ public class GenerateFilmAndTVshow extends AbstractLogComponent implements Comma
             case 12: return Role.PhotographyDirector;
         }
         return null;
+    }
+
+    private Set<Role> generateRandomRoles(){
+        Set<Role> roleSet = new HashSet<>();
+        Role role;
+
+        do{
+            role = generateRandomRole();
+            if(!roleSet.contains(role))
+                roleSet.add(role);
+        }while (util.getRandom().nextBoolean());
+
+        return roleSet;
     }
 
     private Genre generateGenre() {
@@ -122,111 +133,82 @@ public class GenerateFilmAndTVshow extends AbstractLogComponent implements Comma
                             .build()
             );
 
-            filmService.addItem(films.get(i), personService.find( (long) util.getRandom().nextInt(10 - 1) + 1), generateRandomRole());
-            filmService.addItem(films.get(i), personService.find((long) util.getRandom().nextInt(10 - 1) + 1), generateRandomRole());
-            filmService.addItem(films.get(i), personService.find((long) util.getRandom().nextInt(10 - 1) + 1), generateRandomRole());
+            filmService.addItem(films.get(i), personService.find( (long) util.getRandom().nextInt(10 - 1) + 1), generateRandomRoles());
+            filmService.addItem(films.get(i), personService.find((long) util.getRandom().nextInt(10 - 1) + 1), generateRandomRoles());
+            filmService.addItem(films.get(i), personService.find((long) util.getRandom().nextInt(10 - 1) + 1), generateRandomRoles());
         }
 
         logger.info("Created {} movies.", filmService.createAll(films).size());
     }
 
-    private void createTVShows(Set<Cast> cast) {
+    private void createTVShowsWithEpisodes() {
 
         List<TVShow> tvShow = new ArrayList<>();
 
         //fix duration, episodes, seasons
 
-        for(int i = movieTitle.length; i < (movieTitle.length + tvShowTitle.length); ++i){
+        for(int i = 0; i <tvShowTitle.length ; ++i) {
             tvShow.add(
                     TVShow.builder()
-                            .title(tvShowTitle[i - movieTitle.length])
+                            .title(tvShowTitle[i])
                             .description("Here is an epic TVShow description!")
-                            .releaseYear(util.generateRandomIntInRange(1990,2020))
+                            .releaseYear(util.generateRandomIntInRange(1990, 2020))
                             .language(util.generateCountry())
-                            .duration(util.generateRandomIntInRange(60*5,60*15))
+                            .duration(util.generateRandomIntInRange(60 * 5, 60 * 15))
                             .rating(generateRating())
                             .genre(generateRandomGenres())
-                            .peopleCasted(cast)
-                            .numberOfEpisodes(util.generateRandomIntInRange(5,15))
-                            .numberOfSeasons(util.generateRandomIntInRange(1,3))
+                            .peopleCasted(new HashSet<>())
+                            .numberOfEpisodes(util.generateRandomIntInRange(5, 15))
+                            .numberOfSeasons(util.generateRandomIntInRange(1, 3))
+                            .episodes(new HashSet<>())
                             .build()
             );
 
+            filmService.addItem(tvShow.get(i), personService.find((long) util.getRandom().nextInt(10 - 1) + 1), generateRandomRoles());
+            filmService.addItem(tvShow.get(i), personService.find((long) util.getRandom().nextInt(10 - 1) + 1), generateRandomRoles());
+            filmService.addItem(tvShow.get(i), personService.find((long) util.getRandom().nextInt(10 - 1) + 1), generateRandomRoles());
+
         }
 
-        logger.info("Created and associated {} TVShows.", tvShowService.createAll(tvShow).size());
+        //fix this
+        tvShow.get(0).getEpisodes().add(newEpisodes(0));
+        tvShow.get(0).getEpisodes().add(newEpisodes(1));
+        tvShow.get(1).getEpisodes().add(newEpisodes(2));
+        tvShow.get(1).getEpisodes().add(newEpisodes(3));
+        tvShow.get(2).getEpisodes().add(newEpisodes(4));
+        tvShow.get(2).getEpisodes().add(newEpisodes(5));
+        tvShow.get(3).getEpisodes().add(newEpisodes(6));
+        tvShow.get(3).getEpisodes().add(newEpisodes(7));
+
+         logger.info("Created and associated {} TVShows.", tvShowService.createAll(tvShow).size());
+
     }
 
-    private void createEpisodes(Set<Cast> cast) {
-        List<Film> films = new ArrayList<>();
+    private Film newEpisodes(int i) {
+        Film episode = Film.builder()
+                .title(tvShowEpisodeTitle[i])
+                .description("Here is an epic Episode description!")
+                .releaseYear(util.generateRandomIntInRange(1930, 2020))
+                .language(util.generateCountry())
+                .duration(util.generateRandomIntInRange(60, 180))
+                .rating(generateRating())
+                .genre(generateRandomGenres())
+                .peopleCasted(new HashSet<>())
+                .build();
 
-        for(int i = (movieTitle.length + tvShowTitle.length); i < (movieTitle.length + tvShowTitle.length + tvShowTitle.length); ++i){
-            films.add(
-                    Film.builder()
-                            .title(tvShowEpisodeTitle[i - (movieTitle.length + tvShowTitle.length)])
-                            .description("Here is an epic episode description!")
-                            .releaseYear(util.generateRandomIntInRange(2014,2016))
-                            .language(util.generateCountry())
-                            .peopleCasted(cast)
-                            .duration(util.generateRandomIntInRange(60,180))
-                            .rating(generateRating())
-                            .build()
-            );
-        }
+        filmService.addItem(episode, personService.find((long) util.getRandom().nextInt(10 - 1) + 1), generateRandomRoles());
+        filmService.addItem(episode, personService.find((long) util.getRandom().nextInt(10 - 1) + 1), generateRandomRoles());
+        filmService.addItem(episode, personService.find((long) util.getRandom().nextInt(10 - 1) + 1), generateRandomRoles());
 
-        logger.info("Created {} TVShow Episodes.", filmService.createAll(films).size());
+        filmService.create(episode);
+        return episode;
     }
+
+
 
     @Override
     public void run(String... args) {
-
-//        System.out.println(personService.fin(2000));
-
         createMovies();
-
-//        Film firstFilm = filmService.findByTitle("Pacific Rim");
-//
-//        filmService.addItem(firstFilm, personService.find( (long) random.nextInt(10 - 1) + 1), generateRandomRole());
-//        filmService.addItem(firstFilm, personService.find((long) random.nextInt(10 - 1) + 1), generateRandomRole());
-//        filmService.addItem(firstFilm, personService.find((long) random.nextInt(10 - 1) + 1), generateRandomRole());
-//        filmService.addItem(firstFilm, personService.find((long) random.nextInt(10 - 1) + 1), generateRandomRole());
-//
-//        filmService.create(firstFilm);
-////        logger.info("Created {} casted persons in the movie {}.", filmService.createAll(firstFilm).size(), firstFilm.getTitle());
-//
-//        Film secondFilm = filmService.findByTitle("Avengers");
-//
-//        filmService.addItem(secondFilm, personService.find((long) random.nextInt(10 - 1) + 1), generateRandomRole());
-//        filmService.addItem(secondFilm, personService.find((long) random.nextInt(10 - 1) + 1), generateRandomRole());
-//        filmService.addItem(secondFilm, personService.find((long) random.nextInt(10 - 1) + 1), generateRandomRole());
-//        filmService.create(secondFilm);
-//        //        logger.info("Created {} casted persons in the movie {}.", filmService.createAll(secondFilm).size(), secondFilm.getTitle());
-//
-//        Film firstTVShow = filmService.findByTitle("Game of Thrones");
-//
-//        filmService.addItem(firstTVShow, personService.find((long) random.nextInt(10 - 1) + 1), generateRandomRole());
-//        filmService.addItem(firstTVShow, personService.find((long) random.nextInt(10 - 1) + 1), generateRandomRole());
-//        filmService.addItem(firstTVShow, personService.find((long) random.nextInt(10 - 1) + 1), generateRandomRole());
-//        filmService.addItem(firstTVShow, personService.find((long) random.nextInt(10 - 1) + 1), generateRandomRole());
-//        filmService.addItem(firstTVShow, personService.find((long) random.nextInt(10 - 1) + 1), generateRandomRole());
-//        filmService.addItem(firstTVShow, personService.find((long) random.nextInt(10 - 1) + 1), generateRandomRole());
-//        filmService.addItem(firstTVShow, personService.find((long) random.nextInt(10 - 1) + 1), generateRandomRole());
-//        filmService.create(firstTVShow);
-////        logger.info("Created {} casted persons in the movie {}.", filmService.createAll(secondFilm).size(), secondFilm.getTitle());
-//
-//
-//        Film secondTVshow = filmService.findByTitle("Witcher");
-//
-//        filmService.addItem(secondTVshow, personService.find((long) random.nextInt(10 - 1) + 1), generateRandomRole());
-//        filmService.addItem(secondTVshow, personService.find((long) random.nextInt(10 - 1) + 1), generateRandomRole());
-//        filmService.addItem(secondTVshow, personService.find((long) random.nextInt(10 - 1) + 1), generateRandomRole());
-//        filmService.addItem(secondTVshow, personService.find((long) random.nextInt(10 - 1) + 1), generateRandomRole());
-//        filmService.addItem(secondTVshow, personService.find((long) random.nextInt(10 - 1) + 1), generateRandomRole());
-//        filmService.create(secondTVshow);
-//
-////        logger.info("Created {} casted persons in the movie {}.", filmService.createAll(secondFilm).size(), secondFilm.getTitle());
-
-
-
+        createTVShowsWithEpisodes();
     }
 }

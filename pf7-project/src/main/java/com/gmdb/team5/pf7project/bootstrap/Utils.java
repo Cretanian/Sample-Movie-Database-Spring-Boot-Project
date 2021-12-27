@@ -21,7 +21,6 @@ public class Utils {
         return locale.getCountry();
     }
 
-
     public Integer generateRandomIntInRange(int min, int max) {
         return random.nextInt(max - min) + min;
     }
