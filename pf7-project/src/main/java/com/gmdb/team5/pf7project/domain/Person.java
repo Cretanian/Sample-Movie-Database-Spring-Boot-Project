@@ -18,7 +18,7 @@ import javax.persistence.Table;
 @ToString(callSuper = true)
 @Entity()
 @Table(name = "PEOPLE")
-@SequenceGenerator(name = "idGenerator", sequenceName = "PEOPLE_SEQ", initialValue = 1, allocationSize = 1)
+@SequenceGenerator(name = "idGenerator", sequenceName = "PEOPLE_SEQ")
 public class Person extends BaseModel{
 
     @Column(length = 40, nullable = false)

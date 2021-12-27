@@ -1,12 +1,15 @@
 package com.gmdb.team5.pf7project.domain;
 
 
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
+import com.fasterxml.jackson.annotation.JsonManagedReference;
 import lombok.*;
 import lombok.experimental.SuperBuilder;
 
 import javax.persistence.*;
 import java.util.HashSet;
 import java.util.Set;
+
 
 @Data
 @AllArgsConstructor
@@ -38,7 +41,7 @@ public class Film extends BaseModel {
     @Column(length = 15, nullable = false)
     private Rating rating;
 
-    @ElementCollection(targetClass = Genre.class , fetch = FetchType.EAGER)
+    @ElementCollection(targetClass = Genre.class , fetch = FetchType.LAZY)
     @CollectionTable(
             name = "FILMGENRE",
             joinColumns = @JoinColumn(name = "FILM_ID")
@@ -47,10 +50,10 @@ public class Film extends BaseModel {
     @Column(name = "GENRE_ID", nullable = false)
     private Set<Genre> genre = new HashSet<>();
 
-//    @JsonManagedReference("castedPerson")
+    @JsonManagedReference("castedPerson")
     @ToString.Exclude
     @EqualsAndHashCode.Exclude
-    @OneToMany(mappedBy = "person", cascade = CascadeType.ALL, orphanRemoval = true, fetch = FetchType.EAGER)
+    @OneToMany(mappedBy = "film", cascade = CascadeType.ALL, orphanRemoval = true, fetch = FetchType.LAZY)
     private Set<Cast> peopleCasted = new HashSet<>();
 
 }

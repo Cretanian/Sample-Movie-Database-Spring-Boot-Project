@@ -17,7 +17,7 @@ public class BaseModel implements Serializable {
 
     private static final long serialVersionUID = 1L;
 
-    @Id()
+    @Id
     @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "idGenerator")
     @Column(updatable = false)
     private Long id;

@@ -3,7 +3,7 @@
 -- insert into PEOPLE(ID, YOB, COUNTRY, FIRSTNAME, ISALIVE, LASTNAME) values (3,1989,'Norway','Magnus',TRUE,'Carlsen');
 -- insert into PEOPLE(ID, YOB, COUNTRY, FIRSTNAME, ISALIVE, LASTNAME) values (4,1942,'France','Amelie',FALSE,'Trindeux');
 -- insert into PEOPLE(ID, YOB, COUNTRY, FIRSTNAME, ISALIVE, LASTNAME) values (5,2002,'Greece','Constantinos',TRUE,'Constantopoulos');
-
+--
 --
 -- insert into FILMS (ID, DESCRIPTION, DURATION, LANGUAGE, RATING, RELEASEYEAR, TITLE) values (1,'Do not watch this alone',136,'English','four',2016,'Are you alone ?');
 -- insert into FILMS (ID, DESCRIPTION, DURATION, LANGUAGE, RATING, RELEASEYEAR, TITLE) values (2,'Do watch this alone',146,'English','two',2016,'Are you alone ? 2');

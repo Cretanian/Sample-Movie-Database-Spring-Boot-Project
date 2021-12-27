@@ -63,7 +63,7 @@ public class FilmServiceImpl extends BaseServiceImpl<Film> implements FilmServic
         return film != null && !film.getPeopleCasted().isEmpty();
     }
 
-    Cast newCastedPerson(Film film, Person person, Role role) {
+    private Cast newCastedPerson(Film film, Person person, Role role) {
         return Cast.builder().film(film).person(person).role(role).build();
     }
 
