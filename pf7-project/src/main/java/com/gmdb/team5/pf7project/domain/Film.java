@@ -54,6 +54,6 @@ public class Film extends BaseModel {
     @ToString.Exclude
     @EqualsAndHashCode.Exclude
     @OneToMany(mappedBy = "film", cascade = CascadeType.ALL, orphanRemoval = true, fetch = FetchType.LAZY)
-    private Set<Cast> peopleCasted = new HashSet<>();
+    private Set<CastedPerson> peopleCasted = new HashSet<>();
 
 }

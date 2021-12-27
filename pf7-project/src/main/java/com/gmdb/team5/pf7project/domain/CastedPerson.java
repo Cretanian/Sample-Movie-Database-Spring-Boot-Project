@@ -20,7 +20,7 @@ import java.util.Set;
 @ToString(callSuper = true)
 @Entity()
 @Table(name = "CASTED_PERSON")
-public class Cast extends BaseModel {
+public class CastedPerson extends BaseModel {
 
     @JoinColumn(name = "PERSON_ID")
     @ManyToOne(fetch = FetchType.LAZY, optional = false)

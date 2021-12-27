@@ -1,13 +1,12 @@
 package com.gmdb.team5.pf7project.service;
 
 import com.gmdb.team5.pf7project.domain.*;
-import com.gmdb.team5.pf7project.repository.FIlmRepository;
+import com.gmdb.team5.pf7project.repository.FilmRepository;
 import lombok.RequiredArgsConstructor;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Service;
 
 import javax.transaction.Transactional;
-import java.util.HashSet;
 import java.util.List;
 import java.util.Map;
 import java.util.Set;
@@ -15,7 +14,7 @@ import java.util.Set;
 @RequiredArgsConstructor
 @Service
 public class FilmServiceImpl extends BaseServiceImpl<Film> implements FilmService {
-    private final FIlmRepository fIlmRepository;
+    private final FilmRepository fIlmRepository;
 
     @Override
     public JpaRepository<Film, Long> getRepository() {
@@ -62,8 +61,8 @@ public class FilmServiceImpl extends BaseServiceImpl<Film> implements FilmServic
     }
 
 
-    private Cast newCastedPerson(Film film, Person person, Set<Role> role) {
-        return Cast.builder().film(film).person(person).role(role).build();
+    private CastedPerson newCastedPerson(Film film, Person person, Set<Role> role) {
+        return CastedPerson.builder().film(film).person(person).role(role).build();
     }
 
     @Override
@@ -77,65 +76,44 @@ public class FilmServiceImpl extends BaseServiceImpl<Film> implements FilmServic
     }
 
 
-    //check the above method here something wrong
+
+
+//Reports Start here
+
+
 
     @Override
-    public void updateItem(Film film, Person person, Role role) {
-        if (checkNullability(film, person) || role == null) {
-            return;
-        }
-
-//        film.getPeopleCasted().removeIf(oi -> oi.getClass().  oi.getFilm().getId().equals(person.getId()));
-//        film.getPeopleCasted().add(newCastedPerson(film, person, role));
-
-        logger.debug("Person[{}] updated in Film[{}] as a {}", person, film, role);
+    public List<Film> findTopRatedContent(Long id) {
+        return fIlmRepository.findTopByRating(id);
     }
 
     @Override
-    public void removeItem(Film film, Person person) {
-        if (checkNullability(film, person)) {
-            return;
-        }
-//        film.getPeopleCasted().removeIf(oi -> oi.getPerson().getId().equals(person.getId()));
-
-        logger.debug("Person[{}] removed from Film[{}]", person, film);
+    public List<Film> findFilmByPerson(Person person) {
+        return fIlmRepository.findFilmByPerson(person);
     }
 
+    @Override
+    public List<Film> findFilmByPersonByRole(Person person, Role role) {
+        return null;
+    }
 
-// Reports Starts here!
+    @Override
+    public List<Film> findFilmByGenre(Genre genre) {
+        return null;
+    }
 
-//    @Override
-//    public List<Film> findTopRatedContent(Long id) {
-//        return fIlmRepository.findTopRatedContent(id);
-//    }
-//
-//    @Override
-//    public List<Film> findContentByPerson(Person person) {
-//        return fIlmRepository.findContentByPerson(person);
-//    }
-//
-//    @Override
-//    public List<Film> findContentByPersonByRole(Person person, Role role) {
-//        return null;
-//    }
-//
-//    @Override
-//    public List<Film> findContentByGenre(Genre genre) {
-//        return null;
-//    }
-//
-//    @Override
-//    public Map<Genre, Long> findContentPerGenre() {
-//        return null;
-//    }
-//
-//    @Override
-//    public Map<Integer, Map<Genre, Long>> findContentPerYearPerGenre() {
-//        return null;
-//    }
-//
-//    @Override
-//    public Map<Genre, List<Film>> findContentOfPersonPerGenre(Person person) {
-//        return null;
-//    }
+    @Override
+    public Map<Genre, Long> findNumberOfFilmPerGenre() {
+        return null;
+    }
+
+    @Override
+    public Map<Integer, Map<Genre, Long>> findFilmPerYearPerGenre() {
+        return null;
+    }
+
+    @Override
+    public Map<Genre, List<Film>> findFilmOfPersonPerGenre(Person person) {
+        return null;
+    }
 }
