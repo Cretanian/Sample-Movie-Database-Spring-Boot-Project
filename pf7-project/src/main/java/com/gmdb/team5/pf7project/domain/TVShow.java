@@ -22,12 +22,12 @@ import java.util.Set;
 public class TVShow extends Film{
 
     @Column(nullable = false)
-    private Integer numberOfEpisodes;
+    private Integer episodes;
 
     @Column(nullable = false)
     private Integer seasons;
 
-    @OneToMany(fetch = FetchType.EAGER)
-    private Set<Film> episodes = new HashSet<>();
+    @OneToMany(fetch = FetchType.LAZY)
+    private Set<Film> film = new HashSet<>();
 
 }

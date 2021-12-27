@@ -43,13 +43,13 @@ public class GenerateCastedPerson  extends AbstractLogComponent implements Comma
     @Override
     public void run(String... args) {
 
-
         Film firstFilm = filmService.findByTitle("Pacific Rim");
 
         filmService.addItem(firstFilm, personService.find( (long) random.nextInt(10 - 1) + 1), generateRandomRole());
         filmService.addItem(firstFilm, personService.find((long) random.nextInt(10 - 1) + 1), generateRandomRole());
         filmService.addItem(firstFilm, personService.find((long) random.nextInt(10 - 1) + 1), generateRandomRole());
         filmService.addItem(firstFilm, personService.find((long) random.nextInt(10 - 1) + 1), generateRandomRole());
+
         filmService.create(firstFilm);
 //        logger.info("Created {} casted persons in the movie {}.", filmService.createAll(firstFilm).size(), firstFilm.getTitle());
 

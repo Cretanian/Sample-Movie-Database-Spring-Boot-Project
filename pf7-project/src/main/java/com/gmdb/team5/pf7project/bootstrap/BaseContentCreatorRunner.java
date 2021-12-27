@@ -103,6 +103,8 @@ public class BaseContentCreatorRunner extends AbstractLogComponent implements Co
             genre.add(generateGenre());
         }while (random.nextBoolean());
 
+        //fix double values in genre set
+
         return genre;
     }
 
@@ -112,7 +114,6 @@ public class BaseContentCreatorRunner extends AbstractLogComponent implements Co
         for (int i = 0; i < 10; ++i) {
             people.add(
                     Person.builder()
-                            .id((long) i)
                             .firstName(generateFistName())
                             .lastName(generateLastName())
                             .YOB(generateRandomAgeInRange(1950, 2005))
@@ -127,12 +128,10 @@ public class BaseContentCreatorRunner extends AbstractLogComponent implements Co
 
     private void createMovies() {
         List<Film> films = new ArrayList<>();
-        System.out.println(movieTitle[0]);
 
         for(int i = 0; i < movieTitle.length; ++i){
             films.add(
                     Film.builder()
-                            .id((long) i + 1)
                             .title(movieTitle[i])
                             .description("Here is an epic description!")
                             .releaseYear(generateRandomAgeInRange(1930,2020))
@@ -150,11 +149,12 @@ public class BaseContentCreatorRunner extends AbstractLogComponent implements Co
     private void createTVShows() {
 
         List<TVShow> tvShow = new ArrayList<>();
-        List<Film> films = new ArrayList<>();
+
+        //fix duration, episodes, seasons
+
         for(int i = movieTitle.length; i < (movieTitle.length + tvShowTitle.length); ++i){
             tvShow.add(
                     TVShow.builder()
-                            .id((long) i + 1)
                             .title(tvShowTitle[i - movieTitle.length])
                             .description("Here is an epic TVShow description!")
                             .releaseYear(generateRandomAgeInRange(1990,2020))
@@ -162,6 +162,7 @@ public class BaseContentCreatorRunner extends AbstractLogComponent implements Co
                             .duration(generateRandomAgeInRange(60*5,60*15))
                             .rating(generateRating())
                             .genre(generateRandomGenres())
+
                             .episodes(generateRandomAgeInRange(5,15))
                             .seasons(generateRandomAgeInRange(1,3))
                             .build()
@@ -178,7 +179,6 @@ public class BaseContentCreatorRunner extends AbstractLogComponent implements Co
         for(int i = (movieTitle.length + tvShowTitle.length); i < (movieTitle.length + tvShowTitle.length + tvShowTitle.length); ++i){
             films.add(
                     Film.builder()
-                            .id((long) i + 1)
                             .title(tvShowEpisodeTitle[i - (movieTitle.length + tvShowTitle.length)])
                             .description("Here is an epic episode description!")
                             .releaseYear(generateRandomAgeInRange(2014,2016))
