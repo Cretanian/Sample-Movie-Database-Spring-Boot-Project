@@ -9,12 +9,13 @@ import javax.xml.crypto.dsig.keyinfo.KeyValue;
 import java.math.BigDecimal;
 import java.util.List;
 import java.util.Map;
+import java.util.Set;
 
 public interface FilmService extends BaseService<Film> {
 
     Film findByTitle (String title);
 
-    void addItem(Film film, Person product, Role role);
+    void addItem(Film film, Person product, Set<Role> role);
 
     void updateItem(Film film, Person product, Role role);
 

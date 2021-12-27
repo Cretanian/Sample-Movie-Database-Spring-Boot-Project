@@ -23,8 +23,8 @@
 -- insert into FILMS (ID, DESCRIPTION, DURATION, LANGUAGE, RATING, RELEASEYEAR, TITLE) values (10,'Best movie no one knows',129,'English','three',2014,'Peanut Butter');
 --
 --
--- insert into TVSHOWS(NUMBEROFEPISODES, SEASONS, ID) values (2,22,3);
--- insert into TVSHOWS(NUMBEROFEPISODES, SEASONS, ID) values (2,14,6);
+-- insert into TVSHOWS(NUMBEROFEPISODES, NUMBEROFSEASONS, ID) values (2,22,3);
+-- insert into TVSHOWS(NUMBEROFEPISODES, NUMBEROFSEASONS, ID) values (2,14,6);
 --
 --
 -- insert into TVSHOWS_EPISODES(TVSHOW_ID, EPISODES_ID) values (3 ,4 );
@@ -117,5 +117,5 @@
 -- insert into CASTED_PERSON(ID, ROLE, FILM_ID, PERSON_ID) values (44,'PhotographyDirector',10,1);
 -- insert into CASTED_PERSON(ID, ROLE, FILM_ID, PERSON_ID) values (45,'AssistantDirector',10,7);
 -- insert into CASTED_PERSON(ID, ROLE, FILM_ID, PERSON_ID) values (46,'Writer',10,5);
-
-
+--
+--

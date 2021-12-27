@@ -9,6 +9,8 @@ import lombok.ToString;
 import lombok.experimental.SuperBuilder;
 
 import javax.persistence.*;
+import java.util.HashSet;
+import java.util.Set;
 
 @JsonIgnoreProperties({"handler", "hibernateLazyInitializer"})
 @Data
@@ -29,8 +31,14 @@ public class Cast extends BaseModel {
     @ManyToOne(fetch = FetchType.LAZY, optional = false)
     private Film film;
 
+
+    @ElementCollection(targetClass = Role.class , fetch = FetchType.EAGER)
+    @CollectionTable(
+            name = "PERSON_ROLE",
+            joinColumns = @JoinColumn(name = "CASTED_PERSON_ID")
+    )
     @Enumerated(EnumType.STRING)
-    @Column(length = 30, nullable = false)
-    private Role role;
+    @Column(name = "ROLE_ID", nullable = false)
+    private Set<Role> role = new HashSet<>();
 
 }

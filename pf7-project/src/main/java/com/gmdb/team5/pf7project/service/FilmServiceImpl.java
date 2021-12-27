@@ -61,25 +61,21 @@ public class FilmServiceImpl extends BaseServiceImpl<Film> implements FilmServic
         return false;
     }
 
-    private boolean validate(Film film) {
-        return film != null && !film.getPeopleCasted().isEmpty();
-    }
 
-    private Cast newCastedPerson(Film film, Person person, Role role) {
+    private Cast newCastedPerson(Film film, Person person, Set<Role> role) {
         return Cast.builder().film(film).person(person).role(role).build();
     }
 
     @Override
-    public void addItem(Film film, Person person, Role role) {
+    public void addItem(Film film, Person person, Set<Role> role) {
         if (checkNullability(film, person) || role == null) {
             return;
         }
 
-//        if(film.getPeopleCasted() == null)
-//            film.getPeopleCasted() = new HashSet<>();
         film.getPeopleCasted().add(newCastedPerson(film, person, role));
         logger.debug("Person[{}] added to Film[{}] as a {}", person, film, role);
     }
+
 
     //check the above method here something wrong
 
