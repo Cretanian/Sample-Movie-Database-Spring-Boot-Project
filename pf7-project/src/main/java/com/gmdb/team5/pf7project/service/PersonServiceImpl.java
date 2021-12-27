@@ -7,6 +7,8 @@ import lombok.RequiredArgsConstructor;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Service;
 
+import java.util.List;
+
 @Service
 @RequiredArgsConstructor
 public class PersonServiceImpl extends BaseServiceImpl<Person> implements PersonService{
@@ -23,12 +25,13 @@ public class PersonServiceImpl extends BaseServiceImpl<Person> implements Person
     }
 
     @Override
-    public Boolean isAliveByName(String firstName, String lastName) {
-        return personRepository.isAliveByName(firstName, lastName);
+    public List<Person> findByCountry(String country) {
+        return personRepository.findByCountry(country);
     }
 
     @Override
-    public String findCountryByName(String firstName, String lastName) {
-        return personRepository.findCountryByName(firstName, lastName);
+    public List<Person> findByIsAlive(Boolean isAlive) {
+        return personRepository.findByIsAlive(isAlive);
     }
+
 }

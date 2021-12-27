@@ -6,6 +6,8 @@ import lombok.RequiredArgsConstructor;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Service;
 
+import java.util.List;
+
 @Service
 @RequiredArgsConstructor
 public class TVShowServiceImpl extends BaseServiceImpl<TVShow> implements TVShowService{
@@ -19,6 +21,16 @@ public class TVShowServiceImpl extends BaseServiceImpl<TVShow> implements TVShow
 
     @Override
     public TVShow findByTitle(String title) {
-        return null;
+        return tvShowRepository.findByTitle(title);
+    }
+
+    @Override
+    public List<TVShow> findBySeasons(Integer seasons) {
+        return tvShowRepository.findBySeasons(seasons);
+    }
+
+    @Override
+    public List<TVShow> findByEpisodesBetween(Integer episodes) {
+        return tvShowRepository.findByEpisodesBetween(episodes);
     }
 }

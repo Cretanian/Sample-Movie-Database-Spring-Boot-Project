@@ -17,7 +17,7 @@ import java.util.Set;
 @SuperBuilder
 @ToString(callSuper = true)
 @Entity()
-@Table(name = "FILMS")
+@Table(name = "FILM")
 @SequenceGenerator(name = "idGenerator", sequenceName = "FILMS_SEQ", initialValue = 1, allocationSize = 1)
 @Inheritance(strategy = InheritanceType.JOINED)
 public class Film extends BaseModel {
@@ -51,6 +51,6 @@ public class Film extends BaseModel {
     private Set<Genre> genre = new HashSet<>();
 
     @OneToMany(mappedBy = "person")
-    private Set<Cast> peopleCasted = new HashSet<>();
+    private Set<CastedPerson> peopleCasted = new HashSet<>();
 
 }

@@ -5,16 +5,18 @@ import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Query;
 import org.springframework.stereotype.Repository;
 
+import java.util.List;
+
 @Repository
 public interface PersonRepository extends JpaRepository<Person, Long> {
 
     @Query("select o from Person o where o.firstName = ?1 AND o.lastName = ?2")
     Person findByName (String firstName,String lastName);
 
-    @Query("select o.isAlive from Person o where o.firstName = ?1 AND o.lastName = ?2")
-    Boolean isAliveByName (String firstName, String lastName);
+    List<Person> findByCountry (String country);
 
-    @Query("select o.country from Person o where o.firstName = ?1 AND o.lastName = ?2")
-    String findCountryByName (String firstName, String lastName);
+    List<Person> findByIsAlive (Boolean isAlive);
+
+
 
 }

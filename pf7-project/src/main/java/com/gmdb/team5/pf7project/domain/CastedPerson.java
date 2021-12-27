@@ -15,7 +15,7 @@ import javax.persistence.*;
 @ToString(callSuper = true)
 @Entity()
 @Table(name = "CASTED_PERSON")
-public class Cast extends BaseModel {
+public class CastedPerson extends BaseModel {
 
     @EmbeddedId
     private FilmPersonKey key;

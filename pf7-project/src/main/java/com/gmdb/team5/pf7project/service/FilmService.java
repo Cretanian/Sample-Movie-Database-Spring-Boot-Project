@@ -10,26 +10,26 @@ import java.util.Map;
 
 public interface FilmService extends BaseService<Film> {
 
-//    //first report
-//    List<Film> findTopRatedContent(Long id);
-//
-//    //second report
-//    List<Film> findContentByPerson(Person person);
-//
-//    //third report
-//    List<Film> findContentByPersonByRole(Person person, Role role);
-//
-//    //fourth report
-//    List<Film> findContentByGenre(Genre genre);
-//
-//    //fifth report
-//    Map<Genre,Long> findContentPerGenre();
-//
-//    //sixth report
-//    Map<Integer,Map<Genre,Long>> findContentPerYearPerGenre();
-//
-//    //seventh
-//    Map<Genre,List<Film>> findContentOfPersonPerGenre(Person person);
+    //first report
+    List<Film> findTopRatedContent(Long id);
+
+    //second report
+    List<Film> findFilmByPerson(Person person);
+
+    //third report
+    List<Film> findFilmByPersonByRole(Person person, Role role);
+
+    //fourth report
+    List<Film> findFilmByGenre(Genre genre);
+
+    //fifth report
+    Map<Genre,Long> findNumberOfFilmPerGenre();
+
+    //sixth report
+    Map<Integer,Map<Genre,Long>> findFilmPerYearPerGenre();
+
+    //seventh
+    Map<Genre,List<Film>> findFilmOfPersonPerGenre(Person person);
 
     Film findByTitle (String title);
 
