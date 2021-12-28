@@ -57,7 +57,7 @@ public class GeneratePeople extends AbstractLogComponent implements CommandLineR
 
     @Override
     public void run(String... args) {
-        createPeople();
+//        createPeople();
     }
 }
 

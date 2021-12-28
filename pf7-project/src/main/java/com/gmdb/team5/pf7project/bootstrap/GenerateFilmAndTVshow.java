@@ -15,8 +15,8 @@ import java.util.*;
 
 @Component
 @RequiredArgsConstructor
-@Profile("dev")
-@Order(2)
+//@Profile("dev")
+//@Order(2)
 public class GenerateFilmAndTVshow extends AbstractLogComponent implements CommandLineRunner {
     private final TVShowService tvShowService;
     private final FilmService filmService;
@@ -162,7 +162,7 @@ public class GenerateFilmAndTVshow extends AbstractLogComponent implements Comma
                             .peopleCasted(new HashSet<>())
                             .numberOfEpisodes(util.generateRandomIntInRange(5, 15))
                             .numberOfSeasons(util.generateRandomIntInRange(1, 3))
-                            .episodes(new HashSet<>())
+//                            .episodes(new HashSet<>())
                             .build()
             );
 
@@ -173,14 +173,14 @@ public class GenerateFilmAndTVshow extends AbstractLogComponent implements Comma
         }
 
         //fix this
-        tvShow.get(0).getEpisodes().add(newEpisodes(0));
-        tvShow.get(0).getEpisodes().add(newEpisodes(1));
-        tvShow.get(1).getEpisodes().add(newEpisodes(2));
-        tvShow.get(1).getEpisodes().add(newEpisodes(3));
-        tvShow.get(2).getEpisodes().add(newEpisodes(4));
-        tvShow.get(2).getEpisodes().add(newEpisodes(5));
-        tvShow.get(3).getEpisodes().add(newEpisodes(6));
-        tvShow.get(3).getEpisodes().add(newEpisodes(7));
+//        tvShow.get(0).getEpisodes().add(newEpisodes(0));
+//        tvShow.get(0).getEpisodes().add(newEpisodes(1));
+//        tvShow.get(1).getEpisodes().add(newEpisodes(2));
+//        tvShow.get(1).getEpisodes().add(newEpisodes(3));
+//        tvShow.get(2).getEpisodes().add(newEpisodes(4));
+//        tvShow.get(2).getEpisodes().add(newEpisodes(5));
+//        tvShow.get(3).getEpisodes().add(newEpisodes(6));
+//        tvShow.get(3).getEpisodes().add(newEpisodes(7));
 
          logger.info("Created and associated {} TVShows.", tvShowService.createAll(tvShow).size());
 
@@ -210,7 +210,10 @@ public class GenerateFilmAndTVshow extends AbstractLogComponent implements Comma
 
     @Override
     public void run(String... args) {
-        createMovies();
-        createTVShowsWithEpisodes();
+//        createMovies();
+//        createTVShowsWithEpisodes();
+        for(Film iter : filmService.findTopRatedFilms(5).getContent()) {
+            System.out.println(iter);
+        }
     }
 }

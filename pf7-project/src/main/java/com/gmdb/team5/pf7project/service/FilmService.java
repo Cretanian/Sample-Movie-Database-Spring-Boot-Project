@@ -4,6 +4,7 @@ import com.gmdb.team5.pf7project.domain.Film;
 import com.gmdb.team5.pf7project.domain.Genre;
 import com.gmdb.team5.pf7project.domain.Person;
 import com.gmdb.team5.pf7project.domain.Role;
+import org.springframework.data.domain.Page;
 
 import java.util.List;
 import java.util.Map;
@@ -15,14 +16,13 @@ public interface FilmService extends BaseService<Film> {
 
     void addItem(Film film, Person product, Set<Role> role);
 
-
     Film findLazy(Long id);
 
     List<Film> findAllLazy();
 
 
     //first report
-    List<Film> findTopRatedContent(Long id);
+    Page<Film> findTopRatedFilms(Integer number);
 
     //second report
     List<Film> findFilmByPerson(Person person);

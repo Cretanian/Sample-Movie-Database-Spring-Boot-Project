@@ -4,10 +4,16 @@ import com.gmdb.team5.pf7project.domain.Film;
 import com.gmdb.team5.pf7project.domain.Genre;
 import com.gmdb.team5.pf7project.domain.Person;
 import com.gmdb.team5.pf7project.domain.Role;
+import org.springframework.data.domain.Page;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Query;
+import org.springframework.data.repository.query.Param;
 import org.springframework.stereotype.Repository;
+import org.springframework.transaction.annotation.Isolation;
+import org.springframework.transaction.annotation.Propagation;
+import org.springframework.transaction.annotation.Transactional;
 
+import java.awt.print.Pageable;
 import java.util.List;
 import java.util.Map;
 
@@ -27,14 +33,18 @@ public interface FilmRepository extends JpaRepository<Film, Long> {
 
     //Reports Start here.
 
-
     //first report
-//      @Query(value = "select top ?1 * from order by RATING desc", nativeQuery = true)
-//      List<Film> findTopRatedContent(Long number);
+//      @Query("SELECT (TOP ?1) f FROM Film f ORDER BY f.rating ASC")
+
+//      @Query("SELECT f FROM Film f ORDER BY f.rating ASC")
+//      Page<Film> findTopRatedFilms(Pageable pageable);
+
+
 
     //sometimes it work sometimes it no work \_(^.^)_/
     //first report
-    List<Film> findTopByRating(Long number);
+//    List<Film> findTopByRating(Long number);
+
 
     //second report
     @Query(value = "select f from Film f join CastedPerson o where o.person = ?1")

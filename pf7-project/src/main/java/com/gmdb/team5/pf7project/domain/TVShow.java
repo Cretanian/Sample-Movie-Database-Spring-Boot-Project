@@ -27,7 +27,7 @@ public class TVShow extends Film{
     @Column(nullable = false)
     private Integer numberOfSeasons;
 
-    @OneToMany(fetch = FetchType.LAZY)
-    private Set<Film> episodes = new HashSet<>();
+//    @OneToMany(fetch = FetchType.LAZY)
+//    private Set<Film> episodes = new HashSet<>();
 
 }
