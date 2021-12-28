@@ -16,12 +16,11 @@ public interface FilmRepository extends JpaRepository<Film, Long> {
 
     Film findByTitle (String title);
 
-    //Fix the above SQL commands here is an error 99% sure
 
-    @Query(value = "select o from FILMS o join CASTED_PERSON where o.id = ?1", nativeQuery = true)
+    @Query(value = "select o from Film o join fetch o.peopleCasted where o.id = ?1")
     Film findLazy(Long id);
 
-    @Query(value = "select distinct o from FILMS o join fetch o.orderItems", nativeQuery = true)
+    @Query(value = "select distinct o from Film o join fetch o.peopleCasted")
     List<Film> findAllLazy();
 
 
