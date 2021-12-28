@@ -33,16 +33,10 @@ public interface FilmRepository extends JpaRepository<Film, Long> {
     //Reports Start here.
 
     //first report
-//      @Query("SELECT (TOP ?1) f FROM Film f ORDER BY f.rating ASC")
 
 //      @Query("SELECT f FROM Film f ORDER BY f.rating ASC")
 //      Page<Film> findTopRatedFilms(Pageable pageable);
 
-
-
-    //sometimes it work sometimes it no work \_(^.^)_/
-    //first report
-//    List<Film> findTopByRating(Long number);
 
 
     //second report
