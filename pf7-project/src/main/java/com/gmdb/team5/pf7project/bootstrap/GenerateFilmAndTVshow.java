@@ -213,12 +213,12 @@ public class GenerateFilmAndTVshow extends AbstractLogComponent implements Comma
 //        createMovies();
 //        createTVShowsWithEpisodes();
 
-        // Test for first report
+//         //Test for first report
 //        for(Film iter : filmService.findTopRatedFilms(5).getContent()) {
 //            System.out.println(iter);
 //        }
-
-        // Test for second report
+//
+//         //Test for second report
 //        Person person = personService.find(1l);
 //        for(Film iter : filmService.findFilmByPerson(person)) {
 //            System.out.println(iter);
@@ -230,9 +230,28 @@ public class GenerateFilmAndTVshow extends AbstractLogComponent implements Comma
 //            System.out.println(iter);
 //        }
 
-        // Test for forth report
+//        // Test for forth report
 //        for(Film iter : filmService.findFilmByGenre(Genre.Action)) {
 //            System.out.println(iter);
 //        }
+
+        // Test for fifth report
+        for (Map.Entry<Genre, Long> entry : filmService.findNumberOfFilmPerGenre().entrySet()) {
+            System.out.println(entry.getKey() + ":" + entry.getValue().toString());
+        }
+
+
     }
 }
+
+
+
+
+
+
+
+
+
+
+
+

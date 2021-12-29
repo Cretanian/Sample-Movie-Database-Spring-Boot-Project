@@ -13,6 +13,8 @@ import org.springframework.transaction.annotation.Isolation;
 import org.springframework.transaction.annotation.Propagation;
 import org.springframework.transaction.annotation.Transactional;
 
+import javax.persistence.EnumType;
+import javax.persistence.Enumerated;
 import java.awt.print.Pageable;
 import java.util.List;
 import java.util.Map;
@@ -45,28 +47,28 @@ public interface FilmRepository extends JpaRepository<Film, Long> {
     List<Film> findFilmByPerson(Person person);
 
     //third report
-    // exoume thema me multiple joins kai sto pws anagnwrizei to jpa to table PERSON_ROLE
-//    @Query("select f from Film f inner join f.peopleCasted p join p.PERSON_ROLE on p.person = ?1")
-//    List<Film> findFilmByPersonByRole(Person person, Role role);
+    //if we change db it will work like fourth, needs some fixing still
+    @Query("select f from Film f inner join f.peopleCasted p where p.person = :person AND p.role = :role")
+    List<Film> findFilmByPersonByRole(@Param("person") Person person,@Param("role") Role role);
 
     //fourth report
-    // exoume to idio thema me apo panw, gia ton pinaka twn genres
-//    @Query("select f from Film f inner join f.genre g where g = ?1")
-//    List<Film> findFilmByGenre(Genre genre);
+    //done
+    @Query("select f from Film f inner join f.genre g where g = :genre")
+    List<Film> findFilmByGenre(Genre genre);
 
     //fifth report
-    //where f.genre = ?1 ????!?!?!?!?
-    @Query(value = "select count(f) from Film f inner join f.genre")
-    Map<Genre,Integer> findNumberOfFilmPerGenre();
+    //For now this returns the total genre for all films.
+    @Query("select count(f) from Film f inner join f.genre")
+    Map<Genre,Long> findNumberOfFilmPerGenre();
 
     //sixth report
     //where f.releaseYear = ?1 AND f.genre = ?1      ??!?!?!??!?!?!
-    @Query(value = "select count(f) from Film f inner join f.genre")
+    @Query("select count(f) from Film f inner join f.genre")
     Map<Integer,Map<Long,Genre>> findFilmPerYearPerGenre();
 
     //seventh
     //does it need genre as well????? on joins???
-    @Query(value = "select f from Film f inner join f.peopleCasted where f.peopleCasted = ?1")
+    @Query("select f from Film f inner join f.peopleCasted where f.peopleCasted = ?1")
     Map<Genre,List<Film>> findFilmOfPersonPerGenre(Person person);
 
 }

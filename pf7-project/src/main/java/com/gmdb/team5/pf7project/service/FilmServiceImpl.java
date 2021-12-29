@@ -12,6 +12,7 @@ import org.springframework.transaction.annotation.Isolation;
 import org.springframework.transaction.annotation.Propagation;
 
 import javax.transaction.Transactional;
+import java.util.Arrays;
 import java.util.List;
 import java.util.Map;
 import java.util.Set;
@@ -103,12 +104,12 @@ public class FilmServiceImpl extends BaseServiceImpl<Film> implements FilmServic
 
     @Override
     public List<Film> findFilmByGenre(Genre genre) {
-        return null;
+        return fIlmRepository.findFilmByGenre(genre);
     }
 
     @Override
-    public Map<Genre, Long> findNumberOfFilmPerGenre() {
-        return null;
+    public Map<Genre,Long> findNumberOfFilmPerGenre() {
+        return fIlmRepository.findNumberOfFilmPerGenre();
     }
 
     @Override
