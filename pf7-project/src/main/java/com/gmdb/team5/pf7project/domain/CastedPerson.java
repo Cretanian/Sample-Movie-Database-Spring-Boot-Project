@@ -28,7 +28,7 @@ public class CastedPerson extends BaseModel {
 
     @JsonBackReference("castedPerson")
     @JoinColumn(name = "FILM_ID")
-    @ManyToOne(fetch = FetchType.LAZY, optional = false)
+    @ManyToOne(fetch = FetchType.EAGER, optional = false)
     private Film film;
 
 

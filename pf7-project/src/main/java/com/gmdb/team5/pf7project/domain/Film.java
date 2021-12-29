@@ -41,6 +41,7 @@ public class Film extends BaseModel {
     @Column(length = 15, nullable = false)
     private Rating rating;
 
+    @JsonManagedReference("filmGenre")
     @ElementCollection(targetClass = Genre.class , fetch = FetchType.EAGER)
     @CollectionTable(
             name = "FILMGENRE",

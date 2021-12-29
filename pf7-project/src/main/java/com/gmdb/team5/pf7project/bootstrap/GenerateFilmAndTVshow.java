@@ -212,8 +212,27 @@ public class GenerateFilmAndTVshow extends AbstractLogComponent implements Comma
     public void run(String... args) {
 //        createMovies();
 //        createTVShowsWithEpisodes();
-        for(Film iter : filmService.findTopRatedFilms(5).getContent()) {
-            System.out.println(iter);
-        }
+
+        // Test for first report
+//        for(Film iter : filmService.findTopRatedFilms(5).getContent()) {
+//            System.out.println(iter);
+//        }
+
+        // Test for second report
+//        Person person = personService.find(1l);
+//        for(Film iter : filmService.findFilmByPerson(person)) {
+//            System.out.println(iter);
+//        }
+
+        // Test for third report
+//        Person person = personService.find(1l);
+//        for(Film iter : filmService.findFilmByPersonByRole(person, Role.Actor)) {
+//            System.out.println(iter);
+//        }
+
+        // Test for forth report
+//        for(Film iter : filmService.findFilmByGenre(Genre.Action)) {
+//            System.out.println(iter);
+//        }
     }
 }

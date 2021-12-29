@@ -16,6 +16,7 @@ import org.springframework.transaction.annotation.Transactional;
 import java.awt.print.Pageable;
 import java.util.List;
 import java.util.Map;
+import java.util.Set;
 
 @Repository
 public interface FilmRepository extends JpaRepository<Film, Long> {
@@ -40,15 +41,18 @@ public interface FilmRepository extends JpaRepository<Film, Long> {
 
 
     //second report
-    @Query(value = "select f from Film f join CastedPerson o where o.person = ?1")
+    @Query("select f from Film f join f.peopleCasted p where p.person = ?1")
     List<Film> findFilmByPerson(Person person);
 
-    @Query(value = "select f from Film f inner join f.peopleCasted c where c.role = ?1")
-    List<Film> findFilmByPersonByRole(Person person, Role role);
+    //third report
+    // exoume thema me multiple joins kai sto pws anagnwrizei to jpa to table PERSON_ROLE
+//    @Query("select f from Film f inner join f.peopleCasted p join p.PERSON_ROLE on p.person = ?1")
+//    List<Film> findFilmByPersonByRole(Person person, Role role);
 
     //fourth report
-    @Query(value = "select f from Film f inner join f.genre where f.genre = ?1")
-    List<Film> findFilmByGenre(Genre genre);
+    // exoume to idio thema me apo panw, gia ton pinaka twn genres
+//    @Query("select f from Film f inner join f.genre g where g = ?1")
+//    List<Film> findFilmByGenre(Genre genre);
 
     //fifth report
     //where f.genre = ?1 ????!?!?!?!?
