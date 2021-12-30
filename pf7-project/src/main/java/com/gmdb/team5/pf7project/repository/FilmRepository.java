@@ -66,7 +66,11 @@ public interface FilmRepository extends JpaRepository<Film, Long> {
 
     //seventh
     //does it need genre as well????? on joins???
-    @Query("select f from Film f inner join f.peopleCasted where f.peopleCasted = ?1")
+    @Query(value = "SELECT FILMGENRE.GENRE_ID, FILMS.TITLE FROM FILMS\n" +
+            "JOIN FILMGENRE on FILMS.ID = FILMGENRE.FILM_ID\n" +
+            "JOIN CASTED_PERSON CP on FILMS.ID = CP.FILM_ID\n" +
+            "WHERE CP.PERSON_ID = :person\n" +
+            "GROUP BY GENRE_ID, FILMS.TITLE",nativeQuery = true)
     Map<Genre,List<Film>> findFilmOfPersonPerGenre(Person person);
 
 }
