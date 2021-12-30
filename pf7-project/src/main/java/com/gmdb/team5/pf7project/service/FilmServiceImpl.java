@@ -100,7 +100,7 @@ public class FilmServiceImpl extends BaseServiceImpl<Film> implements FilmServic
 
     @Override
     public List<Film> findFilmByPersonByRole(Person person, Role role) {
-        return null;
+        return fIlmRepository.findFilmByPersonByRole(person,role);
     }
 
     @Override
@@ -112,6 +112,7 @@ public class FilmServiceImpl extends BaseServiceImpl<Film> implements FilmServic
     public Map<Genre,Long> findNumberOfFilmPerGenre() {
         return fIlmRepository.findNumberOfFilmPerGenre();
     }
+
 
     @Override
     public Map<Integer, Map<Genre, Long>> findFilmPerYearPerGenre() {

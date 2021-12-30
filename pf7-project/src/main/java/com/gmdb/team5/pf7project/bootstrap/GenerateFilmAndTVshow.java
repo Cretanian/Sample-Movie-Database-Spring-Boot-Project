@@ -225,9 +225,9 @@ public class GenerateFilmAndTVshow extends AbstractLogComponent implements Comma
 //        }
 
         // Test for fifth report
-        for (Map.Entry<Genre, Long> entry : filmService.findNumberOfFilmPerGenre().entrySet()) {
-            System.out.println(entry.getKey() + ":" + entry.getValue().toString());
-        }
+//        for (Map.Entry<Genre, Long> entry : filmService.findNumberOfFilmPerGenre().entrySet()) {
+//            System.out.println(entry.getKey() + ":" + entry.getValue().toString());
+//        }
 
 
     }
