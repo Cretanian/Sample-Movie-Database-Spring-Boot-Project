@@ -87,8 +87,7 @@ public class GenerateFilmAndTVshow extends AbstractLogComponent implements Comma
 
         do{
             genre = generateGenre();
-            if(!genreSet.contains(genre))
-                genreSet.add(genre);
+            genreSet.add(genre);
         }while (util.getRandom().nextBoolean());
 
         return genreSet;
@@ -210,13 +209,13 @@ public class GenerateFilmAndTVshow extends AbstractLogComponent implements Comma
 //        }
 //
 //         //Test for second report
-//        Person person = personService.find(1l);
+//        Person person = personService.find(1L);
 //        for(Film iter : filmService.findFilmByPerson(person)) {
 //            System.out.println(iter);
 //        }
 
         // Test for third report
-//        Person person = personService.find(1l);
+//        Person person = personService.find(1L);
 //        for(Film iter : filmService.findFilmByPersonByRole(person, Role.Actor)) {
 //            System.out.println(iter);
 //        }
@@ -245,7 +244,13 @@ public class GenerateFilmAndTVshow extends AbstractLogComponent implements Comma
 
         //Test for seventh report
 
-        }
+        Person person = personService.find(10L);
+
+        for (Map.Entry<String, List<Film>> entry : filmService.findFilmOfPersonPerGenre(person).entrySet()) {
+                System.out.println(entry.getKey() + ":" + entry.getValue());
+            }
+
+}
 }
 
 

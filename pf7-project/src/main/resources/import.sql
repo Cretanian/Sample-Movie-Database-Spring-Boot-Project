@@ -45,7 +45,7 @@ insert into FILMGENRE(FILM_ID, GENRE_ID) values(3,'Comedy');
 insert into FILMGENRE(FILM_ID, GENRE_ID) values(3,'Fantasy');
 insert into FILMGENRE(FILM_ID, GENRE_ID) values(3,'Animation');
 insert into FILMGENRE(FILM_ID, GENRE_ID) values(4,'Adventure');
-insert into FILMGENRE(FILM_ID, GENRE_ID) values(4,'Comedy');
+insert into FILMGENRE(FILM_ID, GENRE_ID) values(4,'SciFi');
 insert into FILMGENRE(FILM_ID, GENRE_ID) values(4,'Fantasy');
 insert into FILMGENRE(FILM_ID, GENRE_ID) values(4,'Animation');
 insert into FILMGENRE(FILM_ID, GENRE_ID) values(5,'Adventure');

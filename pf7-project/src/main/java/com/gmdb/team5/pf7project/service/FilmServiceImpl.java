@@ -85,8 +85,6 @@ public class FilmServiceImpl extends BaseServiceImpl<Film> implements FilmServic
 
 //Reports Start here
 
-
-
     @Override
     public Page<Film> findTopRatedFilms(Integer number) {
         return fIlmRepository.findAll( PageRequest.of(0, number, Sort.by(Sort.Direction.ASC, "rating")));
@@ -134,8 +132,50 @@ public class FilmServiceImpl extends BaseServiceImpl<Film> implements FilmServic
              return myMap;
     }
 
+    Film createListOfFilm(Object[] obj)
+    {
+        Film film = new Film();
+
+
+        //fix this and think about genres
+
+        film.setDescription((String) obj[2]);
+        film.setDuration((Integer) obj[3]);
+        film.setLanguage((String) obj[4]);
+//        film.setRating((Rating) obj[5]); //here sad boiiiii o giannis o meraklis tha to kanei ayto :)
+        film.setReleaseYear((Integer) obj[6]);
+        film.setTitle((String) obj[7]);
+
+        return film;
+    }
+
     @Override
-    public Map<Genre, List<Film>> findFilmOfPersonPerGenre(Person person) {
-        return null;
+    public Map<String, List<Film>> findFilmOfPersonPerGenre(Person person) {
+
+        List<Object[]> list = fIlmRepository.findFilmOfPersonPerGenre(person);
+
+        Map<String, List<Film>> myMap = new HashMap<>();
+
+        List<Film> newFilmList = new ArrayList<>();
+
+        String tmp = null;
+        for (Object[] obj : list) {
+
+            if(tmp == null) {
+                tmp = (String) obj[0];
+                newFilmList.add(createListOfFilm(obj));
+            } else {
+                if (tmp.equals(obj[0])) {
+                    newFilmList.add(createListOfFilm(obj));
+                } else {
+                    myMap.put(tmp, newFilmList);
+                    tmp = (String) obj[0];
+                    newFilmList = new ArrayList<>();
+                    newFilmList.add(createListOfFilm(obj));
+                }
+            }
+        }
+        myMap.put(tmp, newFilmList);
+        return myMap;
     }
 }

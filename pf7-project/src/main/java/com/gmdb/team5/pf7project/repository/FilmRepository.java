@@ -16,6 +16,7 @@ import org.springframework.transaction.annotation.Transactional;
 import javax.persistence.EnumType;
 import javax.persistence.Enumerated;
 import java.awt.print.Pageable;
+import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 import java.util.Set;
@@ -65,8 +66,13 @@ public interface FilmRepository extends JpaRepository<Film, Long> {
    List<Object[]>findFilmPerYearPerGenre();
 
     //seventh
-    //does it need genre as well????? on joins???
-    @Query("select f from Film f inner join f.peopleCasted where f.peopleCasted = ?1")
-    Map<Genre,List<Film>> findFilmOfPersonPerGenre(Person person);
+    @Query(value = "SELECT F2.GENRE_ID, f.* From Films f\n" +
+            "    Left outer join FILMGENRE F2 on f.ID = F2.FILM_ID\n" +
+            "    join CASTED_PERSON CP on f.ID = CP.FILM_ID\n" +
+            "WHERE CP.PERSON_ID = :person\n" +
+            "Order by F2.GENRE_ID;"
+    , nativeQuery = true)
+   List<Object[]> findFilmOfPersonPerGenre(@Param("person") Person person);
+
 
 }
