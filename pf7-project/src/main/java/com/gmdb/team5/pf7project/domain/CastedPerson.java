@@ -35,7 +35,7 @@ public class CastedPerson extends BaseModel {
 
 
     @Enumerated(EnumType.STRING)
-    @Column(name = "ROLE_ID", nullable = false)
+    @Column(name = "ROLE", nullable = false)
     private Role role;
 
 }

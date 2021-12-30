@@ -1,5 +1,5 @@
 insert into PEOPLE(ID, YOB, COUNTRY, FIRSTNAME, ISALIVE, LASTNAME) values (1,1960,'Italy','Damiano',FALSE,'Moretti');
-insert into PEOPLE(ID, YOB, COUNTRY, FIRSTNAME, ISALIVE, LASTNAME) values (2,1987,'Argentina','Lionel',TRUE,'Messi');
+insert into PEOPLE(ID, YOB, COUNTRY, FIRSTNAME, ISALIVE, LASTNAME) values (2,1986,'United Kingdom','John',TRUE,'Brown');
 insert into PEOPLE(ID, YOB, COUNTRY, FIRSTNAME, ISALIVE, LASTNAME) values (3,1989,'Norway','Magnus',TRUE,'Carlsen');
 insert into PEOPLE(ID, YOB, COUNTRY, FIRSTNAME, ISALIVE, LASTNAME) values (4,1942,'France','Amelie',FALSE,'Trindeux');
 insert into PEOPLE(ID, YOB, COUNTRY, FIRSTNAME, ISALIVE, LASTNAME) values (5,2002,'Greece','Constantinos',TRUE,'Constantopoulos');
@@ -25,13 +25,13 @@ insert into FILMS (ID, DESCRIPTION, DURATION, LANGUAGE, RATING, RELEASEYEAR, TIT
 
 insert into TVSHOWS(NUMBEROFEPISODES, NUMBEROFSEASONS, ID) values (2,22,3);
 insert into TVSHOWS(NUMBEROFEPISODES, NUMBEROFSEASONS, ID) values (2,14,6);
-
-
+--
+--
 -- insert into TVSHOWS_EPISODES(TVSHOW_ID, EPISODES_ID) values (3 ,4 );
 -- insert into TVSHOWS_EPISODES(TVSHOW_ID, EPISODES_ID) values (3 ,5 );
 -- insert into TVSHOWS_EPISODES(TVSHOW_ID, EPISODES_ID) values (6 ,8 );
 -- insert into TVSHOWS_EPISODES(TVSHOW_ID, EPISODES_ID) values (6 ,7 );
-
+--
 
 insert into FILMGENRE(FILM_ID, GENRE_ID) values(1,'Romance');
 insert into FILMGENRE(FILM_ID, GENRE_ID) values(1,'Horror');
@@ -71,92 +71,51 @@ insert into FILMGENRE(FILM_ID, GENRE_ID) values(10,'Crime');
 insert into FILMGENRE(FILM_ID, GENRE_ID) values(10,'Psychological');
 
 
-insert into CASTED_PERSON(ID, FILM_ID, PERSON_ID) values (1,1,1);
-insert into CASTED_PERSON(ID, FILM_ID, PERSON_ID) values (2,1,2);
-insert into CASTED_PERSON(ID, FILM_ID, PERSON_ID) values (3,1,3);
-insert into CASTED_PERSON(ID, FILM_ID, PERSON_ID) values (4,1,4);
-insert into CASTED_PERSON(ID, FILM_ID, PERSON_ID) values (5,1,5);
-insert into CASTED_PERSON(ID, FILM_ID, PERSON_ID) values (6,2,1);
-insert into CASTED_PERSON(ID, FILM_ID, PERSON_ID) values (7,2,2);
-insert into CASTED_PERSON(ID, FILM_ID, PERSON_ID) values (8,2,3);
-insert into CASTED_PERSON(ID, FILM_ID, PERSON_ID) values (9,2,4);
-insert into CASTED_PERSON(ID, FILM_ID, PERSON_ID) values (10,2,5);
-insert into CASTED_PERSON(ID, FILM_ID, PERSON_ID) values (11,3,10);
-insert into CASTED_PERSON(ID, FILM_ID, PERSON_ID) values (12,3,7);
-insert into CASTED_PERSON(ID, FILM_ID, PERSON_ID) values (13,3,8);
-insert into CASTED_PERSON(ID, FILM_ID, PERSON_ID) values (14,4,10);
-insert into CASTED_PERSON(ID, FILM_ID, PERSON_ID) values (15,4,7);
-insert into CASTED_PERSON(ID, FILM_ID, PERSON_ID) values (16,5,10);
-insert into CASTED_PERSON(ID, FILM_ID, PERSON_ID) values (17,5,7);
-insert into CASTED_PERSON(ID, FILM_ID, PERSON_ID) values (18,5,8);
-insert into CASTED_PERSON(ID, FILM_ID, PERSON_ID) values (19,6,11);
-insert into CASTED_PERSON(ID, FILM_ID, PERSON_ID) values (20,6,7);
-insert into CASTED_PERSON(ID, FILM_ID, PERSON_ID) values (21,6,8);
-insert into CASTED_PERSON(ID, FILM_ID, PERSON_ID) values (22,7,11);
-insert into CASTED_PERSON(ID, FILM_ID, PERSON_ID) values (23,7,7);
-insert into CASTED_PERSON(ID, FILM_ID, PERSON_ID) values (24,7,8);
-insert into CASTED_PERSON(ID, FILM_ID, PERSON_ID) values (25,8,11);
-insert into CASTED_PERSON(ID, FILM_ID, PERSON_ID) values (26,8,7);
-insert into CASTED_PERSON(ID, FILM_ID, PERSON_ID) values (27,9,9);
-insert into CASTED_PERSON(ID, FILM_ID, PERSON_ID) values (28,9,2);
-insert into CASTED_PERSON(ID, FILM_ID, PERSON_ID) values (29,9,3);
-insert into CASTED_PERSON(ID, FILM_ID, PERSON_ID) values (30,9,4);
-insert into CASTED_PERSON(ID, FILM_ID, PERSON_ID) values (31,9,6);
-insert into CASTED_PERSON(ID, FILM_ID, PERSON_ID) values (32,9,5);
-insert into CASTED_PERSON(ID, FILM_ID, PERSON_ID) values (33,10,3);
-insert into CASTED_PERSON(ID, FILM_ID, PERSON_ID) values (34,10,6);
-insert into CASTED_PERSON(ID, FILM_ID, PERSON_ID) values (35,10,8);
-insert into CASTED_PERSON(ID, FILM_ID, PERSON_ID) values (36,10,2);
-insert into CASTED_PERSON(ID, FILM_ID, PERSON_ID) values (37,10,1);
-insert into CASTED_PERSON(ID, FILM_ID, PERSON_ID) values (38,10,7);
-insert into CASTED_PERSON(ID, FILM_ID, PERSON_ID) values (39,10,5);
-
-
-insert into PERSON_ROLE(CASTED_PERSON_ID,ROLE_ID) values (1,'Actor');
-insert into PERSON_ROLE(CASTED_PERSON_ID,ROLE_ID) values (1,'Director');
-insert into PERSON_ROLE(CASTED_PERSON_ID,ROLE_ID) values (1,'Producer');
-insert into PERSON_ROLE(CASTED_PERSON_ID,ROLE_ID) values (2,'BoomOperator');
-insert into PERSON_ROLE(CASTED_PERSON_ID,ROLE_ID) values (3,'CameraOperator');
-insert into PERSON_ROLE(CASTED_PERSON_ID,ROLE_ID) values (3,'Producer');
-insert into PERSON_ROLE(CASTED_PERSON_ID,ROLE_ID) values (4,'Actor');
-insert into PERSON_ROLE(CASTED_PERSON_ID,ROLE_ID) values (5,'CostumeDesigner');
-insert into PERSON_ROLE(CASTED_PERSON_ID,ROLE_ID) values (6,'Actor');
-insert into PERSON_ROLE(CASTED_PERSON_ID,ROLE_ID) values (6,'Director');
-insert into PERSON_ROLE(CASTED_PERSON_ID,ROLE_ID) values (7,'BoomOperator');
-insert into PERSON_ROLE(CASTED_PERSON_ID,ROLE_ID) values (8,'CameraOperator');
-insert into PERSON_ROLE(CASTED_PERSON_ID,ROLE_ID) values (9,'Actor');
-insert into PERSON_ROLE(CASTED_PERSON_ID,ROLE_ID) values (10,'CostumeDesigner');
-insert into PERSON_ROLE(CASTED_PERSON_ID,ROLE_ID) values (11,'Actor');
-insert into PERSON_ROLE(CASTED_PERSON_ID,ROLE_ID) values (12,'Producer');
-insert into PERSON_ROLE(CASTED_PERSON_ID,ROLE_ID) values (13,'Producer');
-insert into PERSON_ROLE(CASTED_PERSON_ID,ROLE_ID) values (14,'Actor');
-insert into PERSON_ROLE(CASTED_PERSON_ID,ROLE_ID) values (15,'Producer');
-insert into PERSON_ROLE(CASTED_PERSON_ID,ROLE_ID) values (16,'Actor');
-insert into PERSON_ROLE(CASTED_PERSON_ID,ROLE_ID) values (17,'Producer');
-insert into PERSON_ROLE(CASTED_PERSON_ID,ROLE_ID) values (18,'Producer');
-insert into PERSON_ROLE(CASTED_PERSON_ID,ROLE_ID) values (19,'Actor');
-insert into PERSON_ROLE(CASTED_PERSON_ID,ROLE_ID) values (20,'Producer');
-insert into PERSON_ROLE(CASTED_PERSON_ID,ROLE_ID) values (21,'Director');
-insert into PERSON_ROLE(CASTED_PERSON_ID,ROLE_ID) values (22,'Actor');
-insert into PERSON_ROLE(CASTED_PERSON_ID,ROLE_ID) values (23,'Producer');
-insert into PERSON_ROLE(CASTED_PERSON_ID,ROLE_ID) values (24,'Director');
-insert into PERSON_ROLE(CASTED_PERSON_ID,ROLE_ID) values (25,'Actor');
-insert into PERSON_ROLE(CASTED_PERSON_ID,ROLE_ID) values (26,'Producer');
-insert into PERSON_ROLE(CASTED_PERSON_ID,ROLE_ID) values (27,'Actor');
-insert into PERSON_ROLE(CASTED_PERSON_ID,ROLE_ID) values (27,'Director');
-insert into PERSON_ROLE(CASTED_PERSON_ID,ROLE_ID) values (28,'BoomOperator');
-insert into PERSON_ROLE(CASTED_PERSON_ID,ROLE_ID) values (29,'CameraOperator');
-insert into PERSON_ROLE(CASTED_PERSON_ID,ROLE_ID) values (30,'Actor');
-insert into PERSON_ROLE(CASTED_PERSON_ID,ROLE_ID) values (30,'Producer');
-insert into PERSON_ROLE(CASTED_PERSON_ID,ROLE_ID) values (31,'PhotographyDirector');
-insert into PERSON_ROLE(CASTED_PERSON_ID,ROLE_ID) values (32,'Writer');
-insert into PERSON_ROLE(CASTED_PERSON_ID,ROLE_ID) values (33,'Actor');
-insert into PERSON_ROLE(CASTED_PERSON_ID,ROLE_ID) values (33,'FilmEditor');
-insert into PERSON_ROLE(CASTED_PERSON_ID,ROLE_ID) values (34,'BoomOperator');
-insert into PERSON_ROLE(CASTED_PERSON_ID,ROLE_ID) values (35,'Actor');
-insert into PERSON_ROLE(CASTED_PERSON_ID,ROLE_ID) values (36,'Director');
-insert into PERSON_ROLE(CASTED_PERSON_ID,ROLE_ID) values (37,'PhotographyDirector');
-insert into PERSON_ROLE(CASTED_PERSON_ID,ROLE_ID) values (38,'AssistantDirector');
-insert into PERSON_ROLE(CASTED_PERSON_ID,ROLE_ID) values (39,'Writer');
+insert into CASTED_PERSON(ID, ROLE, FILM_ID, PERSON_ID) values (1,'Actor',1,1);
+insert into CASTED_PERSON(ID, ROLE, FILM_ID, PERSON_ID) values (2,'BoomOperator',1,2);
+insert into CASTED_PERSON(ID, ROLE, FILM_ID, PERSON_ID) values (3,'CameraOperator',1,3);
+insert into CASTED_PERSON(ID, ROLE, FILM_ID, PERSON_ID) values (4,'Actor',1,4);
+insert into CASTED_PERSON(ID, ROLE, FILM_ID, PERSON_ID) values (5,'Director',1,1);
+insert into CASTED_PERSON(ID, ROLE, FILM_ID, PERSON_ID) values (6,'Producer',1,1);
+insert into CASTED_PERSON(ID, ROLE, FILM_ID, PERSON_ID) values (7,'Producer',1,3);
+insert into CASTED_PERSON(ID, ROLE, FILM_ID, PERSON_ID) values (8,'CostumeDesigner',1,5);
+insert into CASTED_PERSON(ID, ROLE, FILM_ID, PERSON_ID) values (9,'Actor',2,1);
+insert into CASTED_PERSON(ID, ROLE, FILM_ID, PERSON_ID) values (10,'BoomOperator',2,2);
+insert into CASTED_PERSON(ID, ROLE, FILM_ID, PERSON_ID) values (11,'CameraOperator',2,3);
+insert into CASTED_PERSON(ID, ROLE, FILM_ID, PERSON_ID) values (12,'Actor',2,4);
+insert into CASTED_PERSON(ID, ROLE, FILM_ID, PERSON_ID) values (13,'Director',2,1);
+insert into CASTED_PERSON(ID, ROLE, FILM_ID, PERSON_ID) values (14,'CostumeDesigner',2,5);
+insert into CASTED_PERSON(ID, ROLE, FILM_ID, PERSON_ID) values (15,'Actor',3,10);
+insert into CASTED_PERSON(ID, ROLE, FILM_ID, PERSON_ID) values (16,'Producer',3,7);
+insert into CASTED_PERSON(ID, ROLE, FILM_ID, PERSON_ID) values (17,'Producer',3,8);
+insert into CASTED_PERSON(ID, ROLE, FILM_ID, PERSON_ID) values (18,'Actor',4,10);
+insert into CASTED_PERSON(ID, ROLE, FILM_ID, PERSON_ID) values (19,'Producer',4,7);
+insert into CASTED_PERSON(ID, ROLE, FILM_ID, PERSON_ID) values (20,'Actor',5,10);
+insert into CASTED_PERSON(ID, ROLE, FILM_ID, PERSON_ID) values (21,'Producer',5,7);
+insert into CASTED_PERSON(ID, ROLE, FILM_ID, PERSON_ID) values (22,'Producer',5,8);
+insert into CASTED_PERSON(ID, ROLE, FILM_ID, PERSON_ID) values (23,'Actor',6,11);
+insert into CASTED_PERSON(ID, ROLE, FILM_ID, PERSON_ID) values (24,'Producer',6,7);
+insert into CASTED_PERSON(ID, ROLE, FILM_ID, PERSON_ID) values (25,'Director',6,8);
+insert into CASTED_PERSON(ID, ROLE, FILM_ID, PERSON_ID) values (26,'Actor',7,11);
+insert into CASTED_PERSON(ID, ROLE, FILM_ID, PERSON_ID) values (27,'Producer',7,7);
+insert into CASTED_PERSON(ID, ROLE, FILM_ID, PERSON_ID) values (28,'Director',7,8);
+insert into CASTED_PERSON(ID, ROLE, FILM_ID, PERSON_ID) values (29,'Actor',8,11);
+insert into CASTED_PERSON(ID, ROLE, FILM_ID, PERSON_ID) values (30,'Producer',8,7);
+insert into CASTED_PERSON(ID, ROLE, FILM_ID, PERSON_ID) values (31,'Actor',9,9);
+insert into CASTED_PERSON(ID, ROLE, FILM_ID, PERSON_ID) values (32,'BoomOperator',9,2);
+insert into CASTED_PERSON(ID, ROLE, FILM_ID, PERSON_ID) values (33,'CameraOperator',9,3);
+insert into CASTED_PERSON(ID, ROLE, FILM_ID, PERSON_ID) values (34,'Actor',9,4);
+insert into CASTED_PERSON(ID, ROLE, FILM_ID, PERSON_ID) values (35,'Director',9,9);
+insert into CASTED_PERSON(ID, ROLE, FILM_ID, PERSON_ID) values (36,'PhotographyDirector',9,6);
+insert into CASTED_PERSON(ID, ROLE, FILM_ID, PERSON_ID) values (37,'Producer',9,4);
+insert into CASTED_PERSON(ID, ROLE, FILM_ID, PERSON_ID) values (38,'Writer',9,5);
+insert into CASTED_PERSON(ID, ROLE, FILM_ID, PERSON_ID) values (39,'Actor',10,3);
+insert into CASTED_PERSON(ID, ROLE, FILM_ID, PERSON_ID) values (40,'BoomOperator',10,6);
+insert into CASTED_PERSON(ID, ROLE, FILM_ID, PERSON_ID) values (41,'FilmEditor',10,3);
+insert into CASTED_PERSON(ID, ROLE, FILM_ID, PERSON_ID) values (42,'Actor',10,8);
+insert into CASTED_PERSON(ID, ROLE, FILM_ID, PERSON_ID) values (43,'Director',10,2);
+insert into CASTED_PERSON(ID, ROLE, FILM_ID, PERSON_ID) values (44,'PhotographyDirector',10,1);
+insert into CASTED_PERSON(ID, ROLE, FILM_ID, PERSON_ID) values (45,'AssistantDirector',10,7);
+insert into CASTED_PERSON(ID, ROLE, FILM_ID, PERSON_ID) values (46,'Writer',10,5);
 
 
