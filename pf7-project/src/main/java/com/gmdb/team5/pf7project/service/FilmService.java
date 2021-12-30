@@ -6,6 +6,7 @@ import com.gmdb.team5.pf7project.domain.Person;
 import com.gmdb.team5.pf7project.domain.Role;
 import org.springframework.data.domain.Page;
 
+import java.math.BigInteger;
 import java.util.List;
 import java.util.Map;
 import java.util.Set;
@@ -34,7 +35,7 @@ public interface FilmService extends BaseService<Film> {
     List<Film> findFilmByGenre(Genre genre);
 
     //fifth report
-    List<Object[]> findNumberOfFilmPerGenre();
+    Map<String, BigInteger> findNumberOfFilmPerGenre();
 
     //sixth report
     Map<Integer,Map<Genre,Long>> findFilmPerYearPerGenre();

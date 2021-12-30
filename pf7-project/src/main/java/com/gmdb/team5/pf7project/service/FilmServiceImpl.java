@@ -3,6 +3,7 @@ package com.gmdb.team5.pf7project.service;
 import com.gmdb.team5.pf7project.domain.*;
 import com.gmdb.team5.pf7project.repository.FilmRepository;
 import lombok.RequiredArgsConstructor;
+import org.springframework.beans.factory.support.ManagedMap;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Sort;
@@ -12,10 +13,8 @@ import org.springframework.transaction.annotation.Isolation;
 import org.springframework.transaction.annotation.Propagation;
 
 import javax.transaction.Transactional;
-import java.util.Arrays;
-import java.util.List;
-import java.util.Map;
-import java.util.Set;
+import java.math.BigInteger;
+import java.util.*;
 
 @RequiredArgsConstructor
 @Service
@@ -109,8 +108,15 @@ public class FilmServiceImpl extends BaseServiceImpl<Film> implements FilmServic
     }
 
     @Override
-    public List<Object[]> findNumberOfFilmPerGenre() {
-        return fIlmRepository.findNumberOfFilmPerGenre();
+    public Map<String,BigInteger> findNumberOfFilmPerGenre() {
+        List<Object[]> list = fIlmRepository.findNumberOfFilmPerGenre();
+        Map<String,BigInteger> myMap = new HashMap<>();
+
+        for (Object[] obj : list) {
+            myMap.put((String) obj[0], (BigInteger) obj[1]);
+        }
+
+        return myMap;
     }
 
 

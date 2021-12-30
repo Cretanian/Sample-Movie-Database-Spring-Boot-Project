@@ -58,9 +58,9 @@ public interface FilmRepository extends JpaRepository<Film, Long> {
 
     //fifth report
     //For now this returns the total genre for all films.
-    @Query(value = "SELECT FILMGENRE.GENRE_ID, COUNT(FILMGENRE.FILM_ID) FROM FILMGENRE GROUP BY (FILMGENRE.GENRE_ID)", nativeQuery = true)
+    @Query(value = "SELECT FILMGENRE.GENRE_ID, COUNT(FILMGENRE.FILM_ID) FROM FILMGENRE GROUP BY FILMGENRE.GENRE_ID", nativeQuery = true)
     List<Object[]> findNumberOfFilmPerGenre();
-
+    
     //sixth report
     //where f.releaseYear = ?1 AND f.genre = ?1      ??!?!?!??!?!?!
     @Query("select count(f) from Film f inner join f.genre")
