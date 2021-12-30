@@ -158,6 +158,7 @@ public class FilmServiceImpl extends BaseServiceImpl<Film> implements FilmServic
 
         List<Film> newFilmList = new ArrayList<>();
 
+
         String tmp = null;
         for (Object[] obj : list) {
 
