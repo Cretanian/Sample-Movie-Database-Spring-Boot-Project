@@ -6,6 +6,7 @@ import com.gmdb.team5.pf7project.service.FilmService;
 import com.gmdb.team5.pf7project.service.PersonService;
 import com.gmdb.team5.pf7project.service.TVShowService;
 import lombok.RequiredArgsConstructor;
+import lombok.Value;
 import org.springframework.boot.CommandLineRunner;
 import org.springframework.context.annotation.Profile;
 import org.springframework.core.annotation.Order;
@@ -229,6 +230,20 @@ public class GenerateFilmAndTVshow extends AbstractLogComponent implements Comma
 //            for (Map.Entry<String, BigInteger> entry : filmService.findNumberOfFilmPerGenre().entrySet()) {
 //                System.out.println(entry.getKey() + ":" + entry.getValue().toString());
 //            }
+
+
+//         Test for sixth report
+
+////nikhsame
+//            for (Map.Entry<Integer, Map<String,BigInteger>> entry : filmService.findFilmPerYearPerGenre().entrySet()) {
+//
+//               System.out.println(entry.getKey()+" :" );
+//                for (Map.Entry<String,BigInteger> entry1 : entry.getValue().entrySet()){
+//                    System.out.println( entry1.getKey()+ " : " + entry1.getValue());
+//                }
+//            }
+
+        //Test for seventh report
 
         }
 }

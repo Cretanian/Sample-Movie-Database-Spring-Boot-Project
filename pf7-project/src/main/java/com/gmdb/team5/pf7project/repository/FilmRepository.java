@@ -37,17 +37,13 @@ public interface FilmRepository extends JpaRepository<Film, Long> {
 
     //first report
 
-//      @Query("SELECT f FROM Film f ORDER BY f.rating ASC")
-//      Page<Film> findTopRatedFilms(Pageable pageable);
-
-
 
     //second report
     @Query("select f from Film f join f.peopleCasted p where p.person = ?1")
     List<Film> findFilmByPerson(Person person);
 
     //third report
-    //if we change db it will work like fourth, needs some fixing still
+
     @Query("select f from Film f inner join f.peopleCasted p where p.person = :person AND p.role = :role")
     List<Film> findFilmByPersonByRole(@Param("person") Person person,@Param("role") Role role);
 
@@ -57,14 +53,16 @@ public interface FilmRepository extends JpaRepository<Film, Long> {
     List<Film> findFilmByGenre(Genre genre);
 
     //fifth report
-    //For now this returns the total genre for all films.
+
     @Query(value = "SELECT FILMGENRE.GENRE_ID, COUNT(FILMGENRE.FILM_ID) FROM FILMGENRE GROUP BY FILMGENRE.GENRE_ID", nativeQuery = true)
     List<Object[]> findNumberOfFilmPerGenre();
     
     //sixth report
     //where f.releaseYear = ?1 AND f.genre = ?1      ??!?!?!??!?!?!
-    @Query("select count(f) from Film f inner join f.genre")
-    Map<Integer,Map<Long,Genre>> findFilmPerYearPerGenre();
+    @Query(value = "Select f.RELEASEYEAR, fg.GENRE_ID, COUNT(fg.FILM_ID)\n" +
+            "From FILMGENRE fg\n" +
+            "         JOIN FILMS f on fg.FILM_ID = f.ID GROUP BY f.RELEASEYEAR,fg.GENRE_ID", nativeQuery = true)
+   List<Object[]>findFilmPerYearPerGenre();
 
     //seventh
     //does it need genre as well????? on joins???

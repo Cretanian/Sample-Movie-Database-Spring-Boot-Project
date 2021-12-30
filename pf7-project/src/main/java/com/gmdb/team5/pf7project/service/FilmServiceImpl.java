@@ -121,8 +121,17 @@ public class FilmServiceImpl extends BaseServiceImpl<Film> implements FilmServic
 
 
     @Override
-    public Map<Integer, Map<Genre, Long>> findFilmPerYearPerGenre() {
-        return null;
+    public Map<Integer, Map<String, BigInteger>> findFilmPerYearPerGenre() {
+
+
+        List<Object[]> list = fIlmRepository.findFilmPerYearPerGenre();
+        Map<String,BigInteger> myMap1 = new HashMap<>();
+        Map<Integer,Map<String,BigInteger>> myMap = new HashMap<>();
+        for (Object[] obj : list) {
+            myMap1.put((String) obj[1], (BigInteger) obj[2]);
+            myMap.put((Integer)obj[0],myMap1);
+        }
+             return myMap;
     }
 
     @Override
