@@ -14,7 +14,7 @@ public interface FilmService extends BaseService<Film> {
 
     Film findByTitle (String title);
 
-    void addItem(Film film, Person product, Set<Role> role);
+    void addItem(Film film, Person product, Role role);
 
     Film findLazy(Long id);
 

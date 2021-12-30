@@ -67,12 +67,12 @@ public class FilmServiceImpl extends BaseServiceImpl<Film> implements FilmServic
     }
 
 
-    private CastedPerson newCastedPerson(Film film, Person person, Set<Role> role) {
+    private CastedPerson newCastedPerson(Film film, Person person, Role role) {
         return CastedPerson.builder().film(film).person(person).role(role).build();
     }
 
     @Override
-    public void addItem(Film film, Person person, Set<Role> role) {
+    public void addItem(Film film, Person person, Role role) {
         if (checkNullability(film, person) || role == null) {
             return;
         }
@@ -85,6 +85,7 @@ public class FilmServiceImpl extends BaseServiceImpl<Film> implements FilmServic
 
 
 //Reports Start here
+
 
 
     @Override

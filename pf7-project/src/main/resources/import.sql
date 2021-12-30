@@ -27,10 +27,10 @@ insert into TVSHOWS(NUMBEROFEPISODES, NUMBEROFSEASONS, ID) values (2,22,3);
 insert into TVSHOWS(NUMBEROFEPISODES, NUMBEROFSEASONS, ID) values (2,14,6);
 
 
-insert into TVSHOWS_EPISODES(TVSHOW_ID, EPISODES_ID) values (3 ,4 );
-insert into TVSHOWS_EPISODES(TVSHOW_ID, EPISODES_ID) values (3 ,5 );
-insert into TVSHOWS_EPISODES(TVSHOW_ID, EPISODES_ID) values (6 ,8 );
-insert into TVSHOWS_EPISODES(TVSHOW_ID, EPISODES_ID) values (6 ,7 );
+-- insert into TVSHOWS_EPISODES(TVSHOW_ID, EPISODES_ID) values (3 ,4 );
+-- insert into TVSHOWS_EPISODES(TVSHOW_ID, EPISODES_ID) values (3 ,5 );
+-- insert into TVSHOWS_EPISODES(TVSHOW_ID, EPISODES_ID) values (6 ,8 );
+-- insert into TVSHOWS_EPISODES(TVSHOW_ID, EPISODES_ID) values (6 ,7 );
 
 
 insert into FILMGENRE(FILM_ID, GENRE_ID) values(1,'Romance');

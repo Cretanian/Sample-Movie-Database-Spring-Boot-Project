@@ -54,18 +54,7 @@ public class GenerateFilmAndTVshow extends AbstractLogComponent implements Comma
         return null;
     }
 
-    private Set<Role> generateRandomRoles(){
-        Set<Role> roleSet = new HashSet<>();
-        Role role;
 
-        do{
-            role = generateRandomRole();
-            if(!roleSet.contains(role))
-                roleSet.add(role);
-        }while (util.getRandom().nextBoolean());
-
-        return roleSet;
-    }
 
     private Genre generateGenre() {
         int index  = util.generateRandomIntInRange(1,16);
@@ -135,9 +124,9 @@ public class GenerateFilmAndTVshow extends AbstractLogComponent implements Comma
                             .build()
             );
 
-            filmService.addItem(films.get(i), personService.find( (long) util.getRandom().nextInt(10 - 1) + 1), generateRandomRoles());
-            filmService.addItem(films.get(i), personService.find((long) util.getRandom().nextInt(10 - 1) + 1), generateRandomRoles());
-            filmService.addItem(films.get(i), personService.find((long) util.getRandom().nextInt(10 - 1) + 1), generateRandomRoles());
+            filmService.addItem(films.get(i), personService.find( (long) util.getRandom().nextInt(10 - 1) + 1), generateRandomRole());
+            filmService.addItem(films.get(i), personService.find((long) util.getRandom().nextInt(10 - 1) + 1), generateRandomRole());
+            filmService.addItem(films.get(i), personService.find((long) util.getRandom().nextInt(10 - 1) + 1), generateRandomRole());
         }
 
         logger.info("Created {} movies.", filmService.createAll(films).size());
@@ -166,9 +155,9 @@ public class GenerateFilmAndTVshow extends AbstractLogComponent implements Comma
                             .build()
             );
 
-            filmService.addItem(tvShow.get(i), personService.find((long) util.getRandom().nextInt(10 - 1) + 1), generateRandomRoles());
-            filmService.addItem(tvShow.get(i), personService.find((long) util.getRandom().nextInt(10 - 1) + 1), generateRandomRoles());
-            filmService.addItem(tvShow.get(i), personService.find((long) util.getRandom().nextInt(10 - 1) + 1), generateRandomRoles());
+            filmService.addItem(tvShow.get(i), personService.find((long) util.getRandom().nextInt(10 - 1) + 1), generateRandomRole());
+            filmService.addItem(tvShow.get(i), personService.find((long) util.getRandom().nextInt(10 - 1) + 1), generateRandomRole());
+            filmService.addItem(tvShow.get(i), personService.find((long) util.getRandom().nextInt(10 - 1) + 1), generateRandomRole());
 
         }
 
@@ -198,9 +187,9 @@ public class GenerateFilmAndTVshow extends AbstractLogComponent implements Comma
                 .peopleCasted(new HashSet<>())
                 .build();
 
-        filmService.addItem(episode, personService.find((long) util.getRandom().nextInt(10 - 1) + 1), generateRandomRoles());
-        filmService.addItem(episode, personService.find((long) util.getRandom().nextInt(10 - 1) + 1), generateRandomRoles());
-        filmService.addItem(episode, personService.find((long) util.getRandom().nextInt(10 - 1) + 1), generateRandomRoles());
+        filmService.addItem(episode, personService.find((long) util.getRandom().nextInt(10 - 1) + 1), generateRandomRole());
+        filmService.addItem(episode, personService.find((long) util.getRandom().nextInt(10 - 1) + 1), generateRandomRole());
+        filmService.addItem(episode, personService.find((long) util.getRandom().nextInt(10 - 1) + 1), generateRandomRole());
 
         filmService.create(episode);
         return episode;

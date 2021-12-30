@@ -32,13 +32,10 @@ public class CastedPerson extends BaseModel {
     private Film film;
 
 
-    @ElementCollection(targetClass = Role.class , fetch = FetchType.EAGER)
-    @CollectionTable(
-            name = "PERSON_ROLE",
-            joinColumns = @JoinColumn(name = "CASTED_PERSON_ID")
-    )
+
+
     @Enumerated(EnumType.STRING)
     @Column(name = "ROLE_ID", nullable = false)
-    private Set<Role> role = new HashSet<>();
+    private Role role;
 
 }
