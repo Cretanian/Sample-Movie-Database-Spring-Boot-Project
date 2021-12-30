@@ -109,7 +109,7 @@ public class FilmServiceImpl extends BaseServiceImpl<Film> implements FilmServic
     }
 
     @Override
-    public Map<Genre,Long> findNumberOfFilmPerGenre() {
+    public List<Object[]> findNumberOfFilmPerGenre() {
         return fIlmRepository.findNumberOfFilmPerGenre();
     }
 

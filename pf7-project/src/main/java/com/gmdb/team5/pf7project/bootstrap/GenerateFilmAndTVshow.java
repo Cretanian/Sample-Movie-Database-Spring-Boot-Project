@@ -11,6 +11,7 @@ import org.springframework.context.annotation.Profile;
 import org.springframework.core.annotation.Order;
 import org.springframework.stereotype.Component;
 
+import java.math.BigInteger;
 import java.util.*;
 
 @Component
@@ -230,7 +231,16 @@ public class GenerateFilmAndTVshow extends AbstractLogComponent implements Comma
 //        }
 
 
-    }
+        List<Object[]> list = filmService.findNumberOfFilmPerGenre();
+        for (Object[] obj : list) {
+            String genre = (String) obj[0];
+            BigInteger numOfGenre = (BigInteger) obj[1];
+            System.out.println(" "+genre+" "+""+numOfGenre);
+        }
+
+
+
+        }
 }
 
 

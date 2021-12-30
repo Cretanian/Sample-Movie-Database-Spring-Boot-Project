@@ -34,7 +34,7 @@ public interface FilmService extends BaseService<Film> {
     List<Film> findFilmByGenre(Genre genre);
 
     //fifth report
-    Map<Genre,Long> findNumberOfFilmPerGenre();
+    List<Object[]> findNumberOfFilmPerGenre();
 
     //sixth report
     Map<Integer,Map<Genre,Long>> findFilmPerYearPerGenre();
