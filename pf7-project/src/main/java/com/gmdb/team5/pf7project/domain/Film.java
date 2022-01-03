@@ -53,7 +53,7 @@ public class Film extends BaseModel {
     @JsonManagedReference("castedPerson")
     @ToString.Exclude
     @EqualsAndHashCode.Exclude
-    @OneToMany(mappedBy = "film", cascade = CascadeType.ALL, orphanRemoval = true, fetch = FetchType.LAZY)
+    @OneToMany(mappedBy = "film", cascade = CascadeType.ALL, orphanRemoval = true, fetch = FetchType.EAGER)
     private Set<CastedPerson> peopleCasted = new HashSet<>();
 
 }

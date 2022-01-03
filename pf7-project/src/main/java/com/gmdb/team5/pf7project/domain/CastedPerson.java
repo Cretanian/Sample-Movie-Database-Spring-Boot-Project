@@ -23,7 +23,7 @@ import java.util.Set;
 public class CastedPerson extends BaseModel {
 
     @JoinColumn(name = "PERSON_ID")
-    @ManyToOne(fetch = FetchType.LAZY, optional = false)
+    @ManyToOne(fetch = FetchType.EAGER, optional = false)
     private Person person;
 
     @JsonBackReference("castedPerson")

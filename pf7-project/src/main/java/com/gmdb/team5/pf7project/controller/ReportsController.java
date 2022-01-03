@@ -10,7 +10,7 @@ import org.springframework.web.bind.annotation.RestController;
 public class ReportsController {
 
 
-    //Tha valoume ta reports (pera apo to findbytitle pou paei by default sto films, se reportService kai reportRepo??
+    //Tha valoume ta reports
     //Efoson den einai aparaithta film alla kai allh plhroforia, nomizw thelei ena mikro refactor, wste na sthsoume edw ta reports
 
 }
