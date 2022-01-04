@@ -27,12 +27,12 @@ public class PersonController extends AbstractController<Person> {
         return personService.findByName(firstName,lastName);
     }
 
-    @GetMapping
+    @GetMapping(params = {"c"})
     public List<Person> findByCountry(@RequestParam("c") String country) {
         return personService.findByCountry(country);
     }
 
-    @GetMapping
+    @GetMapping(params={"i"})
     public List<Person> findByIsAlive(@RequestParam("i") Boolean isAlive) {
         return personService.findByIsAlive(isAlive);
     }
