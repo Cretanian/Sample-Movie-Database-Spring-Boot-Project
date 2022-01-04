@@ -4,10 +4,7 @@ import com.gmdb.team5.pf7project.domain.TVShow;
 import com.gmdb.team5.pf7project.service.BaseService;
 import com.gmdb.team5.pf7project.service.TVShowService;
 import lombok.RequiredArgsConstructor;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestParam;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 

@@ -31,6 +31,7 @@ public class ReportsController  extends AbstractController<Film>{
         return ResponseEntity.ok(ApiResponse.<Page<Film>>builder().data(filmService.findTopRatedFilms(5)).build());
    }
 
-
+    //Tha valoume ta reports (pera apo to findbytitle pou paei by default sto films, se reportService kai reportRepo??
+    //Efoson den einai aparaithta film alla kai allh plhroforia, nomizw thelei ena mikro refactor, wste na sthsoume edw ta reports
 
 }
