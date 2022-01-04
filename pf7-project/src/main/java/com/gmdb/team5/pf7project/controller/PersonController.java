@@ -27,7 +27,7 @@ public class PersonController extends AbstractController<Person> {
         return personService.findByName(firstName,lastName);
     }
 
-    @GetMapping
+    @GetMapping(params = {"c"})
     public List<Person> findByCountry(@RequestParam("c") String country) {
         return personService.findByCountry(country);
     }
