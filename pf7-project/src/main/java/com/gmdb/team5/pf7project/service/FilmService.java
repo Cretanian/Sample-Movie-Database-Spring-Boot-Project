@@ -41,8 +41,6 @@ public interface FilmService extends BaseService<Film> {
     Map<Integer,Map<String,BigInteger>> findFilmPerYearPerGenre();
 
     //seventh
-//    List<Film> findFilmOfPersonPerGenre(Person person);
-
     Map<String, List<Film>> findFilmOfPersonPerGenre(Person person);
 
 

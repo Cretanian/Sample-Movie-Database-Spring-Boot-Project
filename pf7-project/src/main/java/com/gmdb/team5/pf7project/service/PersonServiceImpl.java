@@ -1,6 +1,5 @@
 package com.gmdb.team5.pf7project.service;
 
-
 import com.gmdb.team5.pf7project.domain.Person;
 import com.gmdb.team5.pf7project.repository.PersonRepository;
 import lombok.RequiredArgsConstructor;
@@ -33,7 +32,5 @@ public class PersonServiceImpl extends BaseServiceImpl<Person> implements Person
     public List<Person> findByIsAlive(Boolean isAlive) {
         return personRepository.findByIsAlive(isAlive);
     }
-
-
 
 }

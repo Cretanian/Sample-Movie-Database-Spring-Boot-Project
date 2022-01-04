@@ -6,19 +6,17 @@ import com.gmdb.team5.pf7project.service.FilmService;
 import com.gmdb.team5.pf7project.service.PersonService;
 import com.gmdb.team5.pf7project.service.TVShowService;
 import lombok.RequiredArgsConstructor;
-import lombok.Value;
 import org.springframework.boot.CommandLineRunner;
 import org.springframework.context.annotation.Profile;
 import org.springframework.core.annotation.Order;
 import org.springframework.stereotype.Component;
 
-import java.math.BigInteger;
 import java.util.*;
 
 @Component
 @RequiredArgsConstructor
-//@Profile("dev")
-//@Order(2)
+@Profile("dev")
+@Order(2)
 public class GenerateFilmAndTVshow extends AbstractLogComponent implements CommandLineRunner {
     private final TVShowService tvShowService;
     private final FilmService filmService;
@@ -55,8 +53,6 @@ public class GenerateFilmAndTVshow extends AbstractLogComponent implements Comma
         }
         return null;
     }
-
-
 
     private Genre generateGenre() {
         int index  = util.generateRandomIntInRange(1,16);
@@ -104,7 +100,6 @@ public class GenerateFilmAndTVshow extends AbstractLogComponent implements Comma
         }
         return null;
     }
-
 
     private void createMovies() {
         List<Film> films = new ArrayList<>();
@@ -197,60 +192,12 @@ public class GenerateFilmAndTVshow extends AbstractLogComponent implements Comma
     }
 
 
-
     @Override
     public void run(String... args) {
-//        createMovies();
-//        createTVShowsWithEpisodes();
+        createMovies();
+        createTVShowsWithEpisodes();
 
-//         //Test for first report
-//        for(Film iter : filmService.findTopRatedFilms(5).getContent()) {
-//            System.out.println(iter);
-//        }
-//
-//         //Test for second report
-//        Person person = personService.find(1L);
-//        for(Film iter : filmService.findFilmByPerson(person)) {
-//            System.out.println(iter);
-//        }
-
-        // Test for third report
-//        Person person = personService.find(1L);
-//        for(Film iter : filmService.findFilmByPersonByRole(person, Role.Actor)) {
-//            System.out.println(iter);
-//        }
-
-//        // Test for forth report
-//        for(Film iter : filmService.findFilmByGenre(Genre.Action)) {
-//            System.out.println(iter);
-//        }
-
-//         Test for fifth report
-//            for (Map.Entry<String, BigInteger> entry : filmService.findNumberOfFilmPerGenre().entrySet()) {
-//                System.out.println(entry.getKey() + ":" + entry.getValue().toString());
-//            }
-
-
-//         Test for sixth report
-
-////nikhsame
-//            for (Map.Entry<Integer, Map<String,BigInteger>> entry : filmService.findFilmPerYearPerGenre().entrySet()) {
-//
-//               System.out.println(entry.getKey()+" :" );
-//                for (Map.Entry<String,BigInteger> entry1 : entry.getValue().entrySet()){
-//                    System.out.println( entry1.getKey()+ " : " + entry1.getValue());
-//                }
-//            }
-
-        //Test for seventh report
-
-        Person person = personService.find(10L);
-
-        for (Map.Entry<String, List<Film>> entry : filmService.findFilmOfPersonPerGenre(person).entrySet()) {
-                System.out.println(entry.getKey() + ":" + entry.getValue());
-            }
-
-}
+    }
 }
 
 

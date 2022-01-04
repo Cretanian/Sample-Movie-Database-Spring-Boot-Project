@@ -101,3 +101,6 @@
 /libraries/Maven__org_xmlunit_xmlunit_core_2_8_3.xml
 /libraries/Maven__org_yaml_snakeyaml_1_29.xml
 /uiDesigner.xml
+/libraries/Maven__jakarta_validation_jakarta_validation_api_2_0_2.xml
+/libraries/Maven__org_hibernate_validator_hibernate_validator_6_2_0_Final.xml
+/libraries/Maven__org_springframework_boot_spring_boot_starter_validation_2_6_1.xml

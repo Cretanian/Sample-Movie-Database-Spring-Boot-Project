@@ -3,15 +3,11 @@ package com.gmdb.team5.pf7project.service;
 import com.gmdb.team5.pf7project.domain.*;
 import com.gmdb.team5.pf7project.repository.FilmRepository;
 import lombok.RequiredArgsConstructor;
-import org.springframework.beans.factory.support.ManagedMap;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Sort;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Service;
-import org.springframework.transaction.annotation.Isolation;
-import org.springframework.transaction.annotation.Propagation;
-
 import javax.transaction.Transactional;
 import java.math.BigInteger;
 import java.util.*;
@@ -117,10 +113,8 @@ public class FilmServiceImpl extends BaseServiceImpl<Film> implements FilmServic
         return myMap;
     }
 
-
     @Override
     public Map<Integer, Map<String, BigInteger>> findFilmPerYearPerGenre() {
-
 
         List<Object[]> list = fIlmRepository.findFilmPerYearPerGenre();
         Map<String,BigInteger> myMap1 = new HashMap<>();
@@ -132,17 +126,15 @@ public class FilmServiceImpl extends BaseServiceImpl<Film> implements FilmServic
              return myMap;
     }
 
-    Film createListOfFilm(Object[] obj)
-    {
+
+    Film createListOfFilm(Object[] obj){
         Film film = new Film();
 
-
-        //fix this and think about genres
-
+        film.setId( ((BigInteger)obj[1]).longValue());
         film.setDescription((String) obj[2]);
         film.setDuration((Integer) obj[3]);
         film.setLanguage((String) obj[4]);
-//        film.setRating((Rating) obj[5]); //here sad boiiiii o giannis o meraklis tha to kanei ayto :)
+        film.setRating(Rating.valueOf(obj[5].toString()));
         film.setReleaseYear((Integer) obj[6]);
         film.setTitle((String) obj[7]);
 
@@ -153,11 +145,8 @@ public class FilmServiceImpl extends BaseServiceImpl<Film> implements FilmServic
     public Map<String, List<Film>> findFilmOfPersonPerGenre(Person person) {
 
         List<Object[]> list = fIlmRepository.findFilmOfPersonPerGenre(person);
-
         Map<String, List<Film>> myMap = new HashMap<>();
-
         List<Film> newFilmList = new ArrayList<>();
-
 
         String tmp = null;
         for (Object[] obj : list) {
