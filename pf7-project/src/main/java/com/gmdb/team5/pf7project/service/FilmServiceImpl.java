@@ -31,6 +31,7 @@ public class FilmServiceImpl extends BaseServiceImpl<Film> implements FilmServic
     @Override
     @Transactional
     public Film findLazy(Long id) {
+        logger.trace("Retrieving film with id {}.",id);
         return fIlmRepository.findLazy(id);
     }
 
@@ -41,11 +42,13 @@ public class FilmServiceImpl extends BaseServiceImpl<Film> implements FilmServic
 
     @Override
     public List<Film> findAllLazy() {
+        logger.trace("Retrieving all films.");
         return fIlmRepository.findAllLazy();
     }
 
     @Override
     public Film findByTitle(String title) {
+        logger.trace("Retrieving film with title '{}'.",title);
         return fIlmRepository.findAll().stream().filter(c -> c.getTitle().equals(title)).findAny().orElse(null);
     }
 
@@ -63,6 +66,7 @@ public class FilmServiceImpl extends BaseServiceImpl<Film> implements FilmServic
 
 
     private CastedPerson newCastedPerson(Film film, Person person, Role role) {
+
         return CastedPerson.builder().film(film).person(person).role(role).build();
     }
 
@@ -83,26 +87,31 @@ public class FilmServiceImpl extends BaseServiceImpl<Film> implements FilmServic
 
     @Override
     public Page<Film> findTopRatedFilms(Integer number) {
+        logger.debug("Retrieving top {} rated content.",number);
         return fIlmRepository.findAll( PageRequest.of(0, number, Sort.by(Sort.Direction.ASC, "rating")));
     }
 
     @Override
     public List<Film> findFilmByPerson(Person person) {
+        logger.debug("Retrieving content associated with person {}.",person);
         return fIlmRepository.findFilmByPerson(person);
     }
 
     @Override
     public List<Film> findFilmByPersonByRole(Person person, Role role) {
+        logger.debug("Retrieving content associated with person {} for role {}.",person,role);
         return fIlmRepository.findFilmByPersonByRole(person,role);
     }
 
     @Override
     public List<Film> findFilmByGenre(Genre genre) {
+        logger.debug("Retrieving content for genre {}.",genre);
         return fIlmRepository.findFilmByGenre(genre);
     }
 
     @Override
     public Map<String,BigInteger> findNumberOfFilmPerGenre() {
+        logger.debug("Retrieving number of content for all genre.");
         List<Object[]> list = fIlmRepository.findNumberOfFilmPerGenre();
         Map<String,BigInteger> myMap = new HashMap<>();
 
@@ -115,7 +124,7 @@ public class FilmServiceImpl extends BaseServiceImpl<Film> implements FilmServic
 
     @Override
     public Map<Integer, Map<String, BigInteger>> findFilmPerYearPerGenre() {
-
+        logger.debug("Retrieving number of content for all genre per year.");
         List<Object[]> list = fIlmRepository.findFilmPerYearPerGenre();
         Map<String,BigInteger> myMap1 = new HashMap<>();
         Map<Integer,Map<String,BigInteger>> myMap = new HashMap<>();
@@ -143,7 +152,7 @@ public class FilmServiceImpl extends BaseServiceImpl<Film> implements FilmServic
 
     @Override
     public Map<String, List<Film>> findFilmOfPersonPerGenre(Person person) {
-
+        logger.debug("Retrieving content associated with person {} organized by genre.",person);
         List<Object[]> list = fIlmRepository.findFilmOfPersonPerGenre(person);
         Map<String, List<Film>> myMap = new HashMap<>();
         List<Film> newFilmList = new ArrayList<>();
@@ -164,6 +173,7 @@ public class FilmServiceImpl extends BaseServiceImpl<Film> implements FilmServic
                     newFilmList.add(createListOfFilm(obj));
                 }
             }
+
         }
         myMap.put(tmp, newFilmList);
         return myMap;

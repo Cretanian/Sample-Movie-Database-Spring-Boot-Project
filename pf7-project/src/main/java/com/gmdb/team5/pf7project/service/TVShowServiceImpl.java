@@ -27,11 +27,13 @@ public class TVShowServiceImpl extends BaseServiceImpl<TVShow> implements TVShow
 
     @Override
     public List<TVShow> findByNumberOfSeasons(Integer seasons) {
+        logger.trace("Retrieving number of seasons.");
         return tvShowRepository.findByNumberOfSeasons(seasons);
     }
 
     @Override
     public List<TVShow> findByNumberOfEpisodes(Integer episodes) {
+        logger.trace("Retrieving number of episodes.");
         return tvShowRepository.findByNumberOfEpisodes(episodes);
     }
 }
