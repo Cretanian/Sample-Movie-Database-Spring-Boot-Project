@@ -13,7 +13,15 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
+import org.supercsv.io.CsvBeanWriter;
+import org.supercsv.io.ICsvBeanWriter;
+import org.supercsv.prefs.CsvPreference;
 
+import javax.servlet.http.HttpServletResponse;
+import java.io.IOException;
+import java.text.DateFormat;
+import java.text.SimpleDateFormat;
+import java.util.Date;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -56,6 +64,29 @@ public class PersonController extends AbstractController<Person> {
         return ResponseEntity.ok(ApiResponse.<Map<Person,List<Film>>>builder().data(myMap).build());
     }
 
+    //export csv for all people
+    @GetMapping("/export")
+    public void exportToCSV(HttpServletResponse response) throws IOException {
+        response.setContentType("text/csv");
+        DateFormat dateFormatter = new SimpleDateFormat("yyyy-MM-dd_HH-mm-ss");
+        String currentDateTime = dateFormatter.format(new Date());
 
+        String headerKey = "Content-Disposition";
+        String headerValue = "attachment; filename=people_" + currentDateTime + ".csv";
+        response.setHeader(headerKey, headerValue);
 
+        List<Person> findPeople = personService.findAll();
+
+        ICsvBeanWriter csvWriter = new CsvBeanWriter(response.getWriter(), CsvPreference.STANDARD_PREFERENCE);
+        String[] csvHeader = {"Person ID", "First Name", "Last Name", "YOB", "Country", "Is Alive"};
+        String[] nameMapping = {"id", "firstName", "lastName", "YOB", "country", "isAlive"};
+
+        csvWriter.writeHeader(csvHeader);
+
+        for (Person person : findPeople) {
+            csvWriter.write(person, nameMapping);
+        }
+
+        csvWriter.close();
+    }
 }

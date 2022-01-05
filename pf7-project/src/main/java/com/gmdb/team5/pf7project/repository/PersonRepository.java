@@ -17,6 +17,4 @@ public interface PersonRepository extends JpaRepository<Person, Long> {
 
     List<Person> findByIsAlive (Boolean isAlive);
 
-
-
 }
