@@ -10,28 +10,11 @@
 		<Console name="ConsoleAppender" target="SYSTEM_OUT" follow="true">
 			<PatternLayout pattern="${LOG_PATTERN}"/>
 		</Console>
-
 		<!-- Rolling Random Access File Appender with a default buffer of 256 * 1024 bytes -->
 		<RollingRandomAccessFile name="DefaultAppender"
-								 fileName="logs/java-path-spring-default.log"
-								 filePattern="logs/java-path-spring-default-%d{yyyy-MM-dd}.zip">
-			<PatternLayout>
-				<Pattern>${LOG_PATTERN}</Pattern>
-			</PatternLayout>
-			<Policies>
-				<TimeBasedTriggeringPolicy/>
-			</Policies>
-			<DefaultRolloverStrategy>
-				<Delete basePath="logs">
-					<IfLastModified age="30d"/>
-				</Delete>
-			</DefaultRolloverStrategy>
-		</RollingRandomAccessFile>
-
-		<!-- Rolling Random Access File Appender with a default buffer of 256 * 1024 bytes -->
-		<RollingRandomAccessFile name="DataAppender"
-								 fileName="logs/java-path-spring-data.log"
-								 filePattern="logs/java-path-spring-data-%d{yyyy-MM-dd}.zip">
+								 immediateFlush="true"
+								 fileName="Sample-Movie-Database-Spring-Boot-Project\logs/pf7-project.log"
+								 filePattern="Sample-Movie-Database-Spring-Boot-Project\logs/pf7-project-%d{yyyy-MM-dd}.zip">
 			<PatternLayout>
 				<Pattern>${LOG_PATTERN}</Pattern>
 			</PatternLayout>
@@ -47,7 +30,7 @@
 	</Appenders>
 
 	<Loggers>
-		<AsyncLogger name="gr.codelearn.spring" level="trace" additivity="false">
+		<AsyncLogger name="com.gmdb.team5" level="trace" additivity="false">
 			<AppenderRef ref="ConsoleAppender"/>
 			<AppenderRef ref="DefaultAppender"/>
 		</AsyncLogger>
