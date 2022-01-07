@@ -13,7 +13,7 @@ import java.util.*;
 
 @Component
 @RequiredArgsConstructor
-//@Profile("dev")
+@Profile("dev")
 @Order(1)
 public class GeneratePeople extends AbstractLogComponent implements CommandLineRunner {
     private final PersonService personService;
@@ -57,13 +57,7 @@ public class GeneratePeople extends AbstractLogComponent implements CommandLineR
 
     @Override
     public void run(String... args) {
-//        createPeople();
-        logger.trace("We've just greeted the user!");
-        logger.debug("We've just greeted the user!");
-        logger.info("We've just greeted the user!");
-        logger.warn("We've just greeted the user!");
-        logger.error("We've just greeted the user!");
-
+        createPeople();
     }
 }
 

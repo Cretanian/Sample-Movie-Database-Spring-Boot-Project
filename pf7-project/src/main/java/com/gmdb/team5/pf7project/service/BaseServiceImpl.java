@@ -2,8 +2,6 @@ package com.gmdb.team5.pf7project.service;
 
 import com.gmdb.team5.pf7project.base.AbstractLogComponent;
 import com.gmdb.team5.pf7project.domain.BaseModel;
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.transaction.annotation.Isolation;
 import org.springframework.transaction.annotation.Propagation;

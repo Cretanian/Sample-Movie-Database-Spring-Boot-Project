@@ -80,10 +80,7 @@ public class FilmServiceImpl extends BaseServiceImpl<Film> implements FilmServic
         logger.debug("Person[{}] added to Film[{}] as a {}", person, film, role);
     }
 
-
-
-
-//Reports Start here
+//Reports implementation starts here
 
     @Override
     public Page<Film> findTopRatedFilms(Integer number) {
@@ -118,7 +115,6 @@ public class FilmServiceImpl extends BaseServiceImpl<Film> implements FilmServic
         for (Object[] obj : list) {
             myMap.put((String) obj[0], (BigInteger) obj[1]);
         }
-
         return myMap;
     }
 

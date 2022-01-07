@@ -15,7 +15,6 @@ public class PersonServiceImpl extends BaseServiceImpl<Person> implements Person
 
     @Override
     public JpaRepository<Person, Long> getRepository() {
-
         return personRepository;
     }
 

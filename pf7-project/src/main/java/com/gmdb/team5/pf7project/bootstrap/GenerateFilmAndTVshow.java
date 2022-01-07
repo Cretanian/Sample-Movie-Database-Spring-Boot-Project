@@ -30,14 +30,11 @@ public class GenerateFilmAndTVshow extends AbstractLogComponent implements Comma
     String[] tvShowTitle = {"Game of Thrones", "Breaking Bad", "Witcher", "Money Heist",
             "Squid Game", "Ozak", "Hunter X Hunter", "Attack on Titan"};
 
-    String[] tvShowEpisodeTitle = {"A new beginning", "Tales of Brad", "Mister Door", "All goes both ways",
-            "The game of fisherman", "Down the road with Jones", "Check yourself", "No time left to clean"};
-
-
     private Role generateRandomRole(){
 
         int index  = util.getRandom().nextInt(13);
-        switch (index) {
+        switch (index)
+        {
             case 1: return Role.Actor;
             case 2: return Role.Director;
             case 3: return Role.Producer;
@@ -56,7 +53,8 @@ public class GenerateFilmAndTVshow extends AbstractLogComponent implements Comma
 
     private Genre generateGenre() {
         int index  = util.generateRandomIntInRange(1,16);
-        switch (index) {
+        switch (index)
+        {
             case 1: return Genre.Romance;
             case 2: return Genre.Horror;
             case 3: return Genre.Comedy;
@@ -80,18 +78,20 @@ public class GenerateFilmAndTVshow extends AbstractLogComponent implements Comma
     private Set<Genre> generateRandomGenres(){
         Set<Genre> genreSet = new HashSet<>();
         Genre genre;
-
-        do{
+        do
+        {
             genre = generateGenre();
             genreSet.add(genre);
-        }while (util.getRandom().nextBoolean());
+        }
+        while (util.getRandom().nextBoolean());
 
         return genreSet;
     }
 
     public Rating generateRating() {
         int index  = util.generateRandomIntInRange(1,5);
-        switch (index) {
+        switch (index)
+        {
             case 1: return Rating.one;
             case 2: return Rating.two;
             case 3: return Rating.three;
@@ -103,8 +103,6 @@ public class GenerateFilmAndTVshow extends AbstractLogComponent implements Comma
 
     private void createMovies() {
         List<Film> films = new ArrayList<>();
-
-        //fix age of person...
 
         for(int i = 0; i < movieTitle.length; ++i){
             films.add(
@@ -119,20 +117,16 @@ public class GenerateFilmAndTVshow extends AbstractLogComponent implements Comma
                             .peopleCasted(new HashSet<>())
                             .build()
             );
-
             filmService.addItem(films.get(i), personService.find( (long) util.getRandom().nextInt(10 - 1) + 1), generateRandomRole());
             filmService.addItem(films.get(i), personService.find((long) util.getRandom().nextInt(10 - 1) + 1), generateRandomRole());
             filmService.addItem(films.get(i), personService.find((long) util.getRandom().nextInt(10 - 1) + 1), generateRandomRole());
         }
-
         logger.info("Created {} movies.", filmService.createAll(films).size());
     }
 
-    private void createTVShowsWithEpisodes() {
+    private void createTVShows() {
 
         List<TVShow> tvShow = new ArrayList<>();
-
-        //fix duration, episodes, seasons
 
         for(int i = 0; i <tvShowTitle.length ; ++i) {
             tvShow.add(
@@ -147,7 +141,6 @@ public class GenerateFilmAndTVshow extends AbstractLogComponent implements Comma
                             .peopleCasted(new HashSet<>())
                             .numberOfEpisodes(util.generateRandomIntInRange(5, 15))
                             .numberOfSeasons(util.generateRandomIntInRange(1, 3))
-//                            .episodes(new HashSet<>())
                             .build()
             );
 
@@ -156,47 +149,13 @@ public class GenerateFilmAndTVshow extends AbstractLogComponent implements Comma
             filmService.addItem(tvShow.get(i), personService.find((long) util.getRandom().nextInt(10 - 1) + 1), generateRandomRole());
 
         }
-
-        //fix this
-//        tvShow.get(0).getEpisodes().add(newEpisodes(0));
-//        tvShow.get(0).getEpisodes().add(newEpisodes(1));
-//        tvShow.get(1).getEpisodes().add(newEpisodes(2));
-//        tvShow.get(1).getEpisodes().add(newEpisodes(3));
-//        tvShow.get(2).getEpisodes().add(newEpisodes(4));
-//        tvShow.get(2).getEpisodes().add(newEpisodes(5));
-//        tvShow.get(3).getEpisodes().add(newEpisodes(6));
-//        tvShow.get(3).getEpisodes().add(newEpisodes(7));
-
-         logger.info("Created and associated {} TVShows.", tvShowService.createAll(tvShow).size());
-
+         logger.info("Created {} TVShows.", tvShowService.createAll(tvShow).size());
     }
-
-    private Film newEpisodes(int i) {
-        Film episode = Film.builder()
-                .title(tvShowEpisodeTitle[i])
-                .description("Here is an epic Episode description!")
-                .releaseYear(util.generateRandomIntInRange(1930, 2020))
-                .language(util.generateCountry())
-                .duration(util.generateRandomIntInRange(60, 180))
-                .rating(generateRating())
-                .genre(generateRandomGenres())
-                .peopleCasted(new HashSet<>())
-                .build();
-
-        filmService.addItem(episode, personService.find((long) util.getRandom().nextInt(10 - 1) + 1), generateRandomRole());
-        filmService.addItem(episode, personService.find((long) util.getRandom().nextInt(10 - 1) + 1), generateRandomRole());
-        filmService.addItem(episode, personService.find((long) util.getRandom().nextInt(10 - 1) + 1), generateRandomRole());
-
-        filmService.create(episode);
-        return episode;
-    }
-
 
     @Override
     public void run(String... args) {
         createMovies();
-        createTVShowsWithEpisodes();
-
+        createTVShows();
     }
 }
 

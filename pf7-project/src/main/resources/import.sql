@@ -22,16 +22,8 @@ insert into FILMS (ID, DESCRIPTION, DURATION, LANGUAGE, RATING, RELEASEYEAR, TIT
 insert into FILMS (ID, DESCRIPTION, DURATION, LANGUAGE, RATING, RELEASEYEAR, TITLE) values (9,'Luca and Bugs Bunny ',113,'English','four',2026,'Space Jump 3');
 insert into FILMS (ID, DESCRIPTION, DURATION, LANGUAGE, RATING, RELEASEYEAR, TITLE) values (10,'Best movie no one knows',129,'English','three',2014,'Peanut Butter');
 
-
 insert into TVSHOWS(NUMBEROFEPISODES, NUMBEROFSEASONS, ID) values (2,22,3);
 insert into TVSHOWS(NUMBEROFEPISODES, NUMBEROFSEASONS, ID) values (2,14,6);
---
---
--- insert into TVSHOWS_EPISODES(TVSHOW_ID, EPISODES_ID) values (3 ,4 );
--- insert into TVSHOWS_EPISODES(TVSHOW_ID, EPISODES_ID) values (3 ,5 );
--- insert into TVSHOWS_EPISODES(TVSHOW_ID, EPISODES_ID) values (6 ,8 );
--- insert into TVSHOWS_EPISODES(TVSHOW_ID, EPISODES_ID) values (6 ,7 );
---
 
 insert into FILMGENRE(FILM_ID, GENRE_ID) values(1,'Romance');
 insert into FILMGENRE(FILM_ID, GENRE_ID) values(1,'Horror');
