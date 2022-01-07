@@ -29,6 +29,7 @@ public interface FilmRepository extends JpaRepository<Film, Long> {
     @Query("select f from Film f join f.peopleCasted p where p.person = ?1")
     List<Film> findFilmByPerson(Person person);
 
+
     //third report
     @Query("select f from Film f inner join f.peopleCasted p where p.person = :person AND p.role = :role")
     List<Film> findFilmByPersonByRole(@Param("person") Person person,@Param("role") Role role);

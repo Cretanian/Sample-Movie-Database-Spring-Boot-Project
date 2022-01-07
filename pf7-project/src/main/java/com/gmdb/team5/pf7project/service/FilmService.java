@@ -26,6 +26,8 @@ public interface FilmService extends BaseService<Film> {
     Page<Film> findTopRatedFilms(Integer number);
 
     //second report
+    List<Film> findFilmByPersonExt(Person person);
+
     List<Film> findFilmByPerson(Person person);
 
     //third report

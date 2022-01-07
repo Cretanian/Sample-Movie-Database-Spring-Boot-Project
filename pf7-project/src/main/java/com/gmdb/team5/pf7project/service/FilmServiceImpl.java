@@ -64,7 +64,6 @@ public class FilmServiceImpl extends BaseServiceImpl<Film> implements FilmServic
         return false;
     }
 
-
     private CastedPerson newCastedPerson(Film film, Person person, Role role) {
 
         return CastedPerson.builder().film(film).person(person).role(role).build();
@@ -89,9 +88,18 @@ public class FilmServiceImpl extends BaseServiceImpl<Film> implements FilmServic
     }
 
     @Override
-    public List<Film> findFilmByPerson(Person person) {
+    public List<Film> findFilmByPersonExt(Person person) {
         logger.debug("Retrieving content associated with person {}.",person);
         return fIlmRepository.findFilmByPerson(person);
+    }
+
+    @Override
+    public List<Film> findFilmByPerson(Person person) {
+        List<Film> filmList = findFilmByPersonExt(person);
+        for(Film f : filmList)
+            f.setPeopleCasted(null);
+
+        return filmList;
     }
 
     @Override
@@ -130,7 +138,6 @@ public class FilmServiceImpl extends BaseServiceImpl<Film> implements FilmServic
         }
              return myMap;
     }
-
 
     Film createListOfFilm(Object[] obj){
         Film film = new Film();

@@ -1,9 +1,6 @@
 package com.gmdb.team5.pf7project.controller;
 
-import com.gmdb.team5.pf7project.domain.Film;
-import com.gmdb.team5.pf7project.domain.Genre;
-import com.gmdb.team5.pf7project.domain.Person;
-import com.gmdb.team5.pf7project.domain.Role;
+import com.gmdb.team5.pf7project.domain.*;
 import com.gmdb.team5.pf7project.service.BaseService;
 import com.gmdb.team5.pf7project.service.FilmService;
 import com.gmdb.team5.pf7project.service.PersonService;
@@ -17,6 +14,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
 import java.math.BigInteger;
+import java.util.HashSet;
 import java.util.List;
 import java.util.Map;
 
@@ -37,6 +35,17 @@ public class ReportsController  extends AbstractController<Film>{
     public ResponseEntity<ApiResponse<Page<Film>>> firstReport(@RequestParam("num") Integer num){
         return ResponseEntity.ok(ApiResponse.<Page<Film>>builder().data(filmService.findTopRatedFilms(num)).build());
    }
+
+//    @GetMapping(params = {"num"}, headers = {"action=firstAReport","ExtendedInfo=true"})
+//    public ResponseEntity<ApiResponse<Page<Film>>> firstReportExt(@RequestParam("num") Integer num){
+//        return ResponseEntity.ok(ApiResponse.<Page<Film>>builder().data(filmService.findTopRatedFilms(num)).build());
+//    }
+
+    @GetMapping(params = {"id"}, headers = {"action=secondReport","ExtendedInfo=true"})
+    public ResponseEntity<ApiResponse<List<Film>>> secondReportExt(@RequestParam("id") Long id){
+        Person person = personService.find(id);
+        return ResponseEntity.ok(ApiResponse.<List<Film>>builder().data(filmService.findFilmByPersonExt(person)).build());
+    }
 
     @GetMapping(params = {"id"}, headers = "action=secondReport")
     public ResponseEntity<ApiResponse<List<Film>>> secondReport(@RequestParam("id") Long id){
