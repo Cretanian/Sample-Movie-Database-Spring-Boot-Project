@@ -21,7 +21,7 @@
   </component>
   <component name="JavacSettings">
     <option name="ADDITIONAL_OPTIONS_OVERRIDE">
-      <module name="Sample-Movie-Database-Spring-Boot-Project" options="" />
+      <module name="Sample-Movie-Database-Spring-Boot-Project" options="-parameters" />
       <module name="Sample-Movie-Database-Spring-Boot-Project-app" options="-parameters" />
       <module name="pf7-project" options="-parameters" />
     </option>

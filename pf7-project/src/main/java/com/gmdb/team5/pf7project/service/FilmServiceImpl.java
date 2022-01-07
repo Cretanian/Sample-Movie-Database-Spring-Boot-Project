@@ -157,25 +157,31 @@ public class FilmServiceImpl extends BaseServiceImpl<Film> implements FilmServic
         Map<String, List<Film>> myMap = new HashMap<>();
         List<Film> newFilmList = new ArrayList<>();
 
-        String tmp = null;
+        String genre = null;
+        BigInteger id=null;
         for (Object[] obj : list) {
 
-            if(tmp == null) {
-                tmp = (String) obj[0];
+            if(genre == null) {
+                genre = (String) obj[0];
+                id = (BigInteger) obj[1];
                 newFilmList.add(createListOfFilm(obj));
             } else {
-                if (tmp.equals(obj[0])) {
-                    newFilmList.add(createListOfFilm(obj));
+                if (genre.equals(obj[0])) {
+                    if(id  != obj[1]){
+                        id = (BigInteger) obj[1];
+                        newFilmList.add(createListOfFilm(obj));
+                    }
                 } else {
-                    myMap.put(tmp, newFilmList);
-                    tmp = (String) obj[0];
+                    myMap.put(genre, newFilmList);
+                    genre = (String) obj[0];
+                    id = (BigInteger) obj[1];
                     newFilmList = new ArrayList<>();
                     newFilmList.add(createListOfFilm(obj));
                 }
             }
 
         }
-        myMap.put(tmp, newFilmList);
+        myMap.put(genre, newFilmList);
         return myMap;
     }
 }
