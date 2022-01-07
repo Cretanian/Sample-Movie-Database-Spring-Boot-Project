@@ -13,8 +13,8 @@
 		<!-- Rolling Random Access File Appender with a default buffer of 256 * 1024 bytes -->
 		<RollingRandomAccessFile name="DefaultAppender"
 								 immediateFlush="true"
-								 fileName="Sample-Movie-Database-Spring-Boot-Project\logs/pf7-project.log"
-								 filePattern="Sample-Movie-Database-Spring-Boot-Project\logs/pf7-project-%d{yyyy-MM-dd}.zip">
+								 fileName="logs/pf7-project.log"
+								 filePattern="logs/pf7-project-%d{yyyy-MM-dd}.zip">
 			<PatternLayout>
 				<Pattern>${LOG_PATTERN}</Pattern>
 			</PatternLayout>
