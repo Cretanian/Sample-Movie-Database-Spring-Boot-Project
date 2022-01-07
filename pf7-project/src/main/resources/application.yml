@@ -63,9 +63,3 @@ spring:
       # .sql) and DML (data.sql) scripts.
       mode: EMBEDDED
       platform: h2
-#  logging:
-#    config:
-#      classpath: src/main/resources/log4j2.xml
-#    file:
-#      name: logs/pf7-project.log
-#      patter: logs/pf7-project.zip
