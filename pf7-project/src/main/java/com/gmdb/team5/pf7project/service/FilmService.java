@@ -31,9 +31,13 @@ public interface FilmService extends BaseService<Film> {
     List<Film> findFilmByPerson(Person person);
 
     //third report
+    List<Film> findFilmByPersonByRoleExt(Person person, Role role);
+
     List<Film> findFilmByPersonByRole(Person person, Role role);
 
     //fourth report
+    List<Film> findFilmByGenreExt(Genre genre);
+
     List<Film> findFilmByGenre(Genre genre);
 
     //fifth report

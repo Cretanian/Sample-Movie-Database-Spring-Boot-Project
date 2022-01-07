@@ -103,15 +103,31 @@ public class FilmServiceImpl extends BaseServiceImpl<Film> implements FilmServic
     }
 
     @Override
-    public List<Film> findFilmByPersonByRole(Person person, Role role) {
+    public List<Film> findFilmByPersonByRoleExt(Person person, Role role) {
         logger.debug("Retrieving content associated with person {} for role {}.",person,role);
         return fIlmRepository.findFilmByPersonByRole(person,role);
     }
 
     @Override
-    public List<Film> findFilmByGenre(Genre genre) {
+    public List<Film> findFilmByPersonByRole(Person person, Role role) {
+        List<Film> filmList = findFilmByPersonByRoleExt(person,role);
+        for(Film f : filmList)
+            f.setPeopleCasted(null);
+        return filmList;
+    }
+
+    @Override
+    public List<Film> findFilmByGenreExt(Genre genre) {
         logger.debug("Retrieving content for genre {}.",genre);
         return fIlmRepository.findFilmByGenre(genre);
+    }
+
+    @Override
+    public List<Film> findFilmByGenre(Genre genre) {
+        List<Film> filmList = findFilmByGenreExt(genre);
+        for(Film f : filmList)
+            f.setPeopleCasted(null);
+        return filmList;
     }
 
     @Override

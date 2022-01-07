@@ -53,11 +53,24 @@ public class ReportsController  extends AbstractController<Film>{
         return ResponseEntity.ok(ApiResponse.<List<Film>>builder().data(filmService.findFilmByPerson(person)).build());
     }
 
+    @GetMapping(params = {"id","role"}, headers = {"action=thirdReport","ExtendedInfo=true"})
+    public ResponseEntity<ApiResponse<List<Film>>> thirdReportExt(@RequestParam("id") Long id, @RequestParam("role") String roleStr){
+        Person person = personService.find(id);
+        Role role = Role.valueOf(roleStr);
+        return ResponseEntity.ok(ApiResponse.<List<Film>>builder().data(filmService.findFilmByPersonByRoleExt(person, role)).build());
+    }
+
     @GetMapping(params = {"id","role"}, headers = "action=thirdReport")
     public ResponseEntity<ApiResponse<List<Film>>> thirdReport(@RequestParam("id") Long id, @RequestParam("role") String roleStr){
         Person person = personService.find(id);
         Role role = Role.valueOf(roleStr);
         return ResponseEntity.ok(ApiResponse.<List<Film>>builder().data(filmService.findFilmByPersonByRole(person, role)).build());
+    }
+
+    @GetMapping(params = {"genre"}, headers = {"action=fourthReport","ExtendedInfo=true"})
+    public ResponseEntity<ApiResponse<List<Film>>> fourthReportExt(@RequestParam("genre") String genreStr){
+        Genre genre = Genre.valueOf(genreStr);
+        return ResponseEntity.ok(ApiResponse.<List<Film>>builder().data(filmService.findFilmByGenreExt(genre)).build());
     }
 
     @GetMapping(params = {"genre"}, headers = "action=fourthReport")
