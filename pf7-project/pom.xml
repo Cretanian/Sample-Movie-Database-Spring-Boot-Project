@@ -8,7 +8,7 @@
 		<version>2021.1.0</version>
 	</parent>
 
-	<artifactId>Sample-Movie-Database-Spring-Boot-Project-app</artifactId>
+	<artifactId>pf7-project</artifactId>
 
 
 	<!-- Meta-data -->
@@ -20,12 +20,6 @@
 		<dependency>
 			<groupId>org.springframework.boot</groupId>
 			<artifactId>spring-boot-starter-data-rest</artifactId>
-		</dependency>
-
-		<dependency>
-			<groupId>org.springframework.boot</groupId>
-			<artifactId>spring-boot-starter-test</artifactId>
-			<scope>test</scope>
 		</dependency>
 
         <dependency>
