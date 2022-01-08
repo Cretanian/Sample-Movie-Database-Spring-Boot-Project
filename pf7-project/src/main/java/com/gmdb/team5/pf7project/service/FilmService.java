@@ -21,6 +21,10 @@ public interface FilmService extends BaseService<Film> {
 
     List<Film> findAllLazy();
 
+    List<Object[]> findAllFilmGenre();
+
+    List<Object[]> findAllCastedPeople();
+
 
     //first report
     Page<Film> findTopRatedFilms(Integer number);

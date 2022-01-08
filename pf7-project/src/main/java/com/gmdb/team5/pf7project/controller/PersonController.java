@@ -38,9 +38,9 @@ public class PersonController extends AbstractController<Person> {
         return personService;
     }
 
-    @GetMapping(params = {"f","l"})
-    public Person findByName(@RequestParam("f") String firstName, @RequestParam("l") String lastName ) {
-        return personService.findByName(firstName,lastName);
+    @GetMapping(params = {"f", "l"})
+    public Person findByName(@RequestParam("f") String firstName, @RequestParam("l") String lastName) {
+        return personService.findByName(firstName, lastName);
     }
 
     @GetMapping(params = {"c"})
@@ -54,70 +54,14 @@ public class PersonController extends AbstractController<Person> {
     }
 
     @GetMapping(params = {"g"}, headers = {"action=ReturnFilmsCasted"})
-    public ResponseEntity<ApiResponse<Map<Person,List<Film>>>> testMe(@RequestParam("g") Long id) {
-        Map<Person,List<Film>> myMap = new HashMap<>();
+    public ResponseEntity<ApiResponse<Map<Person, List<Film>>>> testMe(@RequestParam("g") Long id) {
+        Map<Person, List<Film>> myMap = new HashMap<>();
         Person person = personService.find(id);
         List<Film> filmList = filmService.findFilmByPerson(person);
-        for(Film iterator : filmList)
+        for (Film iterator : filmList)
             iterator.setPeopleCasted(null);         //check this and think about it. works but not best practise
-        myMap.put(person,filmList);
-        return ResponseEntity.ok(ApiResponse.<Map<Person,List<Film>>>builder().data(myMap).build());
+        myMap.put(person, filmList);
+        return ResponseEntity.ok(ApiResponse.<Map<Person, List<Film>>>builder().data(myMap).build());
     }
 
-    //export csv for all people
-    @GetMapping("/exportPersonDB")
-    public void exportPearsonToCSV(HttpServletResponse response) throws IOException {
-        response.setContentType("text/csv");
-        DateFormat dateFormatter = new SimpleDateFormat("yyyy-MM-dd_HH-mm-ss");
-        String currentDateTime = dateFormatter.format(new Date());
-
-        String headerKey = "Content-Disposition";
-        String headerValue = "attachment; filename=people_" + currentDateTime + ".csv";
-        response.setHeader(headerKey, headerValue);
-
-        List<Person> findPeople = personService.findAll();
-
-        ICsvBeanWriter csvWriter = new CsvBeanWriter(response.getWriter(), CsvPreference.STANDARD_PREFERENCE);
-        String[] csvHeader = {"Person ID", "First Name", "Last Name", "YOB", "Country", "Is Alive"};
-        String[] nameMapping = {"id", "firstName", "lastName", "YOB", "country", "isAlive"};
-
-        csvWriter.writeHeader(csvHeader);
-
-        for (Person person : findPeople) {
-            csvWriter.write(person, nameMapping);
-        }
-
-        csvWriter.close();
-    }
-
-    //export csv for all people
-    //maybe not here but here for now because i dont care anymore
-    @GetMapping("/exportPersonCastedDB")
-    public void exportPersonCastedToCSV(HttpServletResponse response) throws IOException {
-      /*  response.setContentType("text/csv");
-        DateFormat dateFormatter = new SimpleDateFormat("yyyy-MM-dd_HH-mm-ss");
-        String currentDateTime = dateFormatter.format(new Date());
-
-        String headerKey = "Content-Disposition";
-        String headerValue = "attachment; filename=people_" + currentDateTime + ".csv";
-        response.setHeader(headerKey, headerValue);
-
-        List<Person> findPeople = personService.findAll();
-
-        ICsvBeanWriter csvWriter = new CsvBeanWriter(response.getWriter(), CsvPreference.STANDARD_PREFERENCE);
-        String[] csvHeader = {"Person ID", "First Name", "Last Name", "YOB", "Country", "Is Alive"};
-        String[] nameMapping = {"id", "firstName", "lastName", "YOB", "country", "isAlive"};
-
-        csvWriter.writeHeader(csvHeader);
-
-        for (Person person : findPeople) {
-            csvWriter.write(person, nameMapping);
-        }
-
-        csvWriter.close();
-
-       */
-
-        //TODO
-    }
 }

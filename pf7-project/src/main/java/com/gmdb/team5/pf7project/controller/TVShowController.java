@@ -43,32 +43,4 @@ public class TVShowController extends AbstractController<TVShow> {
         return tvShowService.findByNumberOfEpisodes(episodes);
     }
 
-    @GetMapping("/exportTVshowDB")
-    public void exportToCSV(HttpServletResponse response) throws IOException {
-       /* response.setContentType("text/csv");
-        DateFormat dateFormatter = new SimpleDateFormat("yyyy-MM-dd_HH-mm-ss");
-        String currentDateTime = dateFormatter.format(new Date());
-
-        String headerKey = "Content-Disposition";
-        String headerValue = "attachment; filename=people_" + currentDateTime + ".csv";
-        response.setHeader(headerKey, headerValue);
-
-        List<Film> findFilmAndGenre = filmService.findAll();
-
-        ICsvBeanWriter csvWriter = new CsvBeanWriter(response.getWriter(), CsvPreference.STANDARD_PREFERENCE);
-        String[] csvHeader = {"Film ID", "Title", "Description", "Release Year", "Language", "Duration", "Rating", "Genre"};
-        String[] nameMapping = {"id", "title", "description", "releaseYear", "language", "duration", "rating", "genre"};
-
-        csvWriter.writeHeader(csvHeader);
-
-        for (Film film : findFilmAndGenre) {
-            csvWriter.write(film, nameMapping);
-        }
-
-        csvWriter.close();
-        */
-
-        //TODO
-    }
-
 }

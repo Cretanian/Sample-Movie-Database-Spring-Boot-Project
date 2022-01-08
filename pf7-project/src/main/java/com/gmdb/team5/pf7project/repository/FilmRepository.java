@@ -1,9 +1,6 @@
 package com.gmdb.team5.pf7project.repository;
 
-import com.gmdb.team5.pf7project.domain.Film;
-import com.gmdb.team5.pf7project.domain.Genre;
-import com.gmdb.team5.pf7project.domain.Person;
-import com.gmdb.team5.pf7project.domain.Role;
+import com.gmdb.team5.pf7project.domain.*;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Query;
 import org.springframework.data.repository.query.Param;
@@ -22,6 +19,13 @@ public interface FilmRepository extends JpaRepository<Film, Long> {
 
     @Query(value = "select distinct o from Film o join fetch o.peopleCasted")
     List<Film> findAllLazy();
+
+
+    @Query(value = "SELECT f.* FROM FILMGENRE f;", nativeQuery = true)
+    List<Object[]> findAllFilmGenre();
+
+    @Query(value = "SELECT f.* FROM CASTED_PERSON f;", nativeQuery = true)
+    List<Object[]> findAllCastedPeople();
 
     //Reports Start here.
 

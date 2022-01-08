@@ -7,6 +7,7 @@ import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Sort;
 import org.springframework.data.jpa.repository.JpaRepository;
+import org.springframework.data.jpa.repository.Query;
 import org.springframework.stereotype.Service;
 import javax.transaction.Transactional;
 import java.math.BigInteger;
@@ -78,6 +79,16 @@ public class FilmServiceImpl extends BaseServiceImpl<Film> implements FilmServic
         film.getPeopleCasted().add(newCastedPerson(film, person, role));
         logger.debug("Person[{}] added to Film[{}] as a {}", person, film, role);
     }
+
+    public List<Object[]> findAllFilmGenre(){
+        return fIlmRepository.findAllFilmGenre();
+    }
+
+    public List<Object[]> findAllCastedPeople(){
+        return fIlmRepository.findAllCastedPeople();
+    }
+
+
 
 //Reports implementation starts here
 
