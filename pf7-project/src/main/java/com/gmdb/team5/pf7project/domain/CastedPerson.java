@@ -29,9 +29,6 @@ public class CastedPerson extends BaseModel {
     @ManyToOne(fetch = FetchType.LAZY, optional = false)
     private Film film;
 
-
-
-
     @Enumerated(EnumType.STRING)
     @Column(name = "ROLE", nullable = false)
     private Role role;
