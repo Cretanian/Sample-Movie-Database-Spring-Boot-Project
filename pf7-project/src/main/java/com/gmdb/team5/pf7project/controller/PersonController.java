@@ -65,8 +65,8 @@ public class PersonController extends AbstractController<Person> {
     }
 
     //export csv for all people
-    @GetMapping("/export")
-    public void exportToCSV(HttpServletResponse response) throws IOException {
+    @GetMapping("/exportPersonDB")
+    public void exportPearsonToCSV(HttpServletResponse response) throws IOException {
         response.setContentType("text/csv");
         DateFormat dateFormatter = new SimpleDateFormat("yyyy-MM-dd_HH-mm-ss");
         String currentDateTime = dateFormatter.format(new Date());
@@ -88,5 +88,36 @@ public class PersonController extends AbstractController<Person> {
         }
 
         csvWriter.close();
+    }
+
+    //export csv for all people
+    //maybe not here but here for now because i dont care anymore
+    @GetMapping("/exportPersonCastedDB")
+    public void exportPersonCastedToCSV(HttpServletResponse response) throws IOException {
+      /*  response.setContentType("text/csv");
+        DateFormat dateFormatter = new SimpleDateFormat("yyyy-MM-dd_HH-mm-ss");
+        String currentDateTime = dateFormatter.format(new Date());
+
+        String headerKey = "Content-Disposition";
+        String headerValue = "attachment; filename=people_" + currentDateTime + ".csv";
+        response.setHeader(headerKey, headerValue);
+
+        List<Person> findPeople = personService.findAll();
+
+        ICsvBeanWriter csvWriter = new CsvBeanWriter(response.getWriter(), CsvPreference.STANDARD_PREFERENCE);
+        String[] csvHeader = {"Person ID", "First Name", "Last Name", "YOB", "Country", "Is Alive"};
+        String[] nameMapping = {"id", "firstName", "lastName", "YOB", "country", "isAlive"};
+
+        csvWriter.writeHeader(csvHeader);
+
+        for (Person person : findPeople) {
+            csvWriter.write(person, nameMapping);
+        }
+
+        csvWriter.close();
+
+       */
+
+        //TODO
     }
 }

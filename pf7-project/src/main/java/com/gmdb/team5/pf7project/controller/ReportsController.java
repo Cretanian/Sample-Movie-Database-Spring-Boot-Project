@@ -30,16 +30,10 @@ public class ReportsController  extends AbstractController<Film>{
         return filmService;
     }
 
-
    @GetMapping(params = {"num"}, headers = "action=firstReport")
     public ResponseEntity<ApiResponse<Page<Film>>> firstReport(@RequestParam("num") Integer num){
         return ResponseEntity.ok(ApiResponse.<Page<Film>>builder().data(filmService.findTopRatedFilms(num)).build());
    }
-
-//    @GetMapping(params = {"num"}, headers = {"action=firstAReport","ExtendedInfo=true"})
-//    public ResponseEntity<ApiResponse<Page<Film>>> firstReportExt(@RequestParam("num") Integer num){
-//        return ResponseEntity.ok(ApiResponse.<Page<Film>>builder().data(filmService.findTopRatedFilms(num)).build());
-//    }
 
     @GetMapping(params = {"id"}, headers = {"action=secondReport","ExtendedInfo=true"})
     public ResponseEntity<ApiResponse<List<Film>>> secondReportExt(@RequestParam("id") Long id){

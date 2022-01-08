@@ -35,9 +35,9 @@ public class FilmController extends AbstractController<Film> {
         return filmService.findByTitle(title);
     }
 
-    //export csv for all films + genre
-    @GetMapping("/export")
-    public void exportToCSV(HttpServletResponse response) throws IOException {
+    //export csv for all films
+    @GetMapping("/exportFilmsDB")
+    public void exportFilmsToCSV(HttpServletResponse response) throws IOException {
         response.setContentType("text/csv");
         DateFormat dateFormatter = new SimpleDateFormat("yyyy-MM-dd_HH-mm-ss");
         String currentDateTime = dateFormatter.format(new Date());
@@ -59,5 +59,33 @@ public class FilmController extends AbstractController<Film> {
         }
 
         csvWriter.close();
+    }
+
+    //export csv for all filmsgenre
+    @GetMapping("/exportFilmGenreDB")
+    public void exportFilmGenreToCSV(HttpServletResponse response) throws IOException {
+     /*   response.setContentType("text/csv");
+        DateFormat dateFormatter = new SimpleDateFormat("yyyy-MM-dd_HH-mm-ss");
+        String currentDateTime = dateFormatter.format(new Date());
+
+        String headerKey = "Content-Disposition";
+        String headerValue = "attachment; filename=people_" + currentDateTime + ".csv";
+        response.setHeader(headerKey, headerValue);
+
+        List<Film> findFilmAndGenre = filmService.findAll();
+
+        ICsvBeanWriter csvWriter = new CsvBeanWriter(response.getWriter(), CsvPreference.STANDARD_PREFERENCE);
+        String[] csvHeader = {"Film ID", "Title", "Description", "Release Year", "Language", "Duration", "Rating", "Genre"};
+        String[] nameMapping = {"id", "title", "description", "releaseYear", "language", "duration", "rating", "genre"};
+
+        csvWriter.writeHeader(csvHeader);
+
+        for (Film film : findFilmAndGenre) {
+            csvWriter.write(film, nameMapping);
+        }
+
+        csvWriter.close();
+      */
+        //TODO
     }
 }

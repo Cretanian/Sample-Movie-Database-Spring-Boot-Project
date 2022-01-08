@@ -1,3 +1,4 @@
+
   ______________
  |              |
  |_____    _____|                                           _____
@@ -8,24 +9,25 @@
        |__|         \_____      \____,_|    |_| |_| |_|    |____/
 
 
-                                                            GROUP PHOTO
+                                                       -------------
+                                                      | GROUP PHOTO |
+                                                       -------------
 
      Stylianos            Efstathios                Marianna                    Ioannis                       Spyros
-　　   ／ ⌒ヽ                        ∩              (_＼ヽ                     　__                     ＜￣｀ヽ、　　　　　　　／￣＞
-　　　 /° ω°　　　　　　　            ＼＼         　　 　 ＼＼ .Λ＿Λ.            　/ )))　　  _　            ゝ、　　＼ ／⌒ヽ,ノ 　/´
-　 ＿ノ ヽ　ノ ＼＿　　　　　　　      ／  ）        　　　   ＼( ͡° ͜ʖ ͡°)           ／ イ 　　  (((　　　         ゝ、　`（ ( ͡° ͜ʖ ͡°) ／
-`/　`/ ⌒Ｙ⌒ Ｙ　ヽ       ⊂＼＿／￣￣￣  ／         　　　 　　　 >　⌒ヽ           (　 ﾉ　　　　￣Ｙ＼　　 　　        >　　ミ土彡   ,ノ
-( 　(三ヽ人　 /　 | 　      ＼  ° ͜ʖ ° （          　　  　　 / 　 へ＼          |　( ＼ ∧＿∧  ｜　)　　　　           ∠_,,,,,,/´”
-|　ﾉ⌒＼ ￣￣ヽ　 ノ　　　      ）ミ土彡  ／⌒＼         　　 　/ 王 /　 ＼＼        ヽ　ヽ`(´･ω･)_／ノ/
-ヽ＿＿＿＞､＿＿_／　　　      ／　 ＿＿／⌒＼⊃        　　    ﾚ 　ノ　　 ヽ_つ        ＼ |　 ⌒Ｙ⌒ /  /
-　　 ｜( 王 ﾉ〈　          （　 ／                　 　　/　/                   　 \ヽ　 ｜　 ﾉ ／
-　　 /ﾐ`ー―彡ヽ　　          ＼＼                 　   /　/|                       ＼ ﾄー仝ーｲ /
-　　/　ヽ_／　 |.             U                  　  (　(ヽ                    　　 ｜ ミ土彡 ｜
-                                                   |　|、＼
-                                                   | 丿 ＼ ⌒)
-                                                   | |　　) /
-                                                 `ノ ) 　 Lﾉ
-                                                 (_／
 
-
-${AnsiColor.GREEN}runs on Spring Boot v.${spring-boot.version}.${Ansi.DEFAULT}
+${AnsiColor.RED}　　   ／ ⌒ヽ                       ∩               (_＼ヽ                     　__                     ＜￣｀ヽ、　　　　　　　／￣＞
+${AnsiColor.BLUE}　　　 /° ω°　　　　　　　            ＼＼         　　 　 ＼＼ .Λ＿Λ.            　/ )))　　  _　            ゝ、　　＼ ／⌒ヽ,ノ 　/´
+${AnsiColor.BRIGHT_CYAN}　 ＿ノ ヽ　ノ ＼＿　　　　　　　      ／  ）        　　　   ＼( ͡° ͜ʖ ͡°)           ／ イ 　　  (((　　　         ゝ、　`（ ( ͡° ͜ʖ ͡°) ／
+${AnsiColor.GREEN}`/　`/ ⌒Ｙ⌒ Ｙ　ヽ       ⊂＼＿／￣￣￣  ／         　　　 　　　 >　⌒ヽ           (　 ﾉ　　　　￣Ｙ＼　　 　　        >　　ミ土彡   ,ノ
+${AnsiColor.YELLOW}( 　(三ヽ人　 /　 | 　      ＼  ° ͜ʖ ° （          　　  　　 / 　 へ＼          |　( ＼ ∧＿∧  ｜　)　　　　          ∠_,,,,,,,,/´”
+${AnsiColor.BRIGHT_GREEN}|　ﾉ⌒＼ ￣￣ヽ　 ノ　　　      ）ミ土彡  ／⌒＼         　　 　/ 王 /　 ＼＼        ヽ　ヽ`(´･ω･)_／ノ/
+${AnsiColor.WHITE}ヽ＿＿＿＞､＿＿_／　　　      ／　 ＿＿／⌒＼⊃        　　    ﾚ 　ノ　　 ヽ_つ        ＼ |　 ⌒Ｙ⌒ /  /
+${AnsiColor.RED}　　 ｜( 王 ﾉ〈　          （　 ／                　 　　/　/                   　 \ヽ　 ｜　 ﾉ ／
+${AnsiColor.BRIGHT_CYAN}　　 /ﾐ`ー―彡ヽ　　          ＼＼                 　   /　/|                       ＼ ﾄー仝ーｲ /
+${AnsiColor.BRIGHT_MAGENTA}　　/　ヽ_／　 |.             U                  　  (　(ヽ                    　　 ｜ ミ土彡 ｜
+${AnsiColor.BRIGHT_YELLOW}                                                   |　|、＼
+${AnsiColor.CYAN}                                                   | 丿 ＼ ⌒)
+${AnsiColor.MAGENTA}                                                   | |　　) /
+${AnsiColor.WHITE}                                                 `ノ ) 　 Lﾉ
+${AnsiColor.YELLOW}                                                 (_／
+${AnsiColor.DEFAULT}
