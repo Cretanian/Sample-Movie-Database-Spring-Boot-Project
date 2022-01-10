@@ -8,6 +8,8 @@ import com.gmdb.team5.pf7project.service.PersonService;
 import com.gmdb.team5.pf7project.service.TVShowService;
 import com.opencsv.CSVWriter;
 import lombok.RequiredArgsConstructor;
+import net.minidev.json.JSONArray;
+import net.minidev.json.JSONObject;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
@@ -15,6 +17,7 @@ import org.springframework.web.bind.annotation.RestController;
 import javax.servlet.http.HttpServletResponse;
 import java.io.File;
 import java.io.FileWriter;
+import java.io.IOException;
 import java.util.*;
 
 @RestController
@@ -22,14 +25,11 @@ import java.util.*;
 @RequestMapping("/export")
 public class ExportController {
 
-    //create JSON with rows
+    private final JSONObject jsonObject = new JSONObject();
 
     private final FilmService filmService;
     private final PersonService personService;
     private final TVShowService tvShowService;
-    private final Map<String,Integer> rowsAffected;
-
-
 
     public void csvWriterGeneric(String filename, List<String[]> entries) {
         try {
@@ -47,31 +47,40 @@ public class ExportController {
             }
             writer.close();
 
-            if (!myFile.createNewFile())
-                throw new Exception("Unable to create file "+ filename +" at specified path.");
+            if (!myFile.exists())
+                myFile.createNewFile();
 
         }catch (Exception e){
             e.printStackTrace();
         }
 
     }
-    //export csv for all people
+
+    private void createJson(){
+        try {
+            FileWriter file = new FileWriter("csv/effectedRows.json");
+            file.write(jsonObject.toJSONString());
+            file.close();
+        } catch ( IOException e) {
+            // TODO Auto-generated catch block
+            e.printStackTrace();
+        }
+    }
+
     @GetMapping("/all")
     public void allTables(HttpServletResponse response) {
-
-        //fix this to localy create a csv file and a json file
-
         exportPersonToCSV();
         exportFilmsToCSV();
         exportTVShowToCSV();
         exportPersonCastedToCSV();
         exportFilmGenreToCSV();
+        createJson();
     }
 
     @GetMapping("/POEPLE")
     public void exportPersonToCSV() {
         List<Person> peoplelist = personService.findAll();
-        rowsAffected.put("PEOPLE",peoplelist.size());
+        jsonObject.put("PEOPLE",peoplelist.size());
         String[] csvHeader = {"Person ID", "First Name", "Last Name", "YOB", "Country", "Is Alive"};
         List<String[]> myPeopleList = new ArrayList<>();
 
@@ -95,7 +104,7 @@ public class ExportController {
     @GetMapping("/FILMS")
     public void exportFilmsToCSV() {
         List<Film> filmList = filmService.findAll();
-        rowsAffected.put("FILMS",filmList.size());
+        jsonObject.put("FILMS",filmList.size());
         String[] csvHeader = {"Film ID", "Title", "Description", "Release Year", "Language", "Duration", "Rating"};
         List<String[]> myFilmList = new ArrayList<>();
 
@@ -119,7 +128,7 @@ public class ExportController {
     @GetMapping("/TVSHOWS")
     public void exportTVShowToCSV() {
         List<TVShow> tvShowList = tvShowService.findAll();
-        rowsAffected.put("TVSHOWS",tvShowList.size());
+        jsonObject.put("TVSHOWS",tvShowList.size());
         String[] csvHeader = {"Film ID", "NumberOfSeasons", "NumberOfEpisodes"};
         List<String[]> myTVshowList = new ArrayList<>();
 
@@ -138,9 +147,8 @@ public class ExportController {
 
     @GetMapping("/CASTED_PERSON")
     public void exportPersonCastedToCSV() {
-
         List<Object[]> castedPersonList = filmService.findAllCastedPeople();
-        rowsAffected.put("CASTED_PERSON",castedPersonList.size());
+        jsonObject.put("CASTED_PERSON",castedPersonList.size());
         final String[] csvHeader = {"ID", "Person ID", "Film ID", "Role"};
         List<String[]> myCastedPersonList  = new ArrayList<>();
         myCastedPersonList.add(csvHeader);
@@ -160,7 +168,7 @@ public class ExportController {
     @GetMapping("/FILMGENRE")
     public void exportFilmGenreToCSV() {
         List<Object[]> filmGenreList = filmService.findAllFilmGenre();
-        rowsAffected.put("FILMGENRE",filmGenreList.size());
+        jsonObject.put("FILMGENRE",filmGenreList.size());
         String[] csvHeader = {"Film ID", "Genre ID"};
         List<String[]> myfilmGenreList  = new ArrayList<>();
         myfilmGenreList.add(csvHeader);
