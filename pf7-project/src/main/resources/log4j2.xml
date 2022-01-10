@@ -11,7 +11,7 @@
 			<PatternLayout pattern="${LOG_PATTERN}"/>
 		</Console>
 		<!-- Rolling Random Access File Appender with a default buffer of 256 * 1024 bytes -->
-		<RollingFile name="DefaultAppender"
+		<RollingRandomAccessFile name="DefaultAppender"
 								 immediateFlush="true"
 								 fileName="logs/pf7-project.log"
 								 filePattern="logs/pf7-project-%d{yyyy-MM-dd}.zip">
@@ -26,7 +26,7 @@
 					<IfLastModified age="30d"/>
 				</Delete>
 			</DefaultRolloverStrategy>
-		</RollingFile>
+		</RollingRandomAccessFile>
 	</Appenders>
 
 	<Loggers>
@@ -48,32 +48,32 @@
 		</AsyncLogger>
 		<AsyncLogger name="org.springframework.data" level="info" additivity="false">
 			<AppenderRef ref="ConsoleAppender"/>
-			<AppenderRef ref="DataAppender"/>
+			<AppenderRef ref="DefaultAppender"/>
 		</AsyncLogger>
 		<AsyncLogger name="com.zaxxer.hikari" level="debug" additivity="false">
 			<AppenderRef ref="ConsoleAppender"/>
-			<AppenderRef ref="DataAppender"/>
+			<AppenderRef ref="DefaultAppender"/>
 		</AsyncLogger>
 		<AsyncLogger name="org.hibernate.engine" level="debug" additivity="false">
 			<AppenderRef ref="ConsoleAppender"/>
-			<AppenderRef ref="DataAppender"/>
+			<AppenderRef ref="DefaultAppender"/>
 		</AsyncLogger>
 		<AsyncLogger name="org.hibernate.stat" level="debug" additivity="false">
 			<AppenderRef ref="ConsoleAppender"/>
-			<AppenderRef ref="DataAppender"/>
+			<AppenderRef ref="DefaultAppender"/>
 		</AsyncLogger>
 		<AsyncLogger name="org.hibernate.SQL" level="debug" additivity="false">
 			<AppenderRef ref="ConsoleAppender"/>
-			<AppenderRef ref="DataAppender"/>
+			<AppenderRef ref="DefaultAppender"/>
 		</AsyncLogger>
 		<AsyncLogger name="org.hibernate.type.descriptor.sql.BasicBinder" level="trace" additivity="false">
 			<AppenderRef ref="ConsoleAppender"/>
-			<AppenderRef ref="DataAppender"/>
+			<AppenderRef ref="DefaultAppender"/>
 		</AsyncLogger>
 		<AsyncLogger name="net.ttddyy.dsproxy.listener.logging.SLF4JQueryLoggingListener" level="info"
 					 additivity="false">
 			<AppenderRef ref="ConsoleAppender"/>
-			<AppenderRef ref="DataAppender"/>
+			<AppenderRef ref="DefaultAppender"/>
 		</AsyncLogger>
 
 		<Root level="info">
