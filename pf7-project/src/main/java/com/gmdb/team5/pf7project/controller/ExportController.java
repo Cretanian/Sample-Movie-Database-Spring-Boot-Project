@@ -1,29 +1,20 @@
 package com.gmdb.team5.pf7project.controller;
 
-import com.gmdb.team5.pf7project.domain.CastedPerson;
 import com.gmdb.team5.pf7project.domain.Film;
 import com.gmdb.team5.pf7project.domain.Person;
 import com.gmdb.team5.pf7project.domain.TVShow;
-import com.gmdb.team5.pf7project.service.BaseService;
 import com.gmdb.team5.pf7project.service.FilmService;
 import com.gmdb.team5.pf7project.service.PersonService;
 import com.gmdb.team5.pf7project.service.TVShowService;
+import com.opencsv.CSVWriter;
 import lombok.RequiredArgsConstructor;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
-import org.supercsv.cellprocessor.ift.CellProcessor;
-import org.supercsv.io.CsvBeanWriter;
-import org.supercsv.io.CsvMapWriter;
-import org.supercsv.io.ICsvBeanWriter;
-import org.supercsv.io.ICsvMapWriter;
-import org.supercsv.prefs.CsvPreference;
 
 import javax.servlet.http.HttpServletResponse;
-import java.io.IOException;
-import java.math.BigInteger;
-import java.text.DateFormat;
-import java.text.SimpleDateFormat;
+import java.io.File;
+import java.io.FileWriter;
 import java.util.*;
 
 @RestController
@@ -39,158 +30,149 @@ public class ExportController {
     private final Map<String,Integer> rowsAffected;
 
 
+
+    public void csvWriterGeneric(String filename, List<String[]> entries) {
+        try {
+            File theDir = new File("csv");
+            if (!theDir.exists())
+                if (!theDir.mkdirs())
+                    throw new Exception("Unable to create csv dir at specified path");
+
+            File myFile = new File("csv/" + filename + ".csv");
+
+            CSVWriter writer = new CSVWriter(new FileWriter(myFile.getAbsolutePath()));
+
+            for (String[] entry : entries) {
+                writer.writeNext(entry);
+            }
+            writer.close();
+
+            if (!myFile.createNewFile())
+                throw new Exception("Unable to create file "+ filename +" at specified path.");
+
+        }catch (Exception e){
+            e.printStackTrace();
+        }
+
+    }
     //export csv for all people
     @GetMapping("/all")
-    public void allTables(HttpServletResponse response) throws IOException {
+    public void allTables(HttpServletResponse response) {
 
-        //fix this
+        //fix this to localy create a csv file and a json file
 
-        exportPearsonToCSV(response);
-        exportFilmsToCSV(response);
-        exportTVShowToCSV(response);
-        exportPersonCastedToCSV(response);
-        exportFilmGenreToCSV(response);
+        exportPersonToCSV();
+        exportFilmsToCSV();
+        exportTVShowToCSV();
+        exportPersonCastedToCSV();
+        exportFilmGenreToCSV();
     }
 
-    //export csv for all people
-    @GetMapping("/PERSON")
-    public void exportPearsonToCSV(HttpServletResponse response) throws IOException {
-        response.setContentType("text/csv");
-        DateFormat dateFormatter = new SimpleDateFormat("yyyy-MM-dd_HH-mm-ss");
-        String currentDateTime = dateFormatter.format(new Date());
-
-        String headerKey = "Content-Disposition";
-        String headerValue = "attachment; filename=PEOPLE_" + currentDateTime + ".csv";
-        response.setHeader(headerKey, headerValue);
-
-        List<Person> findPeople = personService.findAll();
-
-        rowsAffected.put("PEOPLE",findPeople.size());
-
-        ICsvBeanWriter csvWriter = new CsvBeanWriter(response.getWriter(), CsvPreference.STANDARD_PREFERENCE);
+    @GetMapping("/POEPLE")
+    public void exportPersonToCSV() {
+        List<Person> peoplelist = personService.findAll();
+        rowsAffected.put("PEOPLE",peoplelist.size());
         String[] csvHeader = {"Person ID", "First Name", "Last Name", "YOB", "Country", "Is Alive"};
-        String[] nameMapping = {"id", "firstName", "lastName", "YOB", "country", "isAlive"};
+        List<String[]> myPeopleList = new ArrayList<>();
 
-        csvWriter.writeHeader(csvHeader);
+        myPeopleList.add(csvHeader);
 
-        for (Person person : findPeople) {
-            csvWriter.write(person, nameMapping);
+        for (Person array : peoplelist) {
+            String[] entry = new String[6];
+            entry[0] = array.getId().toString();
+            entry[1] = array.getFirstName();
+            entry[2] = array.getLastName();
+            entry[3] = array.getYOB().toString();
+            entry[4] = array.getCountry();
+            entry[5] = array.getIsAlive().toString();
+            myPeopleList.add(entry);
         }
 
-        csvWriter.close();
+        csvWriterGeneric("PEOPLE", myPeopleList);
+
     }
 
-    //export csv for all films
     @GetMapping("/FILMS")
-    public void exportFilmsToCSV(HttpServletResponse response) throws IOException {
-        response.setContentType("text/csv");
-        DateFormat dateFormatter = new SimpleDateFormat("yyyy-MM-dd_HH-mm-ss");
-        String currentDateTime = dateFormatter.format(new Date());
-
-        String headerKey = "Content-Disposition";
-        String headerValue = "attachment; filename=FILMS_" + currentDateTime + ".csv";
-        response.setHeader(headerKey, headerValue);
-
-        List<Film> findFilm = filmService.findAll();
-        rowsAffected.put("FILMS",findFilm.size());
-
-
-        ICsvBeanWriter csvWriter = new CsvBeanWriter(response.getWriter(), CsvPreference.STANDARD_PREFERENCE);
+    public void exportFilmsToCSV() {
+        List<Film> filmList = filmService.findAll();
+        rowsAffected.put("FILMS",filmList.size());
         String[] csvHeader = {"Film ID", "Title", "Description", "Release Year", "Language", "Duration", "Rating"};
-        String[] nameMapping = {"id", "title", "description", "releaseYear", "language", "duration", "rating"};
+        List<String[]> myFilmList = new ArrayList<>();
 
-        csvWriter.writeHeader(csvHeader);
+        myFilmList.add(csvHeader);
 
-        for (Film film : findFilm) {
-            csvWriter.write(film, nameMapping);
+        for (Film film : filmList) {
+            String[] entry = new String[7];
+            entry[0] = film.getId().toString();
+            entry[1] = film.getTitle();
+            entry[2] = film.getDescription();
+            entry[3] = film.getReleaseYear().toString();
+            entry[4] = film.getLanguage();
+            entry[5] = film.getDuration().toString();
+            entry[6] = film.getRating().toString();
+            myFilmList.add(entry);
         }
 
-        csvWriter.close();
+        csvWriterGeneric("FILMS", myFilmList);
     }
 
-    //export csv for all tvShows
     @GetMapping("/TVSHOWS")
-    public void exportTVShowToCSV(HttpServletResponse response) throws IOException {
-        response.setContentType("text/csv");
-        DateFormat dateFormatter = new SimpleDateFormat("yyyy-MM-dd_HH-mm-ss");
-        String currentDateTime = dateFormatter.format(new Date());
-
-        String headerKey = "Content-Disposition";
-        String headerValue = "attachment; filename=TVSHOWS_" + currentDateTime + ".csv";
-        response.setHeader(headerKey, headerValue);
-
-        List<TVShow> findTVShow = tvShowService.findAll();
-        rowsAffected.put("TVSHOWS",findTVShow.size());
-
-        ICsvBeanWriter csvWriter = new CsvBeanWriter(response.getWriter(), CsvPreference.STANDARD_PREFERENCE);
+    public void exportTVShowToCSV() {
+        List<TVShow> tvShowList = tvShowService.findAll();
+        rowsAffected.put("TVSHOWS",tvShowList.size());
         String[] csvHeader = {"Film ID", "NumberOfSeasons", "NumberOfEpisodes"};
-        String[] nameMapping = {"id", "numberOfSeasons", "numberOfEpisodes"};
+        List<String[]> myTVshowList = new ArrayList<>();
 
-        csvWriter.writeHeader(csvHeader);
+        myTVshowList.add(csvHeader);
 
-        for (TVShow tvShow : findTVShow) {
-            csvWriter.write(tvShow, nameMapping);
+        for (TVShow tvShow : tvShowList) {
+            String[] entry = new String[3];
+            entry[0] = tvShow.getId().toString();
+            entry[1] = tvShow.getNumberOfSeasons().toString();
+            entry[2] = tvShow.getNumberOfEpisodes().toString();
+            myTVshowList.add(entry);
         }
 
-        csvWriter.close();
+        csvWriterGeneric("TVSHOW", myTVshowList);
     }
 
-    //export csv for all casted person
     @GetMapping("/CASTED_PERSON")
-    public void exportPersonCastedToCSV(HttpServletResponse response) throws IOException {
-        response.setContentType("text/csv");
-        DateFormat dateFormatter = new SimpleDateFormat("yyyy-MM-dd_HH-mm-ss");
-        String currentDateTime = dateFormatter.format(new Date());
+    public void exportPersonCastedToCSV() {
 
-        String headerKey = "Content-Disposition";
-        String headerValue = "attachment; filename=CASTED_PERSON_" + currentDateTime + ".csv";
-        response.setHeader(headerKey, headerValue);
-
-        List<Object[]> findCastedPerson = filmService.findAllCastedPeople();
-        rowsAffected.put("CASTED_PERSON",findCastedPerson.size());
-
-        ICsvMapWriter mapWriter = new CsvMapWriter(response.getWriter(), CsvPreference.STANDARD_PREFERENCE);
+        List<Object[]> castedPersonList = filmService.findAllCastedPeople();
+        rowsAffected.put("CASTED_PERSON",castedPersonList.size());
         final String[] csvHeader = {"ID", "Person ID", "Film ID", "Role"};
-        mapWriter.writeHeader(csvHeader);
+        List<String[]> myCastedPersonList  = new ArrayList<>();
+        myCastedPersonList.add(csvHeader);
 
-        for (Object[] castedPersonCasted : findCastedPerson) {
-            Map<String, Object> entry = new HashMap<>();
-            entry.put(csvHeader[0], castedPersonCasted[0]);
-            entry.put(csvHeader[1], castedPersonCasted[3]);
-            entry.put(csvHeader[2], castedPersonCasted[2]);
-            entry.put(csvHeader[3], castedPersonCasted[1]);
+        for (Object[] castedPersonCasted : castedPersonList) {
+            String[] entry = new String[4];
+            entry[0] = castedPersonCasted[0].toString();
+            entry[1] = castedPersonCasted[3].toString();
+            entry[2] = castedPersonCasted[2].toString();
+            entry[3] = castedPersonCasted[1].toString();
 
-            mapWriter.write(entry, csvHeader);
+            myCastedPersonList.add(entry);
         }
-        mapWriter.close();
+        csvWriterGeneric("CASTED_PERSON", myCastedPersonList);
     }
 
-    //export csv for all filmgenre
     @GetMapping("/FILMGENRE")
-    public void exportFilmGenreToCSV(HttpServletResponse response) throws IOException {
-        response.setContentType("text/csv");
-        DateFormat dateFormatter = new SimpleDateFormat("yyyy-MM-dd_HH-mm-ss");
-        String currentDateTime = dateFormatter.format(new Date());
-
-        String headerKey = "Content-Disposition";
-        String headerValue = "attachment; filename=FILMGENRE_" + currentDateTime + ".csv";
-        response.setHeader(headerKey, headerValue);
-
-        List<Object[]> findFilmGenre = filmService.findAllFilmGenre();
-        rowsAffected.put("FILMGENRE",findFilmGenre.size());
-
-        ICsvMapWriter mapWriter = new CsvMapWriter(response.getWriter(), CsvPreference.STANDARD_PREFERENCE);
+    public void exportFilmGenreToCSV() {
+        List<Object[]> filmGenreList = filmService.findAllFilmGenre();
+        rowsAffected.put("FILMGENRE",filmGenreList.size());
         String[] csvHeader = {"Film ID", "Genre ID"};
-        mapWriter.writeHeader(csvHeader);
+        List<String[]> myfilmGenreList  = new ArrayList<>();
+        myfilmGenreList.add(csvHeader);
 
-     for (Object[] castedPersonCasted : findFilmGenre) {
-            Map<String, Object> entry = new HashMap<>();
-            entry.put(csvHeader[0], castedPersonCasted[0]);
-            entry.put(csvHeader[1], castedPersonCasted[1]);
+        for (Object[] filmgenre : filmGenreList) {
+            String[] entry = new String[2];
+            entry[0] = filmgenre[0].toString();
+            entry[1] = filmgenre[1].toString();
+            myfilmGenreList.add(entry);
 
-            mapWriter.write(entry, csvHeader);
         }
-        mapWriter.close();
+        csvWriterGeneric("FILMGENRE", myfilmGenreList);
     }
 
 }

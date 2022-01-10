@@ -1,0 +1,370 @@
+{
+	"info": {
+		"_postman_id": "e3a520a5-016c-48ea-9e52-522fdd309144",
+		"name": "Project Future 7 - Spring Boot Project",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "Reports",
+			"item": [
+				{
+					"name": "FirstReport",
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "action",
+								"value": "firstReport",
+								"type": "default"
+							},
+							{
+								"key": "ExtendedInfo",
+								"value": "true",
+								"type": "default",
+								"disabled": true
+							}
+						],
+						"url": {
+							"raw": "{{url}}/reports?num=2",
+							"host": [
+								"{{url}}"
+							],
+							"path": [
+								"reports"
+							],
+							"query": [
+								{
+									"key": "num",
+									"value": "2"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "SecondReport",
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "action",
+								"value": "secondReport",
+								"type": "default"
+							},
+							{
+								"key": "ExtendedInfo",
+								"value": "true",
+								"type": "default"
+							}
+						],
+						"url": {
+							"raw": "{{url}}/reports?id=1",
+							"host": [
+								"{{url}}"
+							],
+							"path": [
+								"reports"
+							],
+							"query": [
+								{
+									"key": "id",
+									"value": "1"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "ThirdReport",
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "action",
+								"value": "thirdReport",
+								"type": "default"
+							},
+							{
+								"key": "ExtendedInfo",
+								"value": "true",
+								"type": "default"
+							}
+						],
+						"url": {
+							"raw": "{{url}}/reports?id=1&role=Actor",
+							"host": [
+								"{{url}}"
+							],
+							"path": [
+								"reports"
+							],
+							"query": [
+								{
+									"key": "id",
+									"value": "1"
+								},
+								{
+									"key": "role",
+									"value": "Actor"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "FourthReport",
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "action",
+								"value": "fourthReport",
+								"type": "default"
+							},
+							{
+								"key": "ExtendedInfo",
+								"value": "true",
+								"type": "default"
+							}
+						],
+						"url": {
+							"raw": "{{url}}/reports?genre=Action",
+							"host": [
+								"{{url}}"
+							],
+							"path": [
+								"reports"
+							],
+							"query": [
+								{
+									"key": "genre",
+									"value": "Action"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "FifthReport",
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "action",
+								"value": "fifthReport",
+								"type": "default"
+							}
+						],
+						"url": {
+							"raw": "{{url}}/reports",
+							"host": [
+								"{{url}}"
+							],
+							"path": [
+								"reports"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "SixthReport",
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "action",
+								"value": "sixthReport",
+								"type": "default"
+							}
+						],
+						"url": {
+							"raw": "{{url}}/reports",
+							"host": [
+								"{{url}}"
+							],
+							"path": [
+								"reports"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "SeventhReport",
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "action",
+								"value": "seventhReport",
+								"type": "default"
+							}
+						],
+						"url": {
+							"raw": "{{url}}/reports?id=1",
+							"host": [
+								"{{url}}"
+							],
+							"path": [
+								"reports"
+							],
+							"query": [
+								{
+									"key": "id",
+									"value": "1"
+								}
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "Export CSV",
+			"item": [
+				{
+					"name": "Export All tables",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{url}}/export/all",
+							"host": [
+								"{{url}}"
+							],
+							"path": [
+								"export",
+								"all"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Export PEOPLE table",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{url}}/export/PEOPLE",
+							"host": [
+								"{{url}}"
+							],
+							"path": [
+								"export",
+								"PEOPLE"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Export FILMS table",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{url}}/export/FILMS",
+							"host": [
+								"{{url}}"
+							],
+							"path": [
+								"export",
+								"FILMS"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Export TVSHOW table",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{url}}/export/TVSHOW",
+							"host": [
+								"{{url}}"
+							],
+							"path": [
+								"export",
+								"TVSHOW"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Export FILMGENRE table",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{url}}/export/FILMGENRE",
+							"host": [
+								"{{url}}"
+							],
+							"path": [
+								"export",
+								"FILMGENRE"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Export CASTED_PERSON table",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{url}}/export/CASTED_PERSON",
+							"host": [
+								"{{url}}"
+							],
+							"path": [
+								"export",
+								"CASTED_PERSON"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		}
+	],
+	"event": [
+		{
+			"listen": "prerequest",
+			"script": {
+				"type": "text/javascript",
+				"exec": [
+					""
+				]
+			}
+		},
+		{
+			"listen": "test",
+			"script": {
+				"type": "text/javascript",
+				"exec": [
+					""
+				]
+			}
+		}
+	],
+	"variable": [
+		{
+			"key": "url",
+			"value": "localhost:8080",
+			"type": "string"
+		}
+	]
+}
