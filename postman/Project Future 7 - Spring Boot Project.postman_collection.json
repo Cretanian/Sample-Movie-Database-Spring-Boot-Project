@@ -224,7 +224,8 @@
 					},
 					"response": []
 				}
-			]
+			],
+			"description": "Here are the report calls that was requested.\n\nWe went a step farther and implemented an extra functionality by enabling a header that is stored inside the \"Headers Tab\". This functionality provides some extra information about each returned entity. This was header was added because we don't always need all this extra information."
 		},
 		{
 			"name": "Export CSV",
@@ -337,7 +338,8 @@
 					},
 					"response": []
 				}
-			]
+			],
+			"description": "Here are the calls that export the DB."
 		}
 	],
 	"event": [
