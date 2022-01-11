@@ -14,11 +14,11 @@ insert into PEOPLE(ID, YOB, COUNTRY, FIRSTNAME, ISALIVE, LASTNAME) values (11,19
 insert into FILMS (ID, DESCRIPTION, DURATION, LANGUAGE, RATING, RELEASEYEAR, TITLE) values (1,'Do not watch this alone',136,'English','four',2016,'Are you alone ?');
 insert into FILMS (ID, DESCRIPTION, DURATION, LANGUAGE, RATING, RELEASEYEAR, TITLE) values (2,'Do watch this alone',146,'English','two',2016,'Are you alone ? 2');
 insert into FILMS (ID, DESCRIPTION, DURATION, LANGUAGE, RATING, RELEASEYEAR, TITLE) values (3,'A show about pirates',25,'Japanese','five',1998,'One_Piece');
-insert into FILMS (ID, DESCRIPTION, DURATION, LANGUAGE, RATING, RELEASEYEAR, TITLE) values (4,'A show about pirates',25,'Japanese','five',2012,'One_Piece,Marineford');
-insert into FILMS (ID, DESCRIPTION, DURATION, LANGUAGE, RATING, RELEASEYEAR, TITLE) values (5,'A show about pirates',24,'Japanese','five',2018,'One_Piece,Dressrosa');
+insert into FILMS (ID, DESCRIPTION, DURATION, LANGUAGE, RATING, RELEASEYEAR, TITLE) values (4,'A movie about pirates',25,'English','five',2003,'Pirates of the Caribbean, the curse of the black pearl');
+insert into FILMS (ID, DESCRIPTION, DURATION, LANGUAGE, RATING, RELEASEYEAR, TITLE) values (5,'A movie about pirates',24,'English','four',2006,'Pirates of the Caribbean, dead man s chest ');
 insert into FILMS (ID, DESCRIPTION, DURATION, LANGUAGE, RATING, RELEASEYEAR, TITLE) values (6,'A show about ninjas',25,'Japanese','four',1999,'Naruto');
-insert into FILMS (ID, DESCRIPTION, DURATION, LANGUAGE, RATING, RELEASEYEAR, TITLE) values (7,'A show about ninjas',25,'Japanese','five',2001,'Naruto, Chounin Exams');
-insert into FILMS (ID, DESCRIPTION, DURATION, LANGUAGE, RATING, RELEASEYEAR, TITLE) values (8,'A show about ninjas',26,'Japanese','five',2011,'Naruto, Akatsuki');
+insert into FILMS (ID, DESCRIPTION, DURATION, LANGUAGE, RATING, RELEASEYEAR, TITLE) values (7,'A movie about samurais',25,'English','four',2001,'The Last Samurai');
+insert into FILMS (ID, DESCRIPTION, DURATION, LANGUAGE, RATING, RELEASEYEAR, TITLE) values (8,'A super hero movie',26,'English','five',2016,'Doctor Strange');
 insert into FILMS (ID, DESCRIPTION, DURATION, LANGUAGE, RATING, RELEASEYEAR, TITLE) values (9,'Luca and Bugs Bunny ',113,'English','four',2026,'Space Jump 3');
 insert into FILMS (ID, DESCRIPTION, DURATION, LANGUAGE, RATING, RELEASEYEAR, TITLE) values (10,'Best movie no one knows',129,'English','three',2014,'Peanut Butter');
 
