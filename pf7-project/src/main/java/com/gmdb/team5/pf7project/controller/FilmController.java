@@ -30,8 +30,8 @@ public class FilmController extends AbstractController<Film> {
         return filmService;
     }
 
-    @GetMapping(params = {"t"})
-    public Film findByTitle(@RequestParam("t") String title) {
+    @GetMapping(params = {"title"})
+    public Film findByTitle(@RequestParam("title") String title) {
         return filmService.findByTitle(title);
     }
 }

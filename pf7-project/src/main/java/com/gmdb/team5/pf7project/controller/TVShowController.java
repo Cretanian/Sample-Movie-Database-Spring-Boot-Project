@@ -28,18 +28,18 @@ public class TVShowController extends AbstractController<TVShow> {
         return tvShowService;
     }
 
-    @GetMapping(params = {"t"})
-    public TVShow findByTitle(@RequestParam("t") String title) {
+    @GetMapping(params = {"title"})
+    public TVShow findByTitle(@RequestParam("title") String title) {
         return tvShowService.findByTitle(title);
     }
 
-    @GetMapping(params = {"s"})
-    public List<TVShow> findByNumberOfSeasons(@RequestParam("s") Integer seasons) {
+    @GetMapping(params = {"seasons"})
+    public List<TVShow> findByNumberOfSeasons(@RequestParam("seasons") Integer seasons) {
         return tvShowService.findByNumberOfSeasons(seasons);
     }
 
-    @GetMapping(params = {"e"})
-    public List<TVShow> findByNumberOfEpisodes(@RequestParam("e") Integer episodes) {
+    @GetMapping(params = {"episodes"})
+    public List<TVShow> findByNumberOfEpisodes(@RequestParam("episodes") Integer episodes) {
         return tvShowService.findByNumberOfEpisodes(episodes);
     }
 

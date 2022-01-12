@@ -38,28 +38,28 @@ public class PersonController extends AbstractController<Person> {
         return personService;
     }
 
-    @GetMapping(params = {"f", "l"})
-    public Person findByName(@RequestParam("f") String firstName, @RequestParam("l") String lastName) {
+    @GetMapping(params = {"firstname", "lastname"})
+    public Person findByName(@RequestParam("firstname") String firstName, @RequestParam("lastname") String lastName) {
         return personService.findByName(firstName, lastName);
     }
 
-    @GetMapping(params = {"c"})
-    public List<Person> findByCountry(@RequestParam("c") String country) {
+    @GetMapping(params = {"country"})
+    public List<Person> findByCountry(@RequestParam("country") String country) {
         return personService.findByCountry(country);
     }
 
-    @GetMapping(params = {"i"})
-    public List<Person> findByIsAlive(@RequestParam("i") Boolean isAlive) {
+    @GetMapping(params = {"isAlive"})
+    public List<Person> findByIsAlive(@RequestParam("isAlive") Boolean isAlive) {
         return personService.findByIsAlive(isAlive);
     }
 
-    @GetMapping(params = {"g"}, headers = {"action=ReturnFilmsCasted"})
-    public ResponseEntity<ApiResponse<Map<Person, List<Film>>>> testMe(@RequestParam("g") Long id) {
+    @GetMapping(params = {"id"}, headers = {"action=ReturnFilmsCasted"})
+    public ResponseEntity<ApiResponse<Map<Person, List<Film>>>> getFilmsCasted(@RequestParam("id") Long id) {
         Map<Person, List<Film>> myMap = new HashMap<>();
         Person person = personService.find(id);
         List<Film> filmList = filmService.findFilmByPerson(person);
         for (Film iterator : filmList)
-            iterator.setPeopleCasted(null);         //check this and think about it. works but not best practise
+            iterator.setPeopleCasted(null);
         myMap.put(person, filmList);
         return ResponseEntity.ok(ApiResponse.<Map<Person, List<Film>>>builder().data(myMap).build());
     }

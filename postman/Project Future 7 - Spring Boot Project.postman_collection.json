@@ -17,12 +17,6 @@
 								"key": "action",
 								"value": "firstReport",
 								"type": "default"
-							},
-							{
-								"key": "ExtendedInfo",
-								"value": "true",
-								"type": "default",
-								"disabled": true
 							}
 						],
 						"url": {
@@ -36,7 +30,8 @@
 							"query": [
 								{
 									"key": "num",
-									"value": "2"
+									"value": "2",
+									"description": "Variable fo the top X content"
 								}
 							]
 						}
@@ -56,7 +51,8 @@
 							{
 								"key": "ExtendedInfo",
 								"value": "true",
-								"type": "default"
+								"type": "default",
+								"disabled": true
 							}
 						],
 						"url": {
@@ -70,7 +66,8 @@
 							"query": [
 								{
 									"key": "id",
-									"value": "1"
+									"value": "1",
+									"description": "\"id\" of requested peorson"
 								}
 							]
 						}
@@ -104,11 +101,13 @@
 							"query": [
 								{
 									"key": "id",
-									"value": "1"
+									"value": "1",
+									"description": "\"id\" of requested peorson"
 								},
 								{
 									"key": "role",
-									"value": "Actor"
+									"value": "Actor",
+									"description": "\"role\" of requested peorson"
 								}
 							]
 						}
@@ -142,7 +141,8 @@
 							"query": [
 								{
 									"key": "genre",
-									"value": "Action"
+									"value": "Action",
+									"description": "Return all films by requested \"genre\" "
 								}
 							]
 						}
@@ -217,7 +217,8 @@
 							"query": [
 								{
 									"key": "id",
-									"value": "1"
+									"value": "1",
+									"description": "\"id\" of requested peorson"
 								}
 							]
 						}
@@ -340,6 +341,221 @@
 				}
 			],
 			"description": "Here are the calls that export the DB."
+		},
+		{
+			"name": "crUd Operatio",
+			"item": [
+				{
+					"name": "TVshow",
+					"item": [
+						{
+							"name": "GET TVshow by title",
+							"request": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "{{url}}/tvshows?title=One_Piece",
+									"host": [
+										"{{url}}"
+									],
+									"path": [
+										"tvshows"
+									],
+									"query": [
+										{
+											"key": "title",
+											"value": "One_Piece"
+										}
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "GET TVshow by episodes",
+							"request": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "{{url}}/tvshows?episodes=2",
+									"host": [
+										"{{url}}"
+									],
+									"path": [
+										"tvshows"
+									],
+									"query": [
+										{
+											"key": "episodes",
+											"value": "2"
+										}
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "GET TVshow by seasons",
+							"request": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "{{url}}/tvshows?seasons=14",
+									"host": [
+										"{{url}}"
+									],
+									"path": [
+										"tvshows"
+									],
+									"query": [
+										{
+											"key": "seasons",
+											"value": "14"
+										}
+									]
+								}
+							},
+							"response": []
+						}
+					]
+				},
+				{
+					"name": "Person",
+					"item": [
+						{
+							"name": "GET Person by name",
+							"request": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "{{url}}/people?firstname=John&lastname=Brown",
+									"host": [
+										"{{url}}"
+									],
+									"path": [
+										"people"
+									],
+									"query": [
+										{
+											"key": "firstname",
+											"value": "John"
+										},
+										{
+											"key": "lastname",
+											"value": "Brown"
+										}
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "GET Person from country",
+							"request": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "{{url}}/people?country=Greece",
+									"host": [
+										"{{url}}"
+									],
+									"path": [
+										"people"
+									],
+									"query": [
+										{
+											"key": "country",
+											"value": "Greece"
+										}
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "GET Persons Casted Films",
+							"request": {
+								"method": "GET",
+								"header": [
+									{
+										"key": "action",
+										"value": "ReturnFilmsCasted",
+										"type": "default"
+									}
+								],
+								"url": {
+									"raw": "{{url}}/people?id=2",
+									"host": [
+										"{{url}}"
+									],
+									"path": [
+										"people"
+									],
+									"query": [
+										{
+											"key": "id",
+											"value": "2"
+										}
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "GET Person by isAlive Copy",
+							"request": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "{{url}}/people?isAlive=false",
+									"host": [
+										"{{url}}"
+									],
+									"path": [
+										"people"
+									],
+									"query": [
+										{
+											"key": "isAlive",
+											"value": "false"
+										}
+									]
+								}
+							},
+							"response": []
+						}
+					]
+				},
+				{
+					"name": "Film",
+					"item": [
+						{
+							"name": "GET TVshow by title",
+							"request": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "{{url}}/films?title=One_Piece",
+									"host": [
+										"{{url}}"
+									],
+									"path": [
+										"films"
+									],
+									"query": [
+										{
+											"key": "title",
+											"value": "One_Piece"
+										}
+									]
+								}
+							},
+							"response": []
+						}
+					]
+				}
+			],
+			"description": "The basic crUd operation."
 		}
 	],
 	"event": [
