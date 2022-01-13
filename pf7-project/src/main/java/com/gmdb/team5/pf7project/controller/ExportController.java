@@ -79,7 +79,7 @@ public class ExportController extends AbstractLogComponent {
         createJson();
     }
 
-    @GetMapping("/POEPLE")
+    @GetMapping("/PEOPLE")
     public void exportPersonToCSV() {
         final List<Person> peoplelist = personService.findAll();
         jsonObject.put("PEOPLE",peoplelist.size());

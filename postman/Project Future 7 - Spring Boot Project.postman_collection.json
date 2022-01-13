@@ -343,7 +343,7 @@
 			"description": "Here are the calls that export the DB."
 		},
 		{
-			"name": "crUd Operatio",
+			"name": "crUd Operations",
 			"item": [
 				{
 					"name": "TVshow",
@@ -428,7 +428,7 @@
 								"method": "GET",
 								"header": [],
 								"url": {
-									"raw": "{{url}}/people?firstname=John&lastname=Brown",
+									"raw": "{{url}}/people?firstname=Damiano&lastname=Moretti",
 									"host": [
 										"{{url}}"
 									],
@@ -438,11 +438,11 @@
 									"query": [
 										{
 											"key": "firstname",
-											"value": "John"
+											"value": "Damiano"
 										},
 										{
 											"key": "lastname",
-											"value": "Brown"
+											"value": "Moretti"
 										}
 									]
 								}
@@ -502,7 +502,7 @@
 							"response": []
 						},
 						{
-							"name": "GET Person by isAlive Copy",
+							"name": "GET Person by isAlive",
 							"request": {
 								"method": "GET",
 								"header": [],
@@ -519,6 +519,32 @@
 											"key": "isAlive",
 											"value": "false"
 										}
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "PUT People",
+							"request": {
+								"method": "PUT",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\n    \"id\":2,\n    \"firstName\":\"Stylianos\",\n    \"lastName\": \"Stamatakis\",\n    \"country\": \"CRETE\",\n    \"yob\": 1999,\n    \"isAlive\":false\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{url}}/people",
+									"host": [
+										"{{url}}"
+									],
+									"path": [
+										"people"
 									]
 								}
 							},
@@ -547,6 +573,24 @@
 											"key": "title",
 											"value": "One_Piece"
 										}
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "DELETE Film",
+							"request": {
+								"method": "DELETE",
+								"header": [],
+								"url": {
+									"raw": "{{url}}/films/1",
+									"host": [
+										"{{url}}"
+									],
+									"path": [
+										"films",
+										"1"
 									]
 								}
 							},
