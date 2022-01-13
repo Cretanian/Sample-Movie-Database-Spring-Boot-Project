@@ -128,7 +128,7 @@ public class ExportController extends AbstractLogComponent {
         logger.info("The FILMS.csv created successfully");
     }
 
-    @GetMapping("/TVSHOWS")
+    @GetMapping("/TVSHOW")
     public void exportTVShowToCSV() {
         final List<TVShow> tvShowList = tvShowService.findAll();
         jsonObject.put("TVSHOWS",tvShowList.size());
